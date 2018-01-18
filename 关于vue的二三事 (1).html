@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="vue的双向绑定双向绑定就是讲将DOM与data数据绑定到一起，彼此相互影响: 即DOM改变时会导致数据的改变; 数据改变时也会同步更新DOM 默认的双向绑定 Vue默认的对data里的数据进行了双向绑定. 把一个普通的 js 对象传给 Vue 实例的 data选项, Vue内部会在初始化时遍历此对象所有的属性, 并使用 Object.defineProperty把这些属性全部转为 getter/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于vue的二三事 (1)">
+<meta property="og:url" content="http://xueying.me/关于vue的二三事 (1).html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="vue的双向绑定双向绑定就是讲将DOM与data数据绑定到一起，彼此相互影响: 即DOM改变时会导致数据的改变; 数据改变时也会同步更新DOM 默认的双向绑定 Vue默认的对data里的数据进行了双向绑定. 把一个普通的 js 对象传给 Vue 实例的 data选项, Vue内部会在初始化时遍历此对象所有的属性, 并使用 Object.defineProperty把这些属性全部转为 getter/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-16T09:40:17.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于vue的二三事 (1)">
+<meta name="twitter:description" content="vue的双向绑定双向绑定就是讲将DOM与data数据绑定到一起，彼此相互影响: 即DOM改变时会导致数据的改变; 数据改变时也会同步更新DOM 默认的双向绑定 Vue默认的对data里的数据进行了双向绑定. 把一个普通的 js 对象传给 Vue 实例的 data选项, Vue内部会在初始化时遍历此对象所有的属性, 并使用 Object.defineProperty把这些属性全部转为 getter/">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/关于vue的二三事 (1).html"/>
+
+
+
+
+
+  <title>关于vue的二三事 (1) | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/关于vue的二三事 (1).html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于vue的二三事 (1)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T17:03:37+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="vue的双向绑定"><a href="#vue的双向绑定" class="headerlink" title="vue的双向绑定"></a>vue的双向绑定</h1><p>双向绑定就是讲将DOM与data数据绑定到一起，彼此相互影响: 即DOM改变时会导致数据的改变; 数据改变时也会同步更新DOM</p>
+<p>默认的双向绑定</p>
+<p>Vue默认的对data里的数据进行了双向绑定. 把一个普通的 js 对象传给 Vue 实例的 data选项, Vue内部会在初始化时遍历此对象所有的属性, 并使用 Object.defineProperty把这些属性全部转为 getter/setter. </p>
+<p>每个组件实例都有相应的 watcher 实例对象, 在组件渲染的过程中把属性记录为依赖, 之后当依赖项的 setter 被调用时, 会通知 watcher 重新计算, 从而致使它关联的组件得以更新. 下图是一个官网的图, 明确的展示了这个过程.</p>
+<p>添加要双向绑定的属性</p>
+<p>Vue 不能检测到对象属性的添加或删除, 但可以通过set方法将响应属性添加到嵌套的对象上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.set(vm.someObject, &apos;b&apos;, 2)</span><br></pre></td></tr></table></figure>
+<p>声明相应式属性</p>
+<p>由于 Vue 不允许动态添加根级响应式属性，所以你必须在初始化实例前声明根级响应式属性，哪怕只是一个空值</p>
+<p>异步更新队列</p>
+<p>Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据改变。如果同一个 watcher 被多次触发，只会被推入到队列中一次。在下一个的事件循环“tick”中，Vue 刷新队列并执行实际 (已去重的) 工作。</p>
+<p>也可以直接定义在下一个tick要执行的事件:  Vue.nextTick(callback)</p>
+<h1 id="一些指令"><a href="#一些指令" class="headerlink" title="一些指令"></a>一些指令</h1><h2 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h2><h3 id="v-text"><a href="#v-text" class="headerlink" title="v-text"></a><strong>v-text</strong></h3><ul>
+<li><p>解释：更新DOM对象的 textContent</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-text</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a><strong>v-html</strong></h3><ul>
+<li>解释：更新DOM对象的 innerHTML</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-html</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a><strong>事件修饰符</strong></h3><ul>
+<li>.stop 阻止冒泡，调用 event.stopPropagation()</li>
+<li>.prevent 阻止默认行为，调用 event.preventDefault()</li>
+<li>.capture 添加事件侦听器时使用事件捕获模式</li>
+<li>.self 只当事件在该元素本身（比如不是子元素）触发时，才会触发事件</li>
+<li>.once 事件只触发一次</li>
+</ul>
+<p><strong>v-for</strong></p>
+<ul>
+<li>作用：基于源数据多次渲染元素或模板块</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- item 为值，key 为键，index 为索引 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">"(item, key, index) in obj"</span>&gt;</span>&#123;&#123;item&#125;&#125; -- &#123;&#123;key&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">"item in 10"</span>&gt;</span>&#123;&#123;item&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="key属性"><a href="#key属性" class="headerlink" title="key属性"></a><strong>key属性</strong></h3><ul>
+<li>推荐：使用 v-for 的时候提供 key 属性，以获得性能提升。</li>
+<li>说明：使用 key，VUE会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素。</li>
+<li>vue key</li>
+<li>vue key属性的说明</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 内容 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="样式处理-class和style"><a href="#样式处理-class和style" class="headerlink" title="样式处理 -class和style"></a><strong>样式处理 -class和style</strong></h3><ul>
+<li>使用方式：v-bind:class=”expression” or :class=”expression”</li>
+<li>表达式的类型：字符串、数组、对象（重点）</li>
+</ul>
+<h3 id="v-if-和-v-show"><a href="#v-if-和-v-show" class="headerlink" title="v-if 和 v-show"></a><strong>v-if 和 v-show</strong></h3><ul>
+<li>v-if：根据表达式的值的真假条件，销毁或重建元素</li>
+<li>v-show：根据表达式之真假值，切换元素的 display CSS 属性</li>
+</ul>
+<h2 id="提升性能的指令"><a href="#提升性能的指令" class="headerlink" title="提升性能的指令"></a>提升性能的指令</h2><h3 id="提升性能：v-pre"><a href="#提升性能：v-pre" class="headerlink" title="提升性能：v-pre"></a><strong>提升性能：v-pre</strong></h3><ul>
+<li>说明：vue会跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-pre</span>&gt;</span>&#123;&#123; this will not be compiled &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="提升性能：v-once"><a href="#提升性能：v-once" class="headerlink" title="提升性能：v-once"></a><strong>提升性能：v-once</strong></h3><ul>
+<li>说明：vue只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-once</span>&gt;</span>&#123;&#123; this will not be compiled &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="过滤器-filter"><a href="#过滤器-filter" class="headerlink" title="过滤器 filter"></a><strong>过滤器 filter</strong></h2><p>有点像angular的管道</p>
+<ul>
+<li><p>作用：文本数据格式化</p>
+</li>
+<li><p>过滤器可以用在两个地方</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; dateStr | date &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>和 v-bind </p>
+</li>
+<li><p>两种过滤器：1 全局过滤器 2 局部过滤器</p>
+</li>
+</ul>
+<h3 id="全局过滤器"><a href="#全局过滤器" class="headerlink" title="全局过滤器"></a><strong>全局过滤器</strong></h3><ul>
+<li>说明：通过全局方式创建的过滤器，在任何一个vue实例中都可以使用</li>
+<li>注意：使用全局过滤器的时候，需要先创建全局过滤器，再创建Vue实例</li>
+<li>显示的内容由过滤器的返回值决定</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.filter(<span class="string">'filterName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// value 表示要过滤的内容</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; dateStr | date &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; dateStr | date('YYYY-MM-DD hh:mm:ss') &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  Vue.filter(<span class="string">'date'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value, format</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// value 要过滤的字符串内容，比如：dateStr</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// format 过滤器的参数，比如：'YYYY-MM-DD hh:mm:ss'</span></span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="局部过滤器"><a href="#局部过滤器" class="headerlink" title="局部过滤器"></a><strong>局部过滤器</strong></h3><ul>
+<li>说明：局部过滤器是在某一个vue实例的内容创建的，只在当前实例中起作用</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  data: &#123;&#125;,</span><br><span class="line">  <span class="comment">// 通过 filters 属性创建局部过滤器</span></span><br><span class="line">  <span class="comment">// 注意：此处为 filters</span></span><br><span class="line">  filters: &#123;</span><br><span class="line">    filterName: <span class="function"><span class="keyword">function</span>(<span class="params">value, format</span>) </span>&#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按键值修饰符</p>
+<ul>
+<li><p>说明：在监听键盘事件时，Vue 允许为 v-on 在监听键盘事件时添加关键修饰符</p>
+</li>
+<li><p>键盘事件 - 键值修饰符</p>
+</li>
+<li><p>其他：修饰键（.ctrl等）、鼠标按键修饰符（.left等）</p>
+<p>// 只有在 keyCode 是 13 时调用 vm.submit()<br>@keyup.13=”submit”<br>// 使用全局按键别名<br>@keyup.enter=”add”<br>// 通过全局 config.keyCodes 对象自定义键值修饰符别名<br>Vue.config.keyCodes.f2 = 113<br>// 使用自定义键值修饰符<br>@keyup.enter.f2=”add”</p>
+</li>
+</ul>
+<h2 id="监视数据变化-watch"><a href="#监视数据变化-watch" class="headerlink" title="监视数据变化 - watch"></a>监视数据变化 - watch</h2><p>用于监听表达式的变化, 类似于在vue的基础上再定义set, 可通过deep来决定是否监听对象内部属性值的变化 </p>
+<ul>
+<li><p>概述：watch是一个对象，键是需要观察的表达式，值是对应回调函数</p>
+</li>
+<li><p>作用：当表达式的值发生变化后，会调用对应的回调函数完成响应的监视操作</p>
+</li>
+<li><p>VUE $watch</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: &#123; <span class="attr">age</span>: <span class="number">10</span> &#125; &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    a: <span class="function"><span class="keyword">function</span>(<span class="params">val, oldVal</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// val 表示当前值</span></span><br><span class="line">      <span class="comment">// oldVal 表示旧值</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'当前值为：'</span> + val, <span class="string">'旧值为：'</span> + oldVal)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 监听对象属性的变化</span></span><br><span class="line">    b: &#123;</span><br><span class="line">      handler: <span class="function"><span class="keyword">function</span> (<span class="params">val, oldVal</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">      <span class="comment">// deep : true表示是否监听对象内部属性值的变化 </span></span><br><span class="line">      deep: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 只监视user对象中age属性的变化</span></span><br><span class="line">    <span class="string">'user.age'</span>: <span class="function"><span class="keyword">function</span> (<span class="params">val, oldVal</span>) </span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/axios.html" rel="next" title="axios">
+                <i class="fa fa-chevron-left"></i> axios
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/关于vue的二三事(2).html" rel="prev" title="关于vue的二三事(2)">
+                关于vue的二三事(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue的双向绑定"><span class="nav-number">1.</span> <span class="nav-text">vue的双向绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些指令"><span class="nav-number">2.</span> <span class="nav-text">一些指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见指令"><span class="nav-number">2.1.</span> <span class="nav-text">常见指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-text"><span class="nav-number">2.1.1.</span> <span class="nav-text">v-text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-html"><span class="nav-number">2.1.2.</span> <span class="nav-text">v-html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件修饰符"><span class="nav-number">2.1.3.</span> <span class="nav-text">事件修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key属性"><span class="nav-number">2.1.4.</span> <span class="nav-text">key属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样式处理-class和style"><span class="nav-number">2.1.5.</span> <span class="nav-text">样式处理 -class和style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-if-和-v-show"><span class="nav-number">2.1.6.</span> <span class="nav-text">v-if 和 v-show</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提升性能的指令"><span class="nav-number">2.2.</span> <span class="nav-text">提升性能的指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提升性能：v-pre"><span class="nav-number">2.2.1.</span> <span class="nav-text">提升性能：v-pre</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提升性能：v-once"><span class="nav-number">2.2.2.</span> <span class="nav-text">提升性能：v-once</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器-filter"><span class="nav-number">2.3.</span> <span class="nav-text">过滤器 filter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局过滤器"><span class="nav-number">2.3.1.</span> <span class="nav-text">全局过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部过滤器"><span class="nav-number">2.3.2.</span> <span class="nav-text">局部过滤器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监视数据变化-watch"><span class="nav-number">2.4.</span> <span class="nav-text">监视数据变化 - watch</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

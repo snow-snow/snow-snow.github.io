@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="html," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="用于在元素上保存不需要展示的消息 语法直接在标签上添加 ‘data-‘ 开头的属性 123&amp;lt;div id=&apos;data&apos; data-name=&apos;name&apos; data-columns=&quot;3&quot;&amp;gt;  &amp;lt;/div&amp;gt; 实用js直接可以获取着部分属性 123456var data = document.querySelector(&apos;#data&apos;);// 读取值data.dataset.n">
-<meta name="keywords" content="html">
+<meta name="description" content="产生原因 ：   1、在 移动端 （ios）flex属性失效，被编译成 absolute 2、 有第三方输入法的ios机还会出现键盘弹出延迟，导致普通布局 输入框(input/textarea等) 位置靠下的被键盘挡住, 12// 在输入框获取焦点, 键盘弹起后    document.body.scrollTop = document.body.scrollHeight">
 <meta property="og:type" content="article">
-<meta property="og:title" content="html5 data 属性">
-<meta property="og:url" content="http://xueying.me/html5 data 属性.html">
+<meta property="og:title" content="ios键盘挡住底部输入框">
+<meta property="og:url" content="http://xueying.me/移动端ios键盘挡住底部输入框的问题完美解决方案.html">
 <meta property="og:site_name" content="Snow">
-<meta property="og:description" content="用于在元素上保存不需要展示的消息 语法直接在标签上添加 ‘data-‘ 开头的属性 123&amp;lt;div id=&apos;data&apos; data-name=&apos;name&apos; data-columns=&quot;3&quot;&amp;gt;  &amp;lt;/div&amp;gt; 实用js直接可以获取着部分属性 123456var data = document.querySelector(&apos;#data&apos;);// 读取值data.dataset.n">
+<meta property="og:description" content="产生原因 ：   1、在 移动端 （ios）flex属性失效，被编译成 absolute 2、 有第三方输入法的ios机还会出现键盘弹出延迟，导致普通布局 输入框(input/textarea等) 位置靠下的被键盘挡住, 12// 在输入框获取焦点, 键盘弹起后    document.body.scrollTop = document.body.scrollHeight">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-09T09:17:31.134Z">
+<meta property="og:updated_time" content="2018-01-12T06:02:45.628Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="html5 data 属性">
-<meta name="twitter:description" content="用于在元素上保存不需要展示的消息 语法直接在标签上添加 ‘data-‘ 开头的属性 123&amp;lt;div id=&apos;data&apos; data-name=&apos;name&apos; data-columns=&quot;3&quot;&amp;gt;  &amp;lt;/div&amp;gt; 实用js直接可以获取着部分属性 123456var data = document.querySelector(&apos;#data&apos;);// 读取值data.dataset.n">
+<meta name="twitter:title" content="ios键盘挡住底部输入框">
+<meta name="twitter:description" content="产生原因 ：   1、在 移动端 （ios）flex属性失效，被编译成 absolute 2、 有第三方输入法的ios机还会出现键盘弹出延迟，导致普通布局 输入框(input/textarea等) 位置靠下的被键盘挡住, 12// 在输入框获取焦点, 键盘弹起后    document.body.scrollTop = document.body.scrollHeight">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://xueying.me/html5 data 属性.html"/>
+  <link rel="canonical" href="http://xueying.me/移动端ios键盘挡住底部输入框的问题完美解决方案.html"/>
 
 
 
 
 
-  <title>html5 data 属性 | Snow</title>
+  <title>ios键盘挡住底部输入框 | Snow</title>
   
 
 
@@ -243,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/html5 data 属性.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/移动端ios键盘挡住底部输入框的问题完美解决方案.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -260,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">html5 data 属性</h1>
+          <h1 class="post-title" itemprop="name headline">ios键盘挡住底部输入框</h1>
         
 
         <div class="post-meta">
@@ -272,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T11:24:14+08:00">
-                2018-01-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T14:00:43+08:00">
+                2018-01-12
               </time>
             
 
@@ -310,21 +309,10 @@
       
 
       
-        <p>用于在元素上保存不需要展示的消息</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><p><strong>直接在标签上添加 ‘data-‘ 开头的属性</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'data'</span> <span class="attr">data-name</span>=<span class="string">'name'</span> <span class="attr">data-columns</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>实用js直接可以获取着部分属性</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="built_in">document</span>.querySelector(<span class="string">'#data'</span>);</span><br><span class="line"><span class="comment">// 读取值</span></span><br><span class="line">data.dataset.name; <span class="comment">// name</span></span><br><span class="line">data.dataset.columns; <span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 改变值</span></span><br><span class="line">data.dataset.columns = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<p><strong>css访问, 以便控制样式</strong></p>
-<ol>
-<li><p>用attr(data- …)直接获取值  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="selector-tag">article</span><span class="selector-pseudo">::before</span> &#123;  </span><br><span class="line">   <span class="attribute">content</span>: <span class="built_in">attr</span>(data-parent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用属性选择器</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">article</span><span class="selector-attr">[data-columns='3']</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">article</span><span class="selector-attr">[data-columns='4']</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>注意: data- 中保存的属性, 在爬虫时是无效的.  ie11以上才支持dataset来获取值, 如果要兼容以下版本, 建议使用getAttribute().  使用dataset会比使用getAttribute()读取数据来得慢</strong></p>
+        <p>产生原因 ：  </p>
+<p>1、在 移动端 （ios）flex属性失效，被编译成 absolute</p>
+<p>2、 有第三方输入法的ios机还会出现键盘弹出延迟，导致普通布局 输入框(input/textarea等) 位置靠下的被键盘挡住,</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在输入框获取焦点, 键盘弹起后</span></span><br><span class="line">    <span class="built_in">document</span>.body.scrollTop = <span class="built_in">document</span>.body.scrollHeight</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -340,12 +328,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/html/" rel="tag"># html</a>
-          
-        </div>
-      
 
       
       
@@ -355,14 +337,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/库和框架.html" rel="next" title="库和框架">
+                <i class="fa fa-chevron-left"></i> 库和框架
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/ngx-cookie.html" rel="prev" title="ngx-cookie">
-                ngx-cookie <i class="fa fa-chevron-right"></i>
+              <a href="/控制翻转和依赖注入.html" rel="prev" title="控制翻转和依赖注入">
+                控制翻转和依赖注入 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -415,17 +401,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -480,22 +457,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

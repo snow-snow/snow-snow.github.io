@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Snow">
 <meta property="og:description" content="mark.js是用JavaScript编写的文本荧光笔。 它可以用来动态标记搜索词或自定义正则表达式，并为您提供内置的选项，如变音符号支持，单词搜索，自定义同义词，iframe支持，自定义过滤器，准确性定义，自定义元素，自定义类名称等。 下载1npm install mark.js --save 兼容 Firefox (30+) Chrome (30+) Safari (7+) Edge (13+">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-09T06:42:37.533Z">
+<meta property="og:updated_time" content="2018-01-12T03:50:18.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mark.js荧光笔工具">
 <meta name="twitter:description" content="mark.js是用JavaScript编写的文本荧光笔。 它可以用来动态标记搜索词或自定义正则表达式，并为您提供内置的选项，如变音符号支持，单词搜索，自定义同义词，iframe支持，自定义过滤器，准确性定义，自定义元素，自定义类名称等。 下载1npm install mark.js --save 兼容 Firefox (30+) Chrome (30+) Safari (7+) Edge (13+">
@@ -248,7 +248,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="image" content="/images/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -335,6 +335,11 @@
 <p>options详解:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">    <span class="string">"element"</span>: <span class="string">"mark"</span>, <span class="comment">//包裹匹配元素的标签</span></span><br><span class="line">    <span class="string">"className"</span>: <span class="string">""</span>, <span class="comment">// 添加到元素上的class</span></span><br><span class="line">    <span class="string">"exclude"</span>: [], <span class="comment">//被忽略不匹配的标签</span></span><br><span class="line">    <span class="string">"separateWordSearch"</span>: <span class="literal">true</span>, <span class="comment">//是否不完全匹配(即不需要空格分割)</span></span><br><span class="line">    <span class="string">"accuracy"</span>: <span class="string">"partially"</span>,<span class="comment">// 精确度:partially(标记词语的一部分) complementary(标记整个词) exactly(匹配边界)</span></span><br><span class="line">    <span class="string">"diacritics"</span>: <span class="literal">true</span>, <span class="comment">// 是否兼容音标</span></span><br><span class="line">    <span class="string">"synonyms"</span>: &#123;&#125;,<span class="comment">// 同义词</span></span><br><span class="line">    <span class="string">"iframes"</span>: <span class="literal">false</span>, <span class="comment">// 是否匹配iframes内的部分</span></span><br><span class="line">    <span class="string">"iframesTimeout"</span>: <span class="number">5000</span>, <span class="comment">// 多少秒后还未加载出, 就不标记iframes</span></span><br><span class="line">    <span class="string">"acrossElements"</span>: <span class="literal">false</span>,<span class="comment">// 是否夸元素匹配</span></span><br><span class="line">    <span class="string">"caseSensitive"</span>: <span class="literal">false</span>,<span class="comment">// 是否区分大小写</span></span><br><span class="line">    <span class="string">"ignoreJoiners"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">"ignorePunctuation"</span>: [],</span><br><span class="line">    <span class="string">"wildcards"</span>: <span class="string">"disabled"</span>,</span><br><span class="line">    <span class="string">"each"</span>: <span class="function"><span class="keyword">function</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// node is the marked DOM element</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"filter"</span>: <span class="function"><span class="keyword">function</span>(<span class="params">textNode, foundTerm, totalCounter, counter</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// textNode is the text node which contains the found term</span></span><br><span class="line">        <span class="comment">// foundTerm is the found search term</span></span><br><span class="line">        <span class="comment">// totalCounter is a counter indicating the total number of all marks</span></span><br><span class="line">        <span class="comment">//              at the time of the function call</span></span><br><span class="line">        <span class="comment">// counter is a counter indicating the number of marks for the found term</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// must return either true or false</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"noMatch"</span>: <span class="function"><span class="keyword">function</span>(<span class="params">term</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// term is the not found term</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"done"</span>: <span class="function"><span class="keyword">function</span>(<span class="params">counter</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// counter is a counter indicating the total number of all marks</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"debug"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">"log"</span>: <span class="built_in">window</span>.console</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>官网地址 <a href="https://markjs.io/" target="_blank" rel="noopener">https://markjs.io/</a></p>
+<h1 id="与angular2-出现的问题"><a href="#与angular2-出现的问题" class="headerlink" title="与angular2+出现的问题"></a>与angular2+出现的问题</h1><p>在对高亮部分的双向绑定的值改变时,会出现重复高两部分</p>
+<p>我觉得导致这个问题是因为mark给高亮的部分加了自己的标签,如:<mark>, 所以angular自己的双向绑定的值不在是原来的值了.</mark></p>
+<p>解决方案:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.marker.unmark() <span class="comment">// 取消高亮</span></span><br><span class="line">data.qaContent = res.qaContent; <span class="comment">// 修改双向绑定的值</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 重新高亮</span></span><br><span class="line">   <span class="keyword">this</span>.marker.mark(<span class="keyword">this</span>.filter.nativeElement.value.trim());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>过程中试过直接重新高亮, 但是没有效果. 加了setTimeout把高亮放到这次轮训的最后, 有效. (个人觉得是因为优先处理了高亮才进行双向绑定的渲染, 所以没有生效)</p>
 
       
     </div>
@@ -444,7 +449,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/head.jpg"
+                src="/images/logo.png"
                 alt="XueYing Chen" />
             
               <p class="site-author-name" itemprop="name">XueYing Chen</p>
@@ -458,7 +463,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -471,7 +476,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -504,7 +509,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#兼容"><span class="nav-number">2.</span> <span class="nav-text">兼容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义样式"><span class="nav-number">3.</span> <span class="nav-text">定义样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#兼容"><span class="nav-number">2.</span> <span class="nav-text">兼容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义样式"><span class="nav-number">3.</span> <span class="nav-text">定义样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#与angular2-出现的问题"><span class="nav-number">5.</span> <span class="nav-text">与angular2+出现的问题</span></a></li></ol></div>
             
 
           </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="html," />
+  <meta name="keywords" content="angular2+," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="用于在元素上保存不需要展示的消息 语法直接在标签上添加 ‘data-‘ 开头的属性 123&amp;lt;div id=&apos;data&apos; data-name=&apos;name&apos; data-columns=&quot;3&quot;&amp;gt;  &amp;lt;/div&amp;gt; 实用js直接可以获取着部分属性 123456var data = document.querySelector(&apos;#data&apos;);// 读取值data.dataset.n">
-<meta name="keywords" content="html">
+<meta name="description" content="angular本身已经给我们预置了一写实用的管道 I18nPluralPipe 解析出map对应的字符串 一只🌰: 123456789@Component(&amp;#123;  selector: &apos;i18n-plural-pipe&apos;,  template: `&amp;lt;div&amp;gt;&amp;#123;&amp;#123; messages.length | i18nPlural: messageMapping &amp;#">
+<meta name="keywords" content="angular2+">
 <meta property="og:type" content="article">
-<meta property="og:title" content="html5 data 属性">
-<meta property="og:url" content="http://xueying.me/html5 data 属性.html">
+<meta property="og:title" content="angular预置的管道">
+<meta property="og:url" content="http://xueying.me/angular预置管道.html">
 <meta property="og:site_name" content="Snow">
-<meta property="og:description" content="用于在元素上保存不需要展示的消息 语法直接在标签上添加 ‘data-‘ 开头的属性 123&amp;lt;div id=&apos;data&apos; data-name=&apos;name&apos; data-columns=&quot;3&quot;&amp;gt;  &amp;lt;/div&amp;gt; 实用js直接可以获取着部分属性 123456var data = document.querySelector(&apos;#data&apos;);// 读取值data.dataset.n">
+<meta property="og:description" content="angular本身已经给我们预置了一写实用的管道 I18nPluralPipe 解析出map对应的字符串 一只🌰: 123456789@Component(&amp;#123;  selector: &apos;i18n-plural-pipe&apos;,  template: `&amp;lt;div&amp;gt;&amp;#123;&amp;#123; messages.length | i18nPlural: messageMapping &amp;#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-09T09:17:31.134Z">
+<meta property="og:updated_time" content="2018-01-16T04:45:16.013Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="html5 data 属性">
-<meta name="twitter:description" content="用于在元素上保存不需要展示的消息 语法直接在标签上添加 ‘data-‘ 开头的属性 123&amp;lt;div id=&apos;data&apos; data-name=&apos;name&apos; data-columns=&quot;3&quot;&amp;gt;  &amp;lt;/div&amp;gt; 实用js直接可以获取着部分属性 123456var data = document.querySelector(&apos;#data&apos;);// 读取值data.dataset.n">
+<meta name="twitter:title" content="angular预置的管道">
+<meta name="twitter:description" content="angular本身已经给我们预置了一写实用的管道 I18nPluralPipe 解析出map对应的字符串 一只🌰: 123456789@Component(&amp;#123;  selector: &apos;i18n-plural-pipe&apos;,  template: `&amp;lt;div&amp;gt;&amp;#123;&amp;#123; messages.length | i18nPlural: messageMapping &amp;#">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://xueying.me/html5 data 属性.html"/>
+  <link rel="canonical" href="http://xueying.me/angular预置管道.html"/>
 
 
 
 
 
-  <title>html5 data 属性 | Snow</title>
+  <title>angular预置的管道 | Snow</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/html5 data 属性.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/angular预置管道.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">html5 data 属性</h1>
+          <h1 class="post-title" itemprop="name headline">angular预置的管道</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T11:24:14+08:00">
-                2018-01-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T11:04:43+08:00">
+                2018-01-16
               </time>
             
 
@@ -310,21 +310,31 @@
       
 
       
-        <p>用于在元素上保存不需要展示的消息</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><p><strong>直接在标签上添加 ‘data-‘ 开头的属性</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'data'</span> <span class="attr">data-name</span>=<span class="string">'name'</span> <span class="attr">data-columns</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>实用js直接可以获取着部分属性</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="built_in">document</span>.querySelector(<span class="string">'#data'</span>);</span><br><span class="line"><span class="comment">// 读取值</span></span><br><span class="line">data.dataset.name; <span class="comment">// name</span></span><br><span class="line">data.dataset.columns; <span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 改变值</span></span><br><span class="line">data.dataset.columns = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<p><strong>css访问, 以便控制样式</strong></p>
-<ol>
-<li><p>用attr(data- …)直接获取值  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="selector-tag">article</span><span class="selector-pseudo">::before</span> &#123;  </span><br><span class="line">   <span class="attribute">content</span>: <span class="built_in">attr</span>(data-parent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用属性选择器</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">article</span><span class="selector-attr">[data-columns='3']</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">article</span><span class="selector-attr">[data-columns='4']</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>注意: data- 中保存的属性, 在爬虫时是无效的.  ie11以上才支持dataset来获取值, 如果要兼容以下版本, 建议使用getAttribute().  使用dataset会比使用getAttribute()读取数据来得慢</strong></p>
+        <p>angular本身已经给我们预置了一写实用的管道</p>
+<p><strong>I18nPluralPipe</strong></p>
+<p>解析出map对应的字符串</p>
+<p>一只🌰:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line">  selector: <span class="string">'i18n-plural-pipe'</span>,</span><br><span class="line">  template: <span class="string">`&lt;div&gt;&#123;&#123; messages.length | i18nPlural: messageMapping &#125;&#125;&lt;/div&gt;`</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">I18nPluralPipeComponent</span> </span>&#123;</span><br><span class="line">  messages: any[] = [<span class="string">'Message 1'</span>];</span><br><span class="line">  messageMapping:</span><br><span class="line">      &#123;[k: string]: string&#125; = &#123;<span class="string">'=0'</span>: <span class="string">'No messages.'</span>, <span class="string">'=1'</span>: <span class="string">'One message.'</span>, <span class="string">'other'</span>: <span class="string">'# messages.'</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>I18nSelectPipe</strong></p>
+<p>映射是一个对象，用于指示为所提供的表达式的不同值显示的文本。 如果映射关键字都不匹配表达式的值，则返回other关键字的内容，否则返回空字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Component(</span><br><span class="line">    &#123;<span class="attr">selector</span>: <span class="string">'i18n-select-pipe'</span>, <span class="attr">template</span>: <span class="string">`&lt;div&gt;&#123;&#123;gender | i18nSelect: inviteMap&#125;&#125; &lt;/div&gt;`</span>&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">I18nSelectPipeComponent</span> </span>&#123;</span><br><span class="line">  gender: string = <span class="string">'male'</span>;</span><br><span class="line">  inviteMap: any = &#123;<span class="string">'male'</span>: <span class="string">'Invite him.'</span>, <span class="string">'female'</span>: <span class="string">'Invite her.'</span>, <span class="string">'other'</span>: <span class="string">'Invite them.'</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>LowerCasePipe</strong></p>
+<p>转为小写字母</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>In lowercase: <span class="tag">&lt;<span class="name">pre</span>&gt;</span>'&#123;&#123;value | lowercase&#125;&#125;'<span class="tag">&lt;/<span class="name">pre</span>&gt;</span><span class="tag">&lt;/<span class="name">跑</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>UpperCasePipe</strong></p>
+<p>转为大写字母, 用法 <strong>value | uppercase</strong></p>
+<p><strong>PercentPipe</strong></p>
+<p>转换为百分制</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A: &#123;&#123;a | percent&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>AsyncPipe</strong></p>
+<p>async pipe订阅一个observable或一个promise, 返回最后一个发送的值, 并订阅值的改变. 当使用它的组件销毁时, 自动取消订阅</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A: &#123;&#123;a | async&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>SlicePipe</strong></p>
+<p>截取字符串, 用法 <strong>str | slice:start[:end]</strong> </p>
+<p><strong>DatePipe</strong></p>
+<p>输出指定格式的时间, 用法<strong>date | date[:format[:timezone[:locale]]]</strong></p>
+<p><strong>JsonPipe</strong></p>
+<p>装换为json字符串输出, 用法<strong>object | json</strong></p>
 
       
     </div>
@@ -342,7 +352,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/html/" rel="tag"># html</a>
+            <a href="/tags/angular2/" rel="tag"># angular2+</a>
           
         </div>
       
@@ -355,14 +365,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/http和https.html" rel="next" title="http和https">
+                <i class="fa fa-chevron-left"></i> http和https
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/ngx-cookie.html" rel="prev" title="ngx-cookie">
-                ngx-cookie <i class="fa fa-chevron-right"></i>
+              <a href="/axios.html" rel="prev" title="axios">
+                axios <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -415,17 +429,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -480,22 +485,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
