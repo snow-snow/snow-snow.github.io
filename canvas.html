@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="canvas," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="canvas基础canvas元素创造了一个固定大小的画布，它公开了一个或多个渲染上下文，其可以用来绘制和处理要展示的内容。 1&amp;lt;canvas id=&quot;tutorial&quot; width=&quot;500&quot; height=&quot;500&quot;&amp;gt;&amp;lt;/canvas&amp;gt; canvas只有两个属性width和height用来控制画布区域的大小 12this.canvas = document.getElem">
+<meta name="keywords" content="canvas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识canvas">
+<meta property="og:url" content="http://xueying.me/canvas.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="canvas基础canvas元素创造了一个固定大小的画布，它公开了一个或多个渲染上下文，其可以用来绘制和处理要展示的内容。 1&amp;lt;canvas id=&quot;tutorial&quot; width=&quot;500&quot; height=&quot;500&quot;&amp;gt;&amp;lt;/canvas&amp;gt; canvas只有两个属性width和height用来控制画布区域的大小 12this.canvas = document.getElem">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-08T02:51:46.196Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识canvas">
+<meta name="twitter:description" content="canvas基础canvas元素创造了一个固定大小的画布，它公开了一个或多个渲染上下文，其可以用来绘制和处理要展示的内容。 1&amp;lt;canvas id=&quot;tutorial&quot; width=&quot;500&quot; height=&quot;500&quot;&amp;gt;&amp;lt;/canvas&amp;gt; canvas只有两个属性width和height用来控制画布区域的大小 12this.canvas = document.getElem">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/canvas.html"/>
+
+
+
+
+
+  <title>初识canvas | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/canvas.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初识canvas</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T16:17:45+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="canvas基础"><a href="#canvas基础" class="headerlink" title="canvas基础"></a>canvas基础</h1><p>canvas元素创造了一个固定大小的画布，它公开了一个或多个<strong>渲染上下文</strong>，其可以用来绘制和处理要展示的内容。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"tutorial"</span> <span class="attr">width</span>=<span class="string">"500"</span> <span class="attr">height</span>=<span class="string">"500"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>canvas只有两个属性width和height用来控制画布区域的大小</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>); <span class="comment">// 获取画布元素</span></span><br><span class="line"><span class="keyword">this</span>.ctx = <span class="keyword">this</span>.canvas.getContext(<span class="string">'2d'</span>); <span class="comment">// 获取该画布的渲染上下文, 可以通过ctx绘制画布</span></span><br></pre></td></tr></table></figure>
+<p>简单的绘制🌰</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.ctx.fillStyle = <span class="string">'rgb(200,0,0)'</span>; <span class="comment">// 设置画笔填充属性</span></span><br><span class="line"><span class="keyword">this</span>.ctx.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">55</span>, <span class="number">50</span>); <span class="comment">// 填充长方形</span></span><br><span class="line"><span class="keyword">this</span>.ctx.fillStyle = <span class="string">'rgba(0, 0, 200, 0.5)'</span>; <span class="comment">// 重新设置画笔属性</span></span><br><span class="line"><span class="keyword">this</span>.ctx.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">55</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>canvas画布的定位</strong></p>
+<p>canvas画布的定位以左上角为坐标原点(0,0), 向右x增加, 向下y增加</p>
+<h1 id="形状绘制"><a href="#形状绘制" class="headerlink" title="形状绘制"></a>形状绘制</h1><p>绘制路径<br>使用过 PS 的应该都会知道在 PS 中有路径的概念，在 canvas 中也是有路径的概念的。只不过和 PS 中的路径不同的是，PS 中的路径是矢量的，而 canvas 中的路径不是。下面我们来看一下有哪些创建路径的方法：</p>
+<ul>
+<li><p>fill()    填充路径</p>
+<ul>
+<li><p>stroke()描边</p>
+</li>
+<li><p>arc()创建圆弧</p>
+</li>
+<li><p>rect()创建矩形</p>
+</li>
+<li><p>fillRect()绘制矩形路径区域</p>
+</li>
+<li><p>strokeRect()绘制矩形路径描边</p>
+</li>
+<li><p>clearRect()在给定的矩形内清除指定的像素</p>
+</li>
+<li><p>arcTo()创建两切线之间的弧/曲线</p>
+</li>
+<li><p>beginPath()起始一条路径，或重置当前路径</p>
+</li>
+<li><p>moveTo()把路径移动到画布中的指定点，不创建线条</p>
+</li>
+<li><p>lineTo()添加一个新点，然后在画布中创建从该点到最后指定点的线条</p>
+</li>
+</ul>
+<p>| 样式         | 描述                   |<br>| ———- | ——————– |<br>| lineCap    | 设置或返回线条的结束端点样式       |<br>| lineJoin   | 设置或返回两条线相交时，所创建的拐角类型 |<br>| lineWidth  | 设置或返回当前的线条宽度         |<br>| miterLimit | 设置或返回最大斜接长度          |</p>
+<p>掘金 — 一个帮助开发者成长的社区</p>
+<ul>
+<li><p>closePath()创建从当前点回到起始点的路径</p>
+</li>
+<li><p>clip()从原始画布剪切任意形状和尺寸的区域</p>
+</li>
+<li><p>quadraticCurveTo()创建二次方贝塞尔曲线</p>
+</li>
+<li><p>bezierCurveTo()创建三次方贝塞尔曲线</p>
+</li>
+<li><p>isPointInPath()如果指定的点位于当前路径中，则返回 true，否则返回 false…</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="原生图形-矩形"><a href="#原生图形-矩形" class="headerlink" title="原生图形 - 矩形"></a>原生图形 - 矩形</h2><p>不同于SVG, HTML中的元素canvas只支持一种原生的图形绘制: 矩形. </p>
+<p><strong>this.ctx.fillRect(x, y, width, height)</strong> 绘制一个填充的矩形</p>
+<p><strong>this.ctx.strokeRect(x, y, width, height)</strong>  绘制一个矩形的边框</p>
+<p><strong>this.ctx.clearRect(x, y, width, height)</strong> 清除指定矩形区域，让清除部分完全透明。</p>
+<h2 id="绘制路径"><a href="#绘制路径" class="headerlink" title="绘制路径"></a>绘制路径</h2><p><strong>this.ctx.beginPath()</strong> 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径。</p>
+<p><strong>this.ctx.closePath()</strong> 闭合路径之后图形绘制命令又重新指向到上下文中。</p>
+<p><strong>this.ctx.stroke()</strong>通过线条来绘制图形轮廓。</p>
+<p><strong>this.ctx.fill()</strong> 通过填充路径的内容区域生成实心的图形。</p>
+<h2 id="移动笔触"><a href="#移动笔触" class="headerlink" title="移动笔触"></a>移动笔触</h2><p><strong>this.ctx.moveTo(x,y)</strong> 移动到(x,y)</p>
+<h2 id="划线"><a href="#划线" class="headerlink" title="划线"></a>划线</h2><p><strong>this.ctx.lineTo(x, y);</strong> 从当前位置到(x,y)之间划线, 并移动到(x,y)</p>
+<h2 id="圆弧"><a href="#圆弧" class="headerlink" title="圆弧"></a>圆弧</h2><p><strong>this.ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise)</strong>  画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。</p>
+<p><strong>this.ctx.arcTo(x1, y1, x2, y2, radius)</strong> 根据给定的控制点和半径画一段圆弧，再以直线连接两个控制点。</p>
+<h2 id="贝塞尔曲线"><a href="#贝塞尔曲线" class="headerlink" title="贝塞尔曲线"></a>贝塞尔曲线</h2><p><strong>this.ctx.quadraticCurveTo(cp1x, cp1y, x, y)</strong>绘制二次贝塞尔曲线，cp1x,cp1y为一个控制点，x,y为结束点。</p>
+<p><strong>this.ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)</strong>绘制三次贝塞尔曲线，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二，x,y为结束点。</p>
+<h2 id="Path2D对象"><a href="#Path2D对象" class="headerlink" title="Path2D对象"></a>Path2D对象</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Path2D();     <span class="comment">// 空的Path对象</span></span><br><span class="line"><span class="keyword">new</span> Path2D(path); <span class="comment">// 克隆Path对象</span></span><br><span class="line"><span class="keyword">new</span> Path2D(d);    <span class="comment">// 从SVG建立Path对象</span></span><br></pre></td></tr></table></figure>
+<p>🌰:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line">  <span class="keyword">if</span> (canvas.getContext)&#123;</span><br><span class="line">    <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> rectangle = <span class="keyword">new</span> Path2D();</span><br><span class="line">    rectangle.rect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> circle = <span class="keyword">new</span> Path2D();</span><br><span class="line">    circle.moveTo(<span class="number">125</span>, <span class="number">35</span>);</span><br><span class="line">    circle.arc(<span class="number">100</span>, <span class="number">35</span>, <span class="number">25</span>, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI);</span><br><span class="line"></span><br><span class="line">    ctx.stroke(rectangle);</span><br><span class="line">    ctx.fill(circle);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="色彩"><a href="#色彩" class="headerlink" title="色彩"></a>色彩</h1><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fillStyle</td>
+<td>设置或返回用于填充绘画的颜色、渐变或模式</td>
+</tr>
+<tr>
+<td>strokeStyle</td>
+<td>设置或返回用于笔触的颜色、渐变或模式</td>
+</tr>
+<tr>
+<td>shadowColor</td>
+<td>设置或返回用于阴影的颜色</td>
+</tr>
+<tr>
+<td>shadowBlur</td>
+<td>设置或返回用于阴影的模糊级别</td>
+</tr>
+<tr>
+<td>shadowOffsetX</td>
+<td>设置或返回阴影距形状的水平距离</td>
+</tr>
+<tr>
+<td>shadowOffsetY</td>
+<td>设置或返回阴影距形状的垂直距离…</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors</a></p>
+<h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><p>方法    描述<br>createLinearGradient()    创建线性渐变（用在画布内容上）<br>createPattern()    在指定的方向上重复指定的元素<br>createRadialGradient()    创建放射状/环形的渐变（用在画布内容上）<br>addColorStop()    规定渐变对象中的颜色和停止位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span><br><span class="line">    <span class="keyword">var</span> context = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line">    <span class="keyword">var</span> cx = canvas.width = <span class="number">400</span>;</span><br><span class="line">    <span class="keyword">var</span> cy = canvas.height = <span class="number">400</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> grd = context.createLinearGradient(<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">200</span>);</span><br><span class="line">    grd.addColorStop(<span class="number">0</span>,<span class="string">'pink'</span>);</span><br><span class="line">    grd.addColorStop(<span class="number">1</span>,<span class="string">'white'</span>);</span><br><span class="line"></span><br><span class="line">    context.fillStyle = grd;</span><br><span class="line">    context.fillRect(<span class="number">100</span>,<span class="number">100</span>,<span class="number">200</span>,<span class="number">200</span>);...</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//juejin.im</span></span><br><span class="line">掘金 — 一个帮助开发者成长的社区</span><br></pre></td></tr></table></figure>
+<h2 id="图像转换"><a href="#图像转换" class="headerlink" title="图像转换"></a>图像转换</h2><p>scale(x,y)    缩放当前绘图至更大或更小, x: 横轴缩放比例, y: 纵轴缩放比例<br>rotate(angle)    旋转当前绘图 angle : 旋转角度，以弧度计。, 如:度(20*Math.PI/180)<br>translate()    重新映射画布上的 (0,0) 位置<br>transform()    替换绘图的当前转换矩阵<br>setTransform()    将当前转换重置为单位矩阵。然后运行 transform()</p>
+<h2 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h2><p>context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);  向画布上绘制图像、画布或视频</p>
+<p>img:规定要使用的图像、画布或视频。<br>sx:可选。开始剪切的 x 坐标位置。<br>sy:可选。开始剪切的 y 坐标位置。<br>swidth:可选。被剪切图像的宽度。<br>sheight:可选。被剪切图像的高度。<br>x:在画布上放置图像的 x 坐标位置。<br>y:在画布上放置图像的 y 坐标位置。<br>width:可选。要使用的图像的宽度。（伸展或缩小图像）<br>height:可选。要使用的图像的高度。（伸展或缩小图像）</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/canvas/" rel="tag"># canvas</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/svg.html" rel="next" title="svg">
+                <i class="fa fa-chevron-left"></i> svg
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/js拖拽.html" rel="prev" title="js拖拽">
+                js拖拽 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#canvas基础"><span class="nav-number">1.</span> <span class="nav-text">canvas基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#形状绘制"><span class="nav-number">2.</span> <span class="nav-text">形状绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原生图形-矩形"><span class="nav-number">2.1.</span> <span class="nav-text">原生图形 - 矩形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制路径"><span class="nav-number">2.2.</span> <span class="nav-text">绘制路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动笔触"><span class="nav-number">2.3.</span> <span class="nav-text">移动笔触</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#划线"><span class="nav-number">2.4.</span> <span class="nav-text">划线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圆弧"><span class="nav-number">2.5.</span> <span class="nav-text">圆弧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝塞尔曲线"><span class="nav-number">2.6.</span> <span class="nav-text">贝塞尔曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path2D对象"><span class="nav-number">2.7.</span> <span class="nav-text">Path2D对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#色彩"><span class="nav-number">3.</span> <span class="nav-text">色彩</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#渐变"><span class="nav-number">3.1.</span> <span class="nav-text">渐变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像转换"><span class="nav-number">3.2.</span> <span class="nav-text">图像转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制图片"><span class="nav-number">3.3.</span> <span class="nav-text">绘制图片</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -4,14 +4,332 @@
 
     
   <url>
-    <loc>http://xueying.me/css%E5%8D%95%E4%BD%8D%E5%92%8Crem%E5%B8%83%E5%B1%80.html</loc>
-    <lastmod>2018-01-18T03:59:33.444Z</lastmod>
+    <loc>http://xueying.me/%20css%E4%B8%80%E4%BA%9B%E5%85%B3%E4%BA%8E%E4%BD%8D%E7%BD%AE%E5%92%8C%E5%AE%BD%E5%BA%A6%E7%9A%84%E5%B1%9E%E6%80%A7.html</loc>
+    <lastmod>2018-03-08T02:59:27.191Z</lastmod>
     <data>
         <display>
-        <title>css单位和rem布局</title>
-        <pubTime>2018-01-18T03:21:17.000Z</pubTime>
+        <title>css一些关于位置和宽度的属性</title>
+        <pubTime>2018-02-26T06:33:59.000Z</pubTime>
         
         <tag>css</tag>
+         
+        <tag>js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/canvas.html</loc>
+    <lastmod>2018-03-08T02:51:46.196Z</lastmod>
+    <data>
+        <display>
+        <title>初识canvas</title>
+        <pubTime>2018-02-24T08:17:45.000Z</pubTime>
+        
+        <tag>canvas</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/ngx-cookie.html</loc>
+    <lastmod>2018-03-08T02:51:07.819Z</lastmod>
+    <data>
+        <display>
+        <title>ngx-cookie</title>
+        <pubTime>2018-01-08T03:24:14.000Z</pubTime>
+        
+        <tag>js实用插件</tag>
+         
+        <tag>angular</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/ngrx.html</loc>
+    <lastmod>2018-03-08T02:51:03.849Z</lastmod>
+    <data>
+        <display>
+        <title>ngrx</title>
+        <pubTime>2018-01-26T02:55:26.000Z</pubTime>
+        
+        <tag>ngrx</tag>
+         
+        <tag>angular</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/ng-build%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4.html</loc>
+    <lastmod>2018-03-08T02:50:59.869Z</lastmod>
+    <data>
+        <display>
+        <title>ng build打包文件结构调整</title>
+        <pubTime>2018-02-08T08:04:26.000Z</pubTime>
+        
+        <tag>angular</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/ng2-dragula%20%E6%8B%96%E6%8B%BD%E5%B7%A5%E5%85%B7.html</loc>
+    <lastmod>2018-03-08T02:50:55.607Z</lastmod>
+    <data>
+        <display>
+        <title>ng2-dragula 拖拽工具</title>
+        <pubTime>2018-01-08T06:21:28.000Z</pubTime>
+        
+        <tag>js实用插件</tag>
+         
+        <tag>angular</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/ng2-ace-editor.html</loc>
+    <lastmod>2018-03-08T02:50:51.018Z</lastmod>
+    <data>
+        <display>
+        <title>ng2-ace-editor</title>
+        <pubTime>2018-01-09T06:41:48.000Z</pubTime>
+        
+        <tag>js实用插件</tag>
+         
+        <tag>angular</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/http%E5%92%8Chttps.html</loc>
+    <lastmod>2018-03-08T02:50:42.996Z</lastmod>
+    <data>
+        <display>
+        <title>http和https</title>
+        <pubTime>2018-01-12T07:36:46.000Z</pubTime>
+        
+        <tag>基础概念</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/angular%E9%A2%84%E7%BD%AE%E7%AE%A1%E9%81%93.html</loc>
+    <lastmod>2018-03-08T02:50:21.103Z</lastmod>
+    <data>
+        <display>
+        <title>angular预置的管道</title>
+        <pubTime>2018-01-16T03:04:43.000Z</pubTime>
+        
+        <tag>angular</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/angular-cli.html</loc>
+    <lastmod>2018-03-08T02:50:16.453Z</lastmod>
+    <data>
+        <display>
+        <title>angular-cli</title>
+        <pubTime>2018-01-19T07:47:05.000Z</pubTime>
+        
+        <tag>angular</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/Angular2-%E7%9A%84%E5%8F%98%E6%9B%B4%E6%A3%80%E6%B5%8B%E5%92%8CngZone.html</loc>
+    <lastmod>2018-03-08T02:50:12.718Z</lastmod>
+    <data>
+        <display>
+        <title>Angular的变更检测和ngZone</title>
+        <pubTime>2018-01-22T09:59:21.000Z</pubTime>
+        
+        <tag>anglar</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/angular2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%B8%B2%E6%9F%93.html</loc>
+    <lastmod>2018-03-08T02:50:06.435Z</lastmod>
+    <data>
+        <display>
+        <title>angular2+服务器端渲染 Angular Universal</title>
+        <pubTime>2018-01-31T08:29:06.000Z</pubTime>
+        
+        <tag>angular</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E7%A7%BB%E5%8A%A8%E7%AB%AFios%E9%94%AE%E7%9B%98%E6%8C%A1%E4%BD%8F%E5%BA%95%E9%83%A8%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84%E9%97%AE%E9%A2%98%E5%AE%8C%E7%BE%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html</loc>
+    <lastmod>2018-03-08T02:50:03.296Z</lastmod>
+    <data>
+        <display>
+        <title>ios键盘挡住底部输入框</title>
+        <pubTime>2018-01-12T06:00:43.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E5%85%B3%E4%BA%8Evue%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B%20(1).html</loc>
+    <lastmod>2018-03-08T02:49:43.128Z</lastmod>
+    <data>
+        <display>
+        <title>关于vue的二三事 (1)</title>
+        <pubTime>2018-01-16T09:03:37.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/js%E6%8B%96%E6%8B%BD.html</loc>
+    <lastmod>2018-03-08T02:49:05.311Z</lastmod>
+    <data>
+        <display>
+        <title>js拖拽</title>
+        <pubTime>2018-02-24T10:48:00.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+        <tag>angular</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/svg.html</loc>
+    <lastmod>2018-02-24T04:18:38.629Z</lastmod>
+    <data>
+        <display>
+        <title>svg</title>
+        <pubTime>2018-02-24T02:55:20.000Z</pubTime>
+        
+        <tag>svg</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/SpringBoot.html</loc>
+    <lastmod>2018-02-23T04:59:00.420Z</lastmod>
+    <data>
+        <display>
+        <title>Spring Boot</title>
+        <pubTime>2018-02-23T04:54:39.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/jr-qrcode.html</loc>
+    <lastmod>2018-02-23T04:55:29.217Z</lastmod>
+    <data>
+        <display>
+        <title>jr-qrcode生成二维码</title>
+        <pubTime>2018-02-23T04:37:15.000Z</pubTime>
+        
+        <tag>js实用插件</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82.html</loc>
+    <lastmod>2018-02-06T04:09:28.127Z</lastmod>
+    <data>
+        <display>
+        <title>跨域请求</title>
+        <pubTime>2018-02-06T03:57:17.000Z</pubTime>
+        
+        <tag>js</tag>
          
          
            
@@ -22,7 +340,7 @@
     
   <url>
     <loc>http://xueying.me/%E5%85%B3%E4%BA%8Evue%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B(2).html</loc>
-    <lastmod>2018-01-16T09:41:10.920Z</lastmod>
+    <lastmod>2018-02-01T09:33:21.278Z</lastmod>
     <data>
         <display>
         <title>关于vue的二三事(2)</title>
@@ -38,13 +356,83 @@
 
     
   <url>
-    <loc>http://xueying.me/%E5%85%B3%E4%BA%8Evue%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B%20(1).html</loc>
-    <lastmod>2018-01-16T09:40:17.792Z</lastmod>
+    <loc>http://xueying.me/css%E4%B8%8D%E5%B8%B8%E5%85%B3%E6%B3%A8%E5%8D%B4%E7%AA%81%E7%84%B6%E7%94%A8%E7%9A%84%E7%9A%84%E5%B1%9E%E6%80%A7.html</loc>
+    <lastmod>2018-01-31T09:40:46.056Z</lastmod>
     <data>
         <display>
-        <title>关于vue的二三事 (1)</title>
-        <pubTime>2018-01-16T09:03:37.000Z</pubTime>
+        <title>css不常关注却突然用的的属性</title>
+        <pubTime>2018-01-31T09:35:25.000Z</pubTime>
         
+        <tag>css</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/redux.html</loc>
+    <lastmod>2018-01-26T02:52:43.298Z</lastmod>
+    <data>
+        <display>
+        <title>redux</title>
+        <pubTime>2018-01-26T02:52:27.000Z</pubTime>
+        
+        <tag>redux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/websocket.html</loc>
+    <lastmod>2018-01-24T04:28:58.215Z</lastmod>
+    <data>
+        <display>
+        <title>websocket</title>
+        <pubTime>2018-01-24T04:27:55.000Z</pubTime>
+        
+        <tag>websocket</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/webstorm%E7%A0%B4%E8%A7%A3.html</loc>
+    <lastmod>2018-01-23T04:01:23.796Z</lastmod>
+    <data>
+        <display>
+        <title>webstorm破解 License server</title>
+        <pubTime>2018-01-23T02:54:38.000Z</pubTime>
+        
+        <tag>webstorm</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/css%E5%8D%95%E4%BD%8D%E5%92%8Crem%E5%B8%83%E5%B1%80.html</loc>
+    <lastmod>2018-01-22T07:54:30.884Z</lastmod>
+    <data>
+        <display>
+        <title>css单位和rem布局</title>
+        <pubTime>2018-01-18T03:21:17.000Z</pubTime>
+        
+        <tag>css</tag>
+         
          
            
         </display>
@@ -63,40 +451,6 @@
         <tag>axios</tag>
          
         <tag>vue</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xueying.me/angular%E9%A2%84%E7%BD%AE%E7%AE%A1%E9%81%93.html</loc>
-    <lastmod>2018-01-16T04:45:16.013Z</lastmod>
-    <data>
-        <display>
-        <title>angular预置的管道</title>
-        <pubTime>2018-01-16T03:04:43.000Z</pubTime>
-        
-        <tag>angular2+</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xueying.me/http%E5%92%8Chttps.html</loc>
-    <lastmod>2018-01-15T07:36:47.725Z</lastmod>
-    <data>
-        <display>
-        <title>http和https</title>
-        <pubTime>2018-01-12T07:36:46.000Z</pubTime>
-        
-        <tag>基础概念</tag>
          
          
            
@@ -132,21 +486,6 @@
         
         <tag>基础概念</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xueying.me/%E7%A7%BB%E5%8A%A8%E7%AB%AFios%E9%94%AE%E7%9B%98%E6%8C%A1%E4%BD%8F%E5%BA%95%E9%83%A8%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84%E9%97%AE%E9%A2%98%E5%AE%8C%E7%BE%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html</loc>
-    <lastmod>2018-01-12T06:02:45.628Z</lastmod>
-    <data>
-        <display>
-        <title>ios键盘挡住底部输入框</title>
-        <pubTime>2018-01-12T06:00:43.000Z</pubTime>
-        
          
            
         </display>
@@ -239,25 +578,6 @@
     </url>
 
     
-  <url>
-    <loc>http://xueying.me/ng2-ace-editor.html</loc>
-    <lastmod>2018-01-09T09:16:03.220Z</lastmod>
-    <data>
-        <display>
-        <title>ng2-ace-editor</title>
-        <pubTime>2018-01-09T06:41:48.000Z</pubTime>
-        
-        <tag>angular2+</tag>
-         
-        <tag>js实用插件</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
     
     
   <url>
@@ -268,44 +588,6 @@
         <title>rangy.js获取并控制用户选中的内容</title>
         <pubTime>2018-01-09T04:19:13.000Z</pubTime>
         
-        <tag>js实用插件</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xueying.me/ngx-cookie.html</loc>
-    <lastmod>2018-01-09T06:42:48.756Z</lastmod>
-    <data>
-        <display>
-        <title>ngx-cookie</title>
-        <pubTime>2018-01-08T03:24:14.000Z</pubTime>
-        
-        <tag>angular2+</tag>
-         
-        <tag>js实用插件</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xueying.me/ng2-dragula%20%E6%8B%96%E6%8B%BD%E5%B7%A5%E5%85%B7.html</loc>
-    <lastmod>2018-01-09T06:42:45.513Z</lastmod>
-    <data>
-        <display>
-        <title>ng2-dragula 拖拽工具</title>
-        <pubTime>2018-01-08T06:21:28.000Z</pubTime>
-        
-        <tag>angular2+</tag>
-         
         <tag>js实用插件</tag>
          
          

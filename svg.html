@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="svg," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="预定义的形状SVG 有一些预定义的形状元素，可被开发者使用和操作：  矩形  rect 元素的 width 和 height 属性可定义矩形的高度和宽度 style 属性用来定义 CSS 属性 CSS 的 fill 属性定义矩形的填充颜色（rgb 值、颜色名或者十六进制值） CSS 的 stroke-width 属性定义矩形边框的宽度 CSS 的 stroke 属性定义矩形边框的颜色 CSS 的">
+<meta name="keywords" content="svg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svg">
+<meta property="og:url" content="http://xueying.me/svg.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="预定义的形状SVG 有一些预定义的形状元素，可被开发者使用和操作：  矩形  rect 元素的 width 和 height 属性可定义矩形的高度和宽度 style 属性用来定义 CSS 属性 CSS 的 fill 属性定义矩形的填充颜色（rgb 值、颜色名或者十六进制值） CSS 的 stroke-width 属性定义矩形边框的宽度 CSS 的 stroke 属性定义矩形边框的颜色 CSS 的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-24T04:18:38.629Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="svg">
+<meta name="twitter:description" content="预定义的形状SVG 有一些预定义的形状元素，可被开发者使用和操作：  矩形  rect 元素的 width 和 height 属性可定义矩形的高度和宽度 style 属性用来定义 CSS 属性 CSS 的 fill 属性定义矩形的填充颜色（rgb 值、颜色名或者十六进制值） CSS 的 stroke-width 属性定义矩形边框的宽度 CSS 的 stroke 属性定义矩形边框的颜色 CSS 的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/svg.html"/>
+
+
+
+
+
+  <title>svg | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/svg.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">svg</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T10:55:20+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="预定义的形状"><a href="#预定义的形状" class="headerlink" title="预定义的形状"></a>预定义的形状</h1><p>SVG 有一些预定义的形状元素，可被开发者使用和操作：</p>
+<ul>
+<li>矩形 <rect></rect><ul>
+<li>rect 元素的 width 和 height 属性可定义矩形的高度和宽度</li>
+<li>style 属性用来定义 CSS 属性</li>
+<li>CSS 的 fill 属性定义矩形的填充颜色（rgb 值、颜色名或者十六进制值）</li>
+<li>CSS 的 stroke-width 属性定义矩形边框的宽度</li>
+<li>CSS 的 stroke 属性定义矩形边框的颜色</li>
+<li>CSS 的 opacity 属性定义整个元素的透明值（合法的范围是：0 - 1）</li>
+<li>x 属性定义矩形的左侧位置（例如，x=”0” 定义矩形到浏览器窗口左侧的距离是 0px）</li>
+<li>y 属性定义矩形的顶端位置（例如，y=”0” 定义矩形到浏览器窗口顶端的距离是 0px）</li>
+<li>CSS 的 fill-opacity 属性定义填充颜色透明度（合法的范围是：0 - 1）</li>
+<li>CSS 的 stroke-opacity 属性定义笔触颜色的透明度（合法的范围是：0 - 1）</li>
+<li>rx 和 ry 属性可使矩形产生圆角。</li>
+</ul>
+</li>
+<li>圆形 <circle></circle><ul>
+<li>cx 和 cy 属性定义圆点的 x 和 y 坐标。如果省略 cx 和 cy，圆的中心会被设置为 (0, 0)</li>
+<li>r 属性定义圆的半径。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>椭圆 <ellipse></ellipse></p>
+<ul>
+<li>cx 属性定义圆点的 x 坐标</li>
+<li>cy 属性定义圆点的 y 坐标</li>
+<li>rx 属性定义水平半径</li>
+<li>ry 属性定义垂直半径</li>
+</ul>
+</li>
+<li><p>线 <line></line></p>
+<ul>
+<li>x1 属性在 x 轴定义线条的开始</li>
+<li>y1 属性在 y 轴定义线条的开始</li>
+<li>x2 属性在 x 轴定义线条的结束</li>
+<li>y2 属性在 y 轴定义线条的结束</li>
+</ul>
+</li>
+<li><p>折线 <polyline></polyline></p>
+<ul>
+<li>points 属性定义多边形每个角的 x 和 y 坐标</li>
+</ul>
+</li>
+<li><p>多边形 <polygon></polygon></p>
+<ul>
+<li>points 属性定义多边形每个角的 x 和 y 坐标</li>
+</ul>
+</li>
+<li><p>路径 <path></path></p>
+<p><path></path>元素的形状是通过<code>属性d</code>定义的, 属性<code>d</code>的值是一个“命令+参数”的序列, d表示路径,相关参数如下</p>
+<ul>
+<li><p>M = moveto 移动到 🌰:M10 10 移动到(10,10)的位置</p>
+<blockquote>
+<p>M x y或m dx dy</p>
+</blockquote>
+</li>
+<li><p>L = lineto 划线至 在当前位置到(x,y)间划线,并移动到(x,y)</p>
+<blockquote>
+<p>L x y 或 l dx dy</p>
+</blockquote>
+</li>
+<li><p>H = horizontal lineto 水平线, 水平移动到x</p>
+<blockquote>
+<p>H x 或 h dx</p>
+</blockquote>
+</li>
+<li><p>V = vertical lineto 垂直线, 垂直移动到y</p>
+<blockquote>
+<p>V y 或 v dy</p>
+</blockquote>
+</li>
+<li><p>C = curveto 曲线 最后一个坐标(x,y)表示的是曲线的终点，另外两个坐标是控制点，(x1,y1)是起点的控制点，(x2,y2)是终点的控制点。</p>
+<blockquote>
+<p>C x1 y1, x2 y2, x y 或 c dx1 dy1, dx2 dy2, dx dy</p>
+</blockquote>
+</li>
+<li><p>S = smooth curveto 光滑的曲线</p>
+</li>
+<li><p>Q = quadratic Belzier curve 二次贝塞尔曲线</p>
+</li>
+<li><p>T = smooth quadratic Belzier curveto 平滑的二次贝塞尔曲线</p>
+</li>
+<li><p>A = elliptical Arc 椭圆弧</p>
+</li>
+<li><p>Z = closepath 结束</p>
+</li>
+</ul>
+<p>🌰:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100%"</span> <span class="attr">version</span>=<span class="string">"1.1"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M250 150 L150 350 L350 350 Z"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Paths" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Paths</a></p>
+<h1 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h1><p>svg代码直接写在HTML网页之中, 它就成为网页DOM的一部分, 可以直接用像操作普通DOM一样操作svg: 以用CSS定制样式,可以用JavaScript代码操作SVG文件</p>
+<h2 id="JavaScript代码操作"><a href="#JavaScript代码操作" class="headerlink" title="JavaScript代码操作"></a>JavaScript代码操作</h2><p><strong>获取SVG DOM</strong></p>
+<p>直接通过document.getElementById获取svg元素</p>
+<p><strong>添加修改属性</strong></p>
+<p>直接使用setAttribute添加属性</p>
+<p><strong>将svg图像转为canvas图像</strong></p>
+<p>新建一个图片, 将svg图像指定到该<code>Image</code>对象的<code>src</code>属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line"><span class="keyword">var</span> svg = <span class="keyword">new</span> Blob([svgString], &#123;<span class="attr">type</span>: <span class="string">"image/svg+xml;charset=utf-8"</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> DOMURL = self.URL || self.webkitURL || self;</span><br><span class="line"><span class="keyword">var</span> url = DOMURL.createObjectURL(svg);</span><br><span class="line"></span><br><span class="line">img.src = url;</span><br></pre></td></tr></table></figure>
+<p>然后，当图像加载完成后，再将它绘制到<code>&lt;canvas&gt;</code>元素。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line">  <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">  ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/svg/" rel="tag"># svg</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/SpringBoot.html" rel="next" title="Spring Boot">
+                <i class="fa fa-chevron-left"></i> Spring Boot
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/canvas.html" rel="prev" title="初识canvas">
+                初识canvas <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#预定义的形状"><span class="nav-number">1.</span> <span class="nav-text">预定义的形状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM操作"><span class="nav-number">2.</span> <span class="nav-text">DOM操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript代码操作"><span class="nav-number">2.1.</span> <span class="nav-text">JavaScript代码操作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

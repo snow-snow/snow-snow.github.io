@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Snow">
 <meta property="og:description" content="单位绝对单位 px =&amp;gt; 像素是一种绝对单位,  因为无论其他相关的设置怎么变化, 像素指定的值是不会变化的.  mm, cm, in: 毫米（Millimeters），厘米（centimeters），英寸（inches）  pt, pc: 点（Points (1/72 of an inch)）， 十二点活字（ picas (12 points.)）  相对单位 em: 1em与当前元素的字">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-18T03:59:33.444Z">
+<meta property="og:updated_time" content="2018-01-22T07:54:30.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css单位和rem布局">
 <meta name="twitter:description" content="单位绝对单位 px =&amp;gt; 像素是一种绝对单位,  因为无论其他相关的设置怎么变化, 像素指定的值是不会变化的.  mm, cm, in: 毫米（Millimeters），厘米（centimeters），英寸（inches）  pt, pc: 点（Points (1/72 of an inch)）， 十二点活字（ picas (12 points.)）  相对单位 em: 1em与当前元素的字">
@@ -334,6 +334,13 @@
 <p>所以我们可以根据设计图和实际屏幕尺寸设定font-size的大小, 在写css时换算成相应的em从而实现自适应.</p>
 <p>假设我们的设计图大小为750px, 那么我们可以将根元素的font-size设为: 100 * (clientWidth / 750) + ‘px’, 这样每rem就相当于设计图的100px</p>
 <p>可以直接使用[hotcss][<a href="https://github.com/imochen/hotcss" target="_blank" rel="noopener">https://github.com/imochen/hotcss</a>] 来实现移动端的自适应</p>
+<h1 id="通过计算来决定一个CSS属性的值-calc"><a href="#通过计算来决定一个CSS属性的值-calc" class="headerlink" title="通过计算来决定一个CSS属性的值  calc()"></a>通过计算来决定一个CSS属性的值  calc()</h1><p>CSS函数calc()可以用在任何一个需要<length>、<frequency>, <angle>、<time>、<number>、或<integer>的地方。有了calc()，你就可以通过计算来决定一个CSS属性的值了。</integer></number></time></angle></frequency></length></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span>: <span class="selector-tag">calc</span>(100% <span class="selector-tag">-</span> 80<span class="selector-tag">px</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以再计算中使用+ - * /</li>
+<li>可以混用单位</li>
+<li>可以嵌套使用: 一个 calc() 里面的 calc() 就仅仅相当于是一个括号。</li>
+</ul>
 
       
     </div>
@@ -373,6 +380,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/angular-cli.html" rel="prev" title="angular-cli">
+                angular-cli <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -453,7 +464,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -466,7 +477,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -499,7 +510,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单位"><span class="nav-number">1.</span> <span class="nav-text">单位</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绝对单位"><span class="nav-number">1.1.</span> <span class="nav-text">绝对单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相对单位"><span class="nav-number">1.2.</span> <span class="nav-text">相对单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无单位的值"><span class="nav-number">1.3.</span> <span class="nav-text">无单位的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#百分比"><span class="nav-number">1.4.</span> <span class="nav-text">百分比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动端rem布局"><span class="nav-number">2.</span> <span class="nav-text">移动端rem布局</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单位"><span class="nav-number">1.</span> <span class="nav-text">单位</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绝对单位"><span class="nav-number">1.1.</span> <span class="nav-text">绝对单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相对单位"><span class="nav-number">1.2.</span> <span class="nav-text">相对单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无单位的值"><span class="nav-number">1.3.</span> <span class="nav-text">无单位的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#百分比"><span class="nav-number">1.4.</span> <span class="nav-text">百分比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动端rem布局"><span class="nav-number">2.</span> <span class="nav-text">移动端rem布局</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通过计算来决定一个CSS属性的值-calc"><span class="nav-number">3.</span> <span class="nav-text">通过计算来决定一个CSS属性的值  calc()</span></a></li></ol></div>
             
 
           </div>

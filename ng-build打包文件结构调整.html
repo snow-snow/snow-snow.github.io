@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="angular," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="使用angular , cli的项目, 用ng build 打包, 打包出来的文件会直接放在配置的路径下, 自带hash值.  问题   之前采用的部署方法是直接替换调服务器上的所有文件, 这样会有一个删除服务器上原来的文件, 然后在考入新文件的一个过程. 当采用按模块懒加载后, 出现一个问题, 原来打开的页面无法老区老的js, 因为老的js部署时已经被删除, 导致页面出现假死状态. 解决 为了解">
+<meta name="keywords" content="angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ng build打包文件结构调整">
+<meta property="og:url" content="http://xueying.me/ng-build打包文件结构调整.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="使用angular , cli的项目, 用ng build 打包, 打包出来的文件会直接放在配置的路径下, 自带hash值.  问题   之前采用的部署方法是直接替换调服务器上的所有文件, 这样会有一个删除服务器上原来的文件, 然后在考入新文件的一个过程. 当采用按模块懒加载后, 出现一个问题, 原来打开的页面无法老区老的js, 因为老的js部署时已经被删除, 导致页面出现假死状态. 解决 为了解">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-08T02:50:59.869Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ng build打包文件结构调整">
+<meta name="twitter:description" content="使用angular , cli的项目, 用ng build 打包, 打包出来的文件会直接放在配置的路径下, 自带hash值.  问题   之前采用的部署方法是直接替换调服务器上的所有文件, 这样会有一个删除服务器上原来的文件, 然后在考入新文件的一个过程. 当采用按模块懒加载后, 出现一个问题, 原来打开的页面无法老区老的js, 因为老的js部署时已经被删除, 导致页面出现假死状态. 解决 为了解">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/ng-build打包文件结构调整.html"/>
+
+
+
+
+
+  <title>ng build打包文件结构调整 | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/ng-build打包文件结构调整.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ng build打包文件结构调整</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T16:04:26+08:00">
+                2018-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>使用angular , cli的项目, 用ng build 打包, 打包出来的文件会直接放在配置的路径下, 自带hash值. </p>
+<p><strong>问题</strong>  </p>
+<p>之前采用的部署方法是直接替换调服务器上的所有文件, 这样会有一个删除服务器上原来的文件, 然后在考入新文件的一个过程. 当采用按模块懒加载后, 出现一个问题, 原来打开的页面无法老区老的js, 因为老的js部署时已经被删除, 导致页面出现假死状态.</p>
+<p><strong>解决</strong></p>
+<p>为了解决这个问题, 我的想法是将打包出的js去除hash值,放在一个以时间戳命名的文件夹下, 每次部署时, 不清楚服务器上的文件, 直接把新打包的文件替换掉. 这样就不会出现原来的问题, 而且可以从index.html文件的引用直接看出发布时间, 也可以方便以回滚.</p>
+<p><strong>解决方法</strong></p>
+<ol>
+<li><p>改变js的引入路径配置, </p>
+<p>在.angular-cli.json中, 可以配置应用js的路径位置. 在 apps 下 配置’deployUrl’: ‘你想配置的位置(这里我采用的的是时间戳)’</p>
+<p>为了采用当前时间的时间戳, 我写了一个脚本, 在每次ng build前改变deployUrl的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="comment">// 获取时间戳</span></span><br><span class="line"><span class="keyword">const</span> helper = &#123;</span><br><span class="line">  getVersion: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">let</span> year = date.getFullYear();</span><br><span class="line">    <span class="keyword">let</span> month = date.getMonth() + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (month &lt; <span class="number">10</span>) &#123;</span><br><span class="line">      month = <span class="string">'0'</span> + month;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> day = date.getDate();</span><br><span class="line">    <span class="keyword">if</span> (day &lt; <span class="number">10</span>) &#123;</span><br><span class="line">      day = <span class="string">'0'</span> + day;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> hour = date.getHours();</span><br><span class="line">    <span class="keyword">if</span> (hour &lt; <span class="number">10</span>) &#123;</span><br><span class="line">      hour = <span class="string">'0'</span> + hour;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> minutes = date.getMinutes();</span><br><span class="line">    <span class="keyword">if</span> (minutes &lt; <span class="number">10</span>) &#123;</span><br><span class="line">      minutes = <span class="string">'0'</span> + minutes;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> seconds = date.getSeconds();</span><br><span class="line">    <span class="keyword">if</span> (seconds &lt; <span class="number">10</span>) &#123;</span><br><span class="line">      seconds = <span class="string">'0'</span> + seconds;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;year&#125;</span><span class="subst">$&#123;month&#125;</span><span class="subst">$&#123;day&#125;</span><span class="subst">$&#123;hour&#125;</span><span class="subst">$&#123;minutes&#125;</span><span class="subst">$&#123;seconds&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 获取.angular-cli.json文件内容</span></span><br><span class="line"><span class="keyword">var</span> indexString = <span class="built_in">JSON</span>.parse(fs.readFileSync(<span class="string">'./.angular-cli.json'</span>, <span class="string">'utf8'</span>, (err) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;))</span><br><span class="line"><span class="comment">// 修改angular-cli.json文件引用路径deployUrl</span></span><br><span class="line">indexString.apps[<span class="number">0</span>].deployUrl = helper.getVersion()+<span class="string">'/'</span>;</span><br><span class="line"><span class="comment">// 重新.angular-cli.json文件</span></span><br><span class="line">fs.writeFile(<span class="string">'./.angular-cli.json'</span>, <span class="built_in">JSON</span>.stringify(indexString), (err) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"用时间戳"</span>, indexString.apps[<span class="number">0</span>].deployUrl, <span class="string">"打包！"</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>打包, 打包时去掉hash值</p>
+<p>在运行ng build 是可以配置去掉hash值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng build --prod - --aot --output-hashing=none</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>改变打包出文件的位置</p>
+<p>这里也写了一个小脚本, 来讲文件移动到我们之前第一步时在.angular-cli.json定义的位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="comment">// 获取.angular-cli.json中配置的文件名filename</span></span><br><span class="line"><span class="keyword">var</span> indexString = <span class="built_in">JSON</span>.parse(fs.readFileSync(<span class="string">'./.angular-cli.json'</span>, <span class="string">'utf8'</span>, (err) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;))</span><br><span class="line"><span class="keyword">var</span> filename =  indexString.apps[<span class="number">0</span>].deployUrl.substring(<span class="number">0</span>,indexString.apps[<span class="number">0</span>].deployUrl.length<span class="number">-1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(filename)</span><br><span class="line"><span class="comment">// 新建filename文件夹</span></span><br><span class="line">fs.mkdir(<span class="string">'dist/'</span> + filename, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 移动除index.html和assets文件的其他文件到filename文件夹下</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">walk</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> dirList = fs.readdirSync(path);</span><br><span class="line">  dirList.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (item !== <span class="string">'index.html'</span> &amp;&amp; item != filename &amp;&amp; item != <span class="string">'assets'</span> ) &#123;</span><br><span class="line">      fileList.push(<span class="string">`<span class="subst">$&#123;item&#125;</span>`</span>);</span><br><span class="line">      fs.rename(<span class="string">`<span class="subst">$&#123;path&#125;</span>/<span class="subst">$&#123;item&#125;</span>`</span>, <span class="string">`<span class="subst">$&#123;path&#125;</span>/<span class="subst">$&#123;filename&#125;</span>/<span class="subst">$&#123;item&#125;</span>`</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">        <span class="built_in">console</span>.log(item + <span class="string">'---  end'</span>);</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">walk(<span class="string">'dist'</span>);<span class="comment">// 原来生成文件的位置</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>此时你编译出来的文件将是dist下只有两个部分: </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angular/" rel="tag"># angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/跨域请求.html" rel="next" title="跨域请求">
+                <i class="fa fa-chevron-left"></i> 跨域请求
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/jr-qrcode.html" rel="prev" title="jr-qrcode生成二维码">
+                jr-qrcode生成二维码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
