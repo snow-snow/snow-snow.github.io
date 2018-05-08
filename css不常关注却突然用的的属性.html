@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="animation-play-state css属性规定动画正在运行还是暂停。paused/running (可用于暂停动图😏)  js:  object.style.animationPlayState=”paused”">
+<meta name="description" content="animation-play-state css属性规定动画正在运行还是暂停。paused/running (可用于暂停动图😏)  js:  object.style.animationPlayState=”paused” 去除掉浏览器对输入框的自动补全MSIE自定义了input 的扩展属性 autocomplete，置为off即可   用这个方法可以屏蔽MSIE，Firefox，chrome，">
 <meta name="keywords" content="css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css不常关注却突然用的的属性">
 <meta property="og:url" content="http://xueying.me/css不常关注却突然用的的属性.html">
 <meta property="og:site_name" content="Snow">
-<meta property="og:description" content="animation-play-state css属性规定动画正在运行还是暂停。paused/running (可用于暂停动图😏)  js:  object.style.animationPlayState=”paused”">
+<meta property="og:description" content="animation-play-state css属性规定动画正在运行还是暂停。paused/running (可用于暂停动图😏)  js:  object.style.animationPlayState=”paused” 去除掉浏览器对输入框的自动补全MSIE自定义了input 的扩展属性 autocomplete，置为off即可   用这个方法可以屏蔽MSIE，Firefox，chrome，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-31T09:40:46.056Z">
+<meta property="og:updated_time" content="2018-04-13T07:10:48.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css不常关注却突然用的的属性">
-<meta name="twitter:description" content="animation-play-state css属性规定动画正在运行还是暂停。paused/running (可用于暂停动图😏)  js:  object.style.animationPlayState=”paused”">
+<meta name="twitter:description" content="animation-play-state css属性规定动画正在运行还是暂停。paused/running (可用于暂停动图😏)  js:  object.style.animationPlayState=”paused” 去除掉浏览器对输入框的自动补全MSIE自定义了input 的扩展属性 autocomplete，置为off即可   用这个方法可以屏蔽MSIE，Firefox，chrome，">
 
 
 
@@ -312,6 +312,27 @@
       
         <h1 id="animation-play-state"><a href="#animation-play-state" class="headerlink" title="animation-play-state"></a>animation-play-state</h1><p> <strong>css属性规定动画正在运行还是暂停</strong>。paused/running (可用于暂停动图😏)</p>
 <p> js:  <em>object</em>.style.animationPlayState=”paused”</p>
+<h3 id="去除掉浏览器对输入框的自动补全"><a href="#去除掉浏览器对输入框的自动补全" class="headerlink" title="去除掉浏览器对输入框的自动补全"></a>去除掉浏览器对输入框的自动补全</h3><p>MSIE自定义了input 的扩展属性 autocomplete，置为off即可</p>
+<input type="text" autocomplete="off" id="number">
+
+<p>用这个方法可以屏蔽MSIE，Firefox，chrome，opera则需要使用另一个扩展属性disableautocomplete</p>
+<input type="text" disableautocomplete="" id="number">
+
+<p>两扩展属性可以同时使用，浏览器会根据自身特性自动解析。</p>
+<h3 id="控制英文大小写"><a href="#控制英文大小写" class="headerlink" title="控制英文大小写"></a>控制英文大小写</h3><p>text-transform 也是为英文字符设计的，要么全大写 text-transform:uppercase， 要么全小写 text-transform:lowercase，</p>
+<h3 id="first-letter"><a href="#first-letter" class="headerlink" title=":first-letter"></a>:first-letter</h3><p>第一个字符或第一个串</p>
+<h3 id="first-line"><a href="#first-line" class="headerlink" title=":first-line"></a>:first-line</h3><p>第一行</p>
+<p>IE9 不认识 CSS3 渐变</p>
+<p><strong>writing-mode</strong> </p>
+<p>就是用来实现文字竖向呈现的。</p>
+<p>writing-mode: horizontal-tb; </p>
+<p>writing-mode: vertical-rl; </p>
+<p>writing-mode: vertical-lr;</p>
+<p>writing-mode: lr-tb | tb-rl | tb-lr (IE8+);</p>
+<p>writing-mode: horizontal-tb | vertical-rl | vertical-lr;</p>
+<h1 id="css线型"><a href="#css线型" class="headerlink" title="css线型"></a>css线型</h1><p>在用border的时候经常会忘记它有多少种线型以及各种线型的写法；每次都得从头开始，或是用到Google、百度之类的，有空整理了一下</p>
+<p>（1）none (没有边框，无论边框宽度设为多大)<br>（2）dotted (点线式边框)<br>（3）dashed (破折线式边框)<br>（4）solid (直线式边框)<br>（5）double (双线式边框)<br>（6）groove (槽线式边框)<br>（7）ridge(脊线式边框)<br>（8）inset (内嵌效果的边框)<br>（9）outset (突起效果的边框)</p>
+<p>​<br>​<br>​    </p>
 
       
     </div>
@@ -435,7 +456,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -448,7 +469,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -481,7 +502,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-play-state"><span class="nav-number">1.</span> <span class="nav-text">animation-play-state</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-play-state"><span class="nav-number">1.</span> <span class="nav-text">animation-play-state</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#去除掉浏览器对输入框的自动补全"><span class="nav-number">1.0.1.</span> <span class="nav-text">去除掉浏览器对输入框的自动补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制英文大小写"><span class="nav-number">1.0.2.</span> <span class="nav-text">控制英文大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first-letter"><span class="nav-number">1.0.3.</span> <span class="nav-text">:first-letter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first-line"><span class="nav-number">1.0.4.</span> <span class="nav-text">:first-line</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css线型"><span class="nav-number">2.</span> <span class="nav-text">css线型</span></a></li></ol></div>
             
 
           </div>

@@ -2,6 +2,118 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xueying.me/XMLHttpRequest%E5%B0%81%E8%A3%85get-post-put%E8%AF%B7%E6%B1%82.html</loc>
+    
+    <lastmod>2018-05-08T07:26:12.428Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/angular-cli%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.html</loc>
+    
+    <lastmod>2018-05-07T03:42:28.199Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/%E8%9C%9C%E6%B1%81%E9%9D%A2%E8%AF%95%E9%A2%98.html</loc>
+    
+    <lastmod>2018-04-28T02:56:43.492Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/angular-ionic2.html</loc>
+    
+    <lastmod>2018-04-26T04:19:09.414Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/js%E5%85%B3%E4%BA%8E%E6%A0%87%E8%AE%B0%E9%80%89%E6%8B%A9%E6%96%87%E6%A1%88.html</loc>
+    
+    <lastmod>2018-04-20T09:54:17.094Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/window-open%E8%A2%ABchrome%E6%B5%8F%E8%A7%88%E5%99%A8%E9%98%BB%E6%AD%A2%E7%9A%84%E9%97%AE%E9%A2%98.html</loc>
+    
+    <lastmod>2018-04-16T03:54:20.407Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/css%E4%B8%8D%E5%B8%B8%E5%85%B3%E6%B3%A8%E5%8D%B4%E7%AA%81%E7%84%B6%E7%94%A8%E7%9A%84%E7%9A%84%E5%B1%9E%E6%80%A7.html</loc>
+    
+    <lastmod>2018-04-13T07:10:48.939Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/angualr-material.html</loc>
+    
+    <lastmod>2018-04-12T07:50:25.932Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/js%E4%B9%8B%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95.html</loc>
+    
+    <lastmod>2018-04-11T10:25:29.035Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/css%E5%B1%82%E5%8F%A0%E9%A1%BA%E5%BA%8F%E8%A7%84%E5%88%99.html</loc>
+    
+    <lastmod>2018-04-08T06:40:01.138Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/css%E7%9B%B8%E5%85%B3.html</loc>
+    
+    <lastmod>2018-04-04T10:24:46.229Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/mark.js%E8%8D%A7%E5%85%89%E7%AC%94%E5%B7%A5%E5%85%B7.html</loc>
+    
+    <lastmod>2018-04-04T09:37:46.843Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/angular%E9%A2%84%E7%BD%AE%E7%AE%A1%E9%81%93.html</loc>
+    
+    <lastmod>2018-03-21T05:33:05.832Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/%E5%88%9D%E8%AF%86D3-js%E4%B8%80.html</loc>
+    
+    <lastmod>2018-03-12T06:04:46.712Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/websocket.html</loc>
+    
+    <lastmod>2018-03-12T04:08:49.279Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xueying.me/mpvue.html</loc>
+    
+    <lastmod>2018-03-09T08:53:17.524Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xueying.me/%20css%E4%B8%80%E4%BA%9B%E5%85%B3%E4%BA%8E%E4%BD%8D%E7%BD%AE%E5%92%8C%E5%AE%BD%E5%BA%A6%E7%9A%84%E5%B1%9E%E6%80%A7.html</loc>
     
     <lastmod>2018-03-08T02:59:27.191Z</lastmod>
@@ -54,13 +166,6 @@
     <loc>http://xueying.me/http%E5%92%8Chttps.html</loc>
     
     <lastmod>2018-03-08T02:50:42.996Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xueying.me/angular%E9%A2%84%E7%BD%AE%E7%AE%A1%E9%81%93.html</loc>
-    
-    <lastmod>2018-03-08T02:50:21.103Z</lastmod>
     
   </url>
   
@@ -142,23 +247,9 @@
   </url>
   
   <url>
-    <loc>http://xueying.me/css%E4%B8%8D%E5%B8%B8%E5%85%B3%E6%B3%A8%E5%8D%B4%E7%AA%81%E7%84%B6%E7%94%A8%E7%9A%84%E7%9A%84%E5%B1%9E%E6%80%A7.html</loc>
-    
-    <lastmod>2018-01-31T09:40:46.056Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xueying.me/redux.html</loc>
     
     <lastmod>2018-01-26T02:52:43.298Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xueying.me/websocket.html</loc>
-    
-    <lastmod>2018-01-24T04:28:58.215Z</lastmod>
     
   </url>
   
@@ -201,13 +292,6 @@
     <loc>http://xueying.me/clamp-js%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7%E7%9A%84%E5%B0%8F%E5%B7%A5%E5%85%B7.html</loc>
     
     <lastmod>2018-01-12T04:27:27.094Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xueying.me/mark.js%E8%8D%A7%E5%85%89%E7%AC%94%E5%B7%A5%E5%85%B7.html</loc>
-    
-    <lastmod>2018-01-12T03:50:18.414Z</lastmod>
     
   </url>
   

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="对定位元素的百分比计算和非绝对定位元素的百分比计算是有区别的，区别 在于绝对定位的宽高百分比计算是相对于 padding box 的，也就是说会把 padding 大小值计算 在内，但是，非绝对定位元素则是相对于 content box 计算的。 超越!important 指的是 max-width 会覆盖 width，而且这种覆盖不是普通的覆盖，是超级 覆盖，覆盖到什么程度呢?大家应该都知道 C">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css相关">
+<meta property="og:url" content="http://xueying.me/css相关.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="对定位元素的百分比计算和非绝对定位元素的百分比计算是有区别的，区别 在于绝对定位的宽高百分比计算是相对于 padding box 的，也就是说会把 padding 大小值计算 在内，但是，非绝对定位元素则是相对于 content box 计算的。 超越!important 指的是 max-width 会覆盖 width，而且这种覆盖不是普通的覆盖，是超级 覆盖，覆盖到什么程度呢?大家应该都知道 C">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-04T10:24:46.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css相关">
+<meta name="twitter:description" content="对定位元素的百分比计算和非绝对定位元素的百分比计算是有区别的，区别 在于绝对定位的宽高百分比计算是相对于 padding box 的，也就是说会把 padding 大小值计算 在内，但是，非绝对定位元素则是相对于 content box 计算的。 超越!important 指的是 max-width 会覆盖 width，而且这种覆盖不是普通的覆盖，是超级 覆盖，覆盖到什么程度呢?大家应该都知道 C">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/css相关.html"/>
+
+
+
+
+
+  <title>css相关 | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/css相关.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css相关</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T11:46:40+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对定位元素的百分比计算和非绝对定位元素的百分比计算是有区别的，区别 在于绝对定位的宽高百分比计算是相对于 padding box 的，也就是说会把 padding 大小值计算 在内，但是，非绝对定位元素则是相对于 content box 计算的。</p>
+<p>超越!important 指的是 max-width 会覆盖 width，而且这种覆盖不是普通的覆盖，是超级 覆盖，覆盖到什么程度呢?大家应该都知道 CSS 世界中的!important 的权重相当高，在业界，往 往会把!important 的权重比成“泰坦尼克”，比直接在元素的 style 属性中设置 CSS 声明还要高， 一般用在 CSS 覆盖 JavaScript 设置上。但是，就是这么厉害的!important，直接被 max-width 一 个浪头就拍沉了。</p>
+<p>min-width超越max-width</p>
+<h1 id="展开的效果"><a href="#展开的效果" class="headerlink" title="展开的效果"></a>展开的效果</h1><p>使用 height + overflow:hidden 实现。但是，很多时候，我们展 开的元素内容是动态的，换句话说高度是不固定的，因此，height 使用的值是默认的 auto， 应该都知道的 auto 是个关键字值，并非数值，正如 height:100%的 100%无法和 auto 相计 算一样，从 0px 到 auto 也是无法计算的，因此无法形成过渡或动画效果。</p>
+<pre><code>.element {
+ max-height: 0;
+  overflow: hidden;
+  transition: max-height .25s;
+}
+.element.active {
+  max-height: 666px; /* 一个足够大的最大高度值 */ 
+}
+</code></pre><p>其中展开后的 max-height 值，我们只需要设定为保证比展开内容高度大的值就可以，因为 max-height 值比 height 计算值大的时候，元素的高度就是 height 属性的 计算高度，在本交互中，也就是 height:auto 时候的高度值。于是，一个高度 不定的任意元素的展开动画效果就实现了。</p>
+<p>max-height 太大会有动画延时, 最好保证在安全范围内</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img:hover &#123;</span><br><span class="line">       content: url(laugh-tear.png);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="padding"><a href="#padding" class="headerlink" title="padding"></a>padding</h1><p>padding 百分比值无论是水平方向还是垂直方向均是相对于宽度计算的! (可以用padding实现等宽的盒子)</p>
+<h2 id="button"><a href="#button" class="headerlink" title="button"></a>button</h2><p>button在不同浏览器中默认的padding值是不同的, 为了兼容可以做以下处理,既语义良好行为保留，同时 UI 效果棒兼容效果好的实现小技巧，那就是使用<label>元素，HTML 和 CSS 如下:</label></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"btn"</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">clip</span>: <span class="built_in">rect</span>(0 0 0 0);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-tag">label</span> &#123;</span><br><span class="line">      <span class="attribute">display</span>: inline-block;</span><br><span class="line">      <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">      <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="padding与图形绘制"><a href="#padding与图形绘制" class="headerlink" title="padding与图形绘制"></a>padding与图形绘制</h2><p>可以利用background-clip与padding结合绘制一下简单图像</p>
+<p><strong>background-clip</strong>  设置元素的背景（背景图片或颜色）是否延伸到边框下面。</p>
+<p>如果没有设置背景颜色或图片，那么这个属性只有在边框（border）设置为透明或半透明时才能看到视觉效果（查看 border-style 或 border-image），不然的话，这个属性造成的样式变化会被边框覆盖住。</p>
+<blockquote>
+<p>background-clip: border-box  背景延伸到边框外沿（但是在边框之下）。<br>background-clip: padding-box  边框下面没有背景，即背景延伸到内边距外沿。<br>background-clip: content-box  背景裁剪到内容区 (<code>content-box)</code>外沿。<br>background-clip: text 背景被裁剪为文字的前景色。<br>background-clip: inherit        </p>
+</blockquote>
+<p>​    </p>
+<h2 id="兼容"><a href="#兼容" class="headerlink" title="兼容"></a>兼容</h2><p>滚动条触发</p>
+<blockquote>
+<p>Chrome 浏览器是子元素超过 content box 尺寸触发滚动条显示， </p>
+<p>IE和Firefox浏览器是超过padding box尺寸触 发滚动条显示。</p>
+<p>所以滚动条底部使用留白只有Chrome会显示, 此时应该使用margin来设置</p>
+</blockquote>
+<h1 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h1><p>和 padding 属性一样，margin 的百分比值无论是水平方向还是垂直方向都是相对于宽度计算 的。</p>
+<h2 id="margin合并"><a href="#margin合并" class="headerlink" title="margin合并"></a>margin合并</h2><p><strong>块级元素的上外边距(margin-top)与下外边距(margin-bottom)有时会合并为单个边距</strong></p>
+<blockquote>
+<p>(1)块级元素，但不包括浮动和绝对定位元素，尽管浮动和绝对定位可以让元素块状化。</p>
+<p> (2)只发生在垂直方向，需要注意的是，这种说法在不考虑 writing-mode 的情况下才是正确的，严格来讲，应该是只发生在和当前文档流方向的相垂直的方向上。由于默认文档流 是水平流，因此发生 margin 合并的就是垂直方向。</p>
+</blockquote>
+<p>三种情况可能合并: 1. 相邻兄弟元素; 2. 父元素和第一个/最后一个子元素; 3. 空块级元素</p>
+<p>合并规则: 正则取最大, 负负取最小, 正负相加</p>
+<h2 id="用margin实现垂直居中"><a href="#用margin实现垂直居中" class="headerlink" title="用margin实现垂直居中"></a>用margin实现垂直居中</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.father</span> &#123;</span><br><span class="line">       <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">       <span class="attribute">writing-mode</span>: vertical-lr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">       <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">       <span class="attribute">margin</span>: auto;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>writing-mode 属性定义了文本水平或垂直排布以及在块级元素中文本的行进方向。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; /* Keyword values */</span><br><span class="line">&gt; writing-mode: horizontal-tb;</span><br><span class="line">&gt; writing-mode: vertical-rl;</span><br><span class="line">&gt; writing-mode: vertical-lr;</span><br><span class="line">&gt;</span><br><span class="line">&gt; /* Global values */</span><br><span class="line">&gt; writing-mode: inherit;</span><br><span class="line">&gt; writing-mode: initial;</span><br><span class="line">&gt; writing-mode: unset;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h2><p>绝对定位元素的 margin:auto 居中: </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//  IE8 及以上版本浏览器才支持</span><br><span class="line"><span class="selector-class">.father</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>; <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f0f3f9</span>;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span> &#123; </span><br><span class="line">    <span class="attribute">position</span>: absolute; </span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>; <span class="attribute">right</span>: <span class="number">0</span>; <span class="attribute">bottom</span>: <span class="number">0</span>; <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>; <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#cd0000</span>;</span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="margin无效"><a href="#margin无效" class="headerlink" title="margin无效"></a>margin无效</h2><p>一下情况margin值无效</p>
+<ul>
+<li>display 计算值 inline 的非替换元素的垂直 margin 是无效的。对于内联替换元素， 垂直 margin 有效，并且没有 margin 合并的问题，所以图片永远不会发生 margin 合并。</li>
+<li>表格中的<tr>和<td>元素或者设置 display 值是 table-cell 或 table-row 的元素的 margin 都是无效的。但是，如果计算值是 table-caption、table 或者 inline-table 则没有此问题，可以通过 margin 控制外间距，甚至::first-letter 伪元素也可以解析 margin。</td></tr></li>
+<li>绝对定位元素非定位方位的 margin 值“无效”。</li>
+<li>定高容器的子元素的 margin-bottom 或者宽度定死的子元素的 margin-right 的 定位“失效”。</li>
+</ul>
+<h1 id="border"><a href="#border" class="headerlink" title="border"></a>border</h1><p>透明边框: border-right: 50px solid transparent;</p>
+<h2 id="绘制三角形"><a href="#绘制三角形" class="headerlink" title="绘制三角形"></a>绘制三角形</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">      <span class="attribute">border</span>: <span class="number">10px</span> solid;</span><br><span class="line">       <span class="attribute">border-color</span>: <span class="number">#f30</span> transparent transparent;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="x-height"><a href="#x-height" class="headerlink" title="x-height"></a>x-height</h2><p>小写字母x的高度 =&gt; 决定基线</p>
+<p> vertical-align 用来指定行内元素（inline）或表格单元格（table-cell）元素的垂直对齐方式。</p>
+<blockquote>
+<p>baseline  元素基线与父元素的基线对齐。</p>
+<p>sub  元素基线与父元素的下标基线对齐。</p>
+<p>super  元素基线与父元素的上标基线对齐。</p>
+<p>text-top  元素顶端与父元素字体的顶端对齐。</p>
+<p>text-bottom   元素底端与父元素字体的底端对齐。</p>
+<p>middle  元素中垂线与父元素的基线加上小写x一半的高度值对齐。</p>
+<p>top  及其后代的顶端与整行的顶端对齐。</p>
+<p>bottom  元素及其后代的底端与整行的底端对齐。 如果元素没有基线baseline，则以它的外边距的下边缘为基线。</p>
+</blockquote>
+<h2 id="单位-ex"><a href="#单位-ex" class="headerlink" title="单位 ex"></a>单位 ex</h2><p>图标垂直居中, 可以用ex给图标做高度单位</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.icon-arrow</span> &#123;</span><br><span class="line">      <span class="attribute">display</span>: inline-block;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">1ex</span>;</span><br><span class="line">      <span class="attribute">background</span>: <span class="built_in">url</span>(arrow.png) no-repeat center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="line-height"><a href="#line-height" class="headerlink" title="line-height"></a>line-height</h2><p>对于非替换元素的纯内联元素，其可视高度完全由 line-height 决定。line-height不影响替换元素的高度.</p>
+<p>行距 = line-height - font-size。</p>
+<p>边距带小数是文字上边距，则向下取整;如果是文字下边距，则向上取整. </p>
+<p>对于块级元素，line-height 对其本身是没有任何作用的，我们平时改变 line-height， 块级元素的高度跟着变化实际上是通过改变块级元素里面内联级别元素占据的高度实现的。</p>
+<blockquote>
+<p>line-height:1.5、line-height:150%和 line-height:1.5em 这 3 种 用 法 是 一 模 一 样 的 ，最 终 的 行 高 大 小 都 是 和 f o n t - s i z e 计 算 值 ，但 是 ，实 际 上 ，l i n e - h e i g h t : 1 . 5 和另外两个有一点儿不同，那就是继承细节有所差别。如果使用数值作为 line-height 的属性值， 那么所有的子元素继承的都是这个值;但是，如果使用百分比值或者长度值作为属性值，那么所有 的子元素继承的是最终的计算值。</p>
+</blockquote>
+<p><strong>无论内联元素 line-height 如何设置，最终父级元素的高度都是由数值大的 那个 line-height 决定的，我称之为“内联元素 line-height 的大值特性”</strong></p>
+<h3 id="vertical-align"><a href="#vertical-align" class="headerlink" title="vertical-align"></a>vertical-align</h3><p>• 线类，如 baseline(默认值)、top、middle、bottom;<br>• 文本类，如 text-top、text-bottom;<br>• 上标下标类，如 sub、super;<br>• 数值百分比类，如 20px、2em、20%等。</p>
+<p><strong>vertical-align 起作用是有前提条件的，这个前提条件就是:只能应用于内联元 素以及 display 值为 table-cell 的元素。</strong></p>
+<p>vertical-align 的百分比值是相对于 line-height 计算的, line-height 的百分比值是相对于 font-size 计算的</p>
+<p><strong>一个 inline-block 元素，如果里面没有内联元素，或者 overflow 不是 visible， 则该元素的基线就是其 margin 底边缘;否则其基线就是元素里面最后一行内联元素的基线。</strong></p>
+<h1 id="BFC-块级格式化上下文"><a href="#BFC-块级格式化上下文" class="headerlink" title="BFC 块级格式化上下文"></a>BFC 块级格式化上下文</h1><p>如果一个元素具有 BFC，内部子元素再怎么翻江倒海、翻 云覆雨，都不会影响外部的元素。</p>
+<p>触发条件</p>
+<ul>
+<li><html>根元素;</html></li>
+<li>float 的值不为 none;</li>
+<li>overflow 的值为 auto、scroll 或 hidden;</li>
+<li>display 的值为 table-cell、table-caption 和 inline-block 中的任何一个;</li>
+<li>position 的值不为 relative 和 static。</li>
+</ul>
+<p>要想彻底清除浮动的影响，最适合的属性不是 clear 而是 overflow。一般使用 overflow:hidden，利用 BFC 的“结界”特性彻底解决浮动对外部或兄弟元素的影响。</p>
+<p>当 absolute 和 float 同时存在的时候，float 属性是无任何效果的。</p>
+<h1 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h1><p>通元素的百分 比宽度是相对于父元素的 content box 宽度计算的，而绝对定位元素的宽度是相对于第一个 position 不为 static 的祖先元素计算的。</p>
+<p>如果 overflow 不是定位元素，同时绝对定位元素和 overflow 容器之间也没有定位元素，则 overflow 无法对 absolute 元素进行剪裁。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/初识D3-js一.html" rel="next" title="初识D3.js一">
+                <i class="fa fa-chevron-left"></i> 初识D3.js一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/css层叠顺序规则.html" rel="prev" title="css层叠顺序规则">
+                css层叠顺序规则 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#展开的效果"><span class="nav-number">1.</span> <span class="nav-text">展开的效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#padding"><span class="nav-number">2.</span> <span class="nav-text">padding</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#button"><span class="nav-number">2.1.</span> <span class="nav-text">button</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padding与图形绘制"><span class="nav-number">2.2.</span> <span class="nav-text">padding与图形绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#兼容"><span class="nav-number">2.3.</span> <span class="nav-text">兼容</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#margin"><span class="nav-number">3.</span> <span class="nav-text">margin</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#margin合并"><span class="nav-number">3.1.</span> <span class="nav-text">margin合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用margin实现垂直居中"><span class="nav-number">3.2.</span> <span class="nav-text">用margin实现垂直居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平垂直居中"><span class="nav-number">3.3.</span> <span class="nav-text">水平垂直居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin无效"><span class="nav-number">3.4.</span> <span class="nav-text">margin无效</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#border"><span class="nav-number">4.</span> <span class="nav-text">border</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制三角形"><span class="nav-number">4.1.</span> <span class="nav-text">绘制三角形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x-height"><span class="nav-number">4.2.</span> <span class="nav-text">x-height</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位-ex"><span class="nav-number">4.3.</span> <span class="nav-text">单位 ex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#line-height"><span class="nav-number">4.4.</span> <span class="nav-text">line-height</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vertical-align"><span class="nav-number">4.4.1.</span> <span class="nav-text">vertical-align</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BFC-块级格式化上下文"><span class="nav-number">5.</span> <span class="nav-text">BFC 块级格式化上下文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#absolute"><span class="nav-number">6.</span> <span class="nav-text">absolute</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

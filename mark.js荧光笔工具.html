@@ -82,14 +82,14 @@
 <meta name="description" content="mark.js是用JavaScript编写的文本荧光笔。 它可以用来动态标记搜索词或自定义正则表达式，并为您提供内置的选项，如变音符号支持，单词搜索，自定义同义词，iframe支持，自定义过滤器，准确性定义，自定义元素，自定义类名称等。 下载1npm install mark.js --save 兼容 Firefox (30+) Chrome (30+) Safari (7+) Edge (13+">
 <meta name="keywords" content="js实用插件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mark.js荧光笔工具">
+<meta property="og:title" content="mark.js荧光笔工具和angular自定义管道实现高亮">
 <meta property="og:url" content="http://xueying.me/mark.js荧光笔工具.html">
 <meta property="og:site_name" content="Snow">
 <meta property="og:description" content="mark.js是用JavaScript编写的文本荧光笔。 它可以用来动态标记搜索词或自定义正则表达式，并为您提供内置的选项，如变音符号支持，单词搜索，自定义同义词，iframe支持，自定义过滤器，准确性定义，自定义元素，自定义类名称等。 下载1npm install mark.js --save 兼容 Firefox (30+) Chrome (30+) Safari (7+) Edge (13+">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-12T03:50:18.414Z">
+<meta property="og:updated_time" content="2018-04-04T09:37:46.843Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mark.js荧光笔工具">
+<meta name="twitter:title" content="mark.js荧光笔工具和angular自定义管道实现高亮">
 <meta name="twitter:description" content="mark.js是用JavaScript编写的文本荧光笔。 它可以用来动态标记搜索词或自定义正则表达式，并为您提供内置的选项，如变音符号支持，单词搜索，自定义同义词，iframe支持，自定义过滤器，准确性定义，自定义元素，自定义类名称等。 下载1npm install mark.js --save 兼容 Firefox (30+) Chrome (30+) Safari (7+) Edge (13+">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>mark.js荧光笔工具 | Snow</title>
+  <title>mark.js荧光笔工具和angular自定义管道实现高亮 | Snow</title>
   
 
 
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mark.js荧光笔工具</h1>
+          <h1 class="post-title" itemprop="name headline">mark.js荧光笔工具和angular自定义管道实现高亮</h1>
         
 
         <div class="post-meta">
@@ -340,6 +340,10 @@
 <p>解决方案:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.marker.unmark() <span class="comment">// 取消高亮</span></span><br><span class="line">data.qaContent = res.qaContent; <span class="comment">// 修改双向绑定的值</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 重新高亮</span></span><br><span class="line">   <span class="keyword">this</span>.marker.mark(<span class="keyword">this</span>.filter.nativeElement.value.trim());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>过程中试过直接重新高亮, 但是没有效果. 加了setTimeout把高亮放到这次轮训的最后, 有效. (个人觉得是因为优先处理了高亮才进行双向绑定的渲染, 所以没有生效)</p>
+<h1 id="使用管道实现"><a href="#使用管道实现" class="headerlink" title="使用管道实现"></a>使用管道实现</h1><p>采用自定义管道实现高亮的效果</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Pipe, Injectable, PipeTransform&#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;DomSanitizer&#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Pipe</span>(&#123;</span><br><span class="line">  name: <span class="string">'keyword'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> KeywordPipe <span class="keyword">implements</span> PipeTransform &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> sanitizer: DomSanitizer</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 传入要标记的文本和标记的颜色,默认红色</span></span><br><span class="line">  transform(val: <span class="built_in">string</span>, keyword: <span class="built_in">string</span>, color:<span class="built_in">string</span> = <span class="string">'red'</span>): <span class="built_in">any</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> Reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(keyword, <span class="string">'i'</span>);</span><br><span class="line">    <span class="keyword">if</span> (val) &#123;</span><br><span class="line">      <span class="keyword">let</span> res = val.replace(Reg, <span class="string">`&lt;span style="color: <span class="subst">$&#123;color&#125;</span>;"&gt;<span class="subst">$&#123;keyword&#125;</span>&lt;/span&gt;`</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(res);</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.sanitizer.bypassSecurityTrustHtml(res);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> [<span class="attr">innerHTML</span>]=<span class="string">"name|keyword:keyword"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -463,7 +467,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -476,7 +480,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -509,7 +513,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#兼容"><span class="nav-number">2.</span> <span class="nav-text">兼容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义样式"><span class="nav-number">3.</span> <span class="nav-text">定义样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#与angular2-出现的问题"><span class="nav-number">5.</span> <span class="nav-text">与angular2+出现的问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#兼容"><span class="nav-number">2.</span> <span class="nav-text">兼容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义样式"><span class="nav-number">3.</span> <span class="nav-text">定义样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#与angular2-出现的问题"><span class="nav-number">5.</span> <span class="nav-text">与angular2+出现的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用管道实现"><span class="nav-number">6.</span> <span class="nav-text">使用管道实现</span></a></li></ol></div>
             
 
           </div>
