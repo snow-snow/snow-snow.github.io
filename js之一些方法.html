@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Snow">
 <meta property="og:description" content="Element.requestFullscreen() 方法用于发出异步请求使元素进入全屏模式。 12345678910let elem = this._element.nativeElement.querySelector(&apos;.demo-content&apos;);    if (elem.requestFullscreen) &amp;#123;      elem.requestFullscreen();">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-11T10:25:29.035Z">
+<meta property="og:updated_time" content="2018-06-06T02:51:28.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js之一些方法">
 <meta name="twitter:description" content="Element.requestFullscreen() 方法用于发出异步请求使元素进入全屏模式。 12345678910let elem = this._element.nativeElement.querySelector(&apos;.demo-content&apos;);    if (elem.requestFullscreen) &amp;#123;      elem.requestFullscreen();">
@@ -312,6 +312,8 @@
       
         <p><strong>Element.requestFullscreen()</strong> 方法用于发出异步请求使元素进入全屏模式。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> elem = <span class="keyword">this</span>._element.nativeElement.querySelector(<span class="string">'.demo-content'</span>);</span><br><span class="line">    <span class="keyword">if</span> (elem.requestFullscreen) &#123;</span><br><span class="line">      elem.requestFullscreen();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (elem.webkitRequestFullScreen) &#123;</span><br><span class="line">      elem.webkitRequestFullScreen();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (elem.mozRequestFullScreen) &#123;</span><br><span class="line">      elem.mozRequestFullScreen();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (elem.msRequestFullScreen) &#123;</span><br><span class="line">      elem.msRequestFullScreen();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>window.onbeforeunload</strong> 在即将离开当前页面（刷新或关闭）时触发</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onbeforeunload = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event.returnValue = <span class="string">"我在这写点东西..."</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -426,7 +428,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -439,7 +441,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

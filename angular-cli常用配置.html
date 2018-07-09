@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Snow">
 <meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566&amp;#123;  &quot;project&quot;: &amp;#123;    &quot;name&quot;: &quot;angular-questionare&quot;,    &quot;ejected&quot;: fal">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-07T03:42:28.199Z">
+<meta property="og:updated_time" content="2018-05-14T08:21:39.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular-cli常用配置">
 <meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566&amp;#123;  &quot;project&quot;: &amp;#123;    &quot;name&quot;: &quot;angular-questionare&quot;,    &quot;ejected&quot;: fal">
@@ -311,7 +311,32 @@
 
       
         <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"project"</span>: &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"angular-questionare"</span>,</span><br><span class="line">    <span class="string">"ejected"</span>: <span class="literal">false</span> <span class="comment">// 标记该应用是否已经执行过eject命令把webpack配置释放出来</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"apps"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"root"</span>: <span class="string">"src"</span>, <span class="comment">// 源码根目录</span></span><br><span class="line">      <span class="string">"outDir"</span>: <span class="string">"dist"</span>, <span class="comment">// 编译后的输出目录，默认是dist/</span></span><br><span class="line">      <span class="string">"assets"</span>: [ <span class="comment">// 记录资源文件夹，构建时复制到`outDir`指定的目录</span></span><br><span class="line">        <span class="string">"assets"</span>,</span><br><span class="line">        <span class="string">"favicon.ico"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"index"</span>: <span class="string">"index.html"</span>, <span class="comment">// 指定首页文件，默认值是"index.html"</span></span><br><span class="line">      <span class="string">"main"</span>: <span class="string">"main.ts"</span>, <span class="comment">// 指定应用的入门文件</span></span><br><span class="line">      <span class="string">"polyfills"</span>: <span class="string">"polyfills.ts"</span>, <span class="comment">// 指定polyfill文件</span></span><br><span class="line">      <span class="string">"test"</span>: <span class="string">"test.ts"</span>, <span class="comment">// 指定测试入门文件</span></span><br><span class="line">      <span class="string">"tsconfig"</span>: <span class="string">"tsconfig.app.json"</span>, <span class="comment">// 指定tsconfig文件</span></span><br><span class="line">      <span class="string">"testTsconfig"</span>: <span class="string">"tsconfig.spec.json"</span>, <span class="comment">// 指定TypeScript单测脚本的tsconfig文件</span></span><br><span class="line">      <span class="string">"prefix"</span>: <span class="string">"app"</span>, <span class="comment">// 使用`ng generate`命令时，自动为selector元数据的值添加的前缀名</span></span><br><span class="line">      <span class="string">"deployUrl"</span>: <span class="string">"//cdn.com.cn"</span>, <span class="comment">// 指定站点的部署地址，该值最终会赋给webpack的output.publicPath，常用于CDN部署</span></span><br><span class="line">      <span class="string">"styles"</span>: [ <span class="comment">// 引入全局样式，构建时会打包进来，常用语第三方库引入的样式</span></span><br><span class="line">        <span class="string">"styles.css"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"scripts"</span>: [ <span class="comment">// 引入全局脚本，构建时会打包进来，常用语第三方库引入的脚本</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"environmentSource"</span>: <span class="string">"environments/environment.ts"</span>, <span class="comment">// 基础环境配置</span></span><br><span class="line">      <span class="string">"environments"</span>: &#123; <span class="comment">// 子环境配置文件</span></span><br><span class="line">        <span class="string">"dev"</span>: <span class="string">"environments/environment.ts"</span>,</span><br><span class="line">        <span class="string">"prod"</span>: <span class="string">"environments/environment.prod.ts"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"e2e"</span>: &#123;</span><br><span class="line">    <span class="string">"protractor"</span>: &#123;</span><br><span class="line">      <span class="string">"config"</span>: <span class="string">"./protractor.conf.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"lint"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"project"</span>: <span class="string">"src/tsconfig.app.json"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"project"</span>: <span class="string">"src/tsconfig.spec.json"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"project"</span>: <span class="string">"e2e/tsconfig.e2e.json"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"test"</span>: &#123;</span><br><span class="line">    <span class="string">"karma"</span>: &#123;</span><br><span class="line">      <span class="string">"config"</span>: <span class="string">"./karma.conf.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"defaults"</span>: &#123; <span class="comment">// 执行`ng generate`命令时的一些默认值</span></span><br><span class="line">    <span class="string">"styleExt"</span>: <span class="string">"css"</span>, <span class="comment">// 默认生成的样式文件后缀名</span></span><br><span class="line">    <span class="string">"component"</span>: &#123;</span><br><span class="line">      <span class="string">"flat"</span>: <span class="literal">false</span>, <span class="comment">// 生成组件时是否新建文件夹包装组件文件，默认为false（即新建文件夹）</span></span><br><span class="line">      <span class="string">"spec"</span>: <span class="literal">true</span>, <span class="comment">// 是否生成spec文件，默认为true</span></span><br><span class="line">      <span class="string">"inlineStyle"</span>: <span class="literal">false</span>, <span class="comment">// 新建时是否使用内联样式，默认为false</span></span><br><span class="line">      <span class="string">"inlineTemplate"</span>: <span class="literal">false</span>, <span class="comment">// 新建时是否使用内联模板，默认为false</span></span><br><span class="line">      <span class="string">"viewEncapsulation"</span>: <span class="string">"Emulated"</span>, <span class="comment">// 指定生成的组件的元数据viewEncapsulation的默认值</span></span><br><span class="line">      <span class="string">"changeDetection"</span>: <span class="string">"OnPush"</span>, <span class="comment">// 指定生成的组件的元数据changeDetection的默认值</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="通用的关键参数解释"><a href="#通用的关键参数解释" class="headerlink" title="通用的关键参数解释"></a>通用的关键参数解释</h2><h3 id="host-H"><a href="#host-H" class="headerlink" title="--host / -H"></a><code>--host</code> / <code>-H</code></h3><p>指定本地Server绑定的域名，默认值：localhost。如果你希望使用<code>local.qq.com</code>来访问你的站点，须加入如下参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --host local.qq.com</span><br></pre></td></tr></table></figure>
+<h3 id="hmr"><a href="#hmr" class="headerlink" title="--hmr"></a><code>--hmr</code></h3><p>是否开启hmr功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --hmr</span><br></pre></td></tr></table></figure>
+<p>注意开启之后，只是在angular-cli里的webpack添加必要的扩展，等价于<code>webpack-dev-server --hot</code>，还需要在应用代码里处理hmr逻辑，如可在<code>main.ts</code>里添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(module.hot) &#123;</span><br><span class="line">  module.hot.accept();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体可以参考：<a href="https://github.com/lizhonghui/blog/issues/19" target="_blank" rel="noopener">#19</a></p>
+<h3 id="aot"><a href="#aot" class="headerlink" title="--aot"></a><code>--aot</code></h3><p>是否开启aot</p>
+<h3 id="proxy-config"><a href="#proxy-config" class="headerlink" title="--proxy-config"></a><code>--proxy-config</code></h3><p>指定后台转发地址，即nginx的proxy_pass功能。开发时为避免ajax跨域，需要指定后台接口的转发地址，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --proxy-config proxy.conf.json</span><br></pre></td></tr></table></figure>
+<p>proxy.config.json文件示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;/api&quot;: &#123; // 匹配前缀</span><br><span class="line">    &quot;target&quot;: &quot;http://localhost:3000&quot;, // 转发地址</span><br><span class="line">    &quot;secure&quot;: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="base-href-bh"><a href="#base-href-bh" class="headerlink" title="--base-href / -bh"></a><code>--base-href</code> / <code>-bh</code></h3><p>指定站点的起始路径，如果你希望你的站点根路径为<code>www.abc.com/mypath/</code>，需要这样设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng build --base-href /mypath/</span><br></pre></td></tr></table></figure>
+<h3 id="deploy-url"><a href="#deploy-url" class="headerlink" title="--deploy-url"></a><code>--deploy-url</code></h3><p>同<code>angular-cli.json</code>文件里的<code>deployUrl</code>配置，<code>deployUrl</code>的值会被赋值给webpack配置的<code>output.publicPath</code>里，设置完后会影响index.html静态资源路径，除此之外还会跟<code>baseUrl</code>协同影响组件样式里的绝对路径的静态资源，加入某组件样式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// abc.component.css</span><br><span class="line">div&#123;</span><br><span class="line">  background-image:url(/assets/images/mypic.png);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假如<code>deployUrl</code>设置为<code>deploy/</code>，而<code>baseUrl</code>设置为<code>base/</code>，编译出来的样式为<code>${baseUrl}${deployUrl}/assets/xxx</code>，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">  background-image:url(base/deploy/assets/images/mypic.png);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假如<code>deployUrl</code>设置为<code>http://deploy.com/</code>，而<code>baseUrl</code>设置为<code>base/</code>，编译出来的样式为<code>${deployUrl}/assets/xxx</code>，忽略<code>baseUrl</code>的值，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">  background-image:url(http://deploy.com/assets/images/mypic.png);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="target"><a href="#target" class="headerlink" title="--target"></a><code>--target</code></h3><p>指定构建的目标，默认值是development，如果指定为production，构建时会加入treeshaking、代码压缩混淆等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 下面两条等价</span><br><span class="line">ng build --target=production</span><br><span class="line">ng build --prod</span><br></pre></td></tr></table></figure>
+<h3 id="environment"><a href="#environment" class="headerlink" title="--environment"></a><code>--environment</code></h3><p>指定应用执行环境。CLI会根据指定的值加载对应的环境配置文件，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 下面两句等价</span><br><span class="line">ng build --environment=prod</span><br><span class="line">ng build --env=prod</span><br></pre></td></tr></table></figure>
+<p>构建时会加载angular-cli.json指定的环境配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;environments&quot;: &#123; </span><br><span class="line">  &quot;dev&quot;: &quot;environments/environment.ts&quot;,</span><br><span class="line">  &quot;prod&quot;: &quot;environments/environment.prod.ts&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -405,8 +430,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -425,7 +459,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -438,7 +472,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -461,6 +495,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#通用的关键参数解释"><span class="nav-number">1.</span> <span class="nav-text">通用的关键参数解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#host-H"><span class="nav-number">1.1.</span> <span class="nav-text">--host / -H</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hmr"><span class="nav-number">1.2.</span> <span class="nav-text">--hmr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aot"><span class="nav-number">1.3.</span> <span class="nav-text">--aot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proxy-config"><span class="nav-number">1.4.</span> <span class="nav-text">--proxy-config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base-href-bh"><span class="nav-number">1.5.</span> <span class="nav-text">--base-href / -bh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deploy-url"><span class="nav-number">1.6.</span> <span class="nav-text">--deploy-url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target"><span class="nav-number">1.7.</span> <span class="nav-text">--target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#environment"><span class="nav-number">1.8.</span> <span class="nav-text">--environment</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

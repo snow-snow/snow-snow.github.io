@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Snow">
 <meta property="og:description" content="animation-play-state css属性规定动画正在运行还是暂停。paused/running (可用于暂停动图😏)  js:  object.style.animationPlayState=”paused” 去除掉浏览器对输入框的自动补全MSIE自定义了input 的扩展属性 autocomplete，置为off即可   用这个方法可以屏蔽MSIE，Firefox，chrome，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-13T07:10:48.939Z">
+<meta property="og:updated_time" content="2018-06-28T04:19:59.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css不常关注却突然用的的属性">
 <meta name="twitter:description" content="animation-play-state css属性规定动画正在运行还是暂停。paused/running (可用于暂停动图😏)  js:  object.style.animationPlayState=”paused” 去除掉浏览器对输入框的自动补全MSIE自定义了input 的扩展属性 autocomplete，置为off即可   用这个方法可以屏蔽MSIE，Firefox，chrome，">
@@ -332,7 +332,49 @@
 <p>writing-mode: horizontal-tb | vertical-rl | vertical-lr;</p>
 <h1 id="css线型"><a href="#css线型" class="headerlink" title="css线型"></a>css线型</h1><p>在用border的时候经常会忘记它有多少种线型以及各种线型的写法；每次都得从头开始，或是用到Google、百度之类的，有空整理了一下</p>
 <p>（1）none (没有边框，无论边框宽度设为多大)<br>（2）dotted (点线式边框)<br>（3）dashed (破折线式边框)<br>（4）solid (直线式边框)<br>（5）double (双线式边框)<br>（6）groove (槽线式边框)<br>（7）ridge(脊线式边框)<br>（8）inset (内嵌效果的边框)<br>（9）outset (突起效果的边框)</p>
-<p>​<br>​<br>​    </p>
+<h1 id="white-space​​"><a href="#white-space​​" class="headerlink" title="white-space​​"></a>white-space​​</h1><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>默认。空白会被浏览器忽略。</td>
+</tr>
+<tr>
+<td>pre</td>
+<td>空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。</pre></td>
+</tr>
+<tr>
+<td>nowrap</td>
+<td>文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。</td>
+</tr>
+<tr>
+<td>pre-wrap</td>
+<td>保留空白符序列，但是正常地进行换行。</td>
+</tr>
+<tr>
+<td>pre-line</td>
+<td>合并空白符序列，但是保留换行符。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 white-space 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<p>​    </p>
+<h1 id="文本溢出展示省略号"><a href="#文本溢出展示省略号" class="headerlink" title="文本溢出展示省略号"></a>文本溢出展示省略号</h1><h2 id="一行"><a href="#一行" class="headerlink" title="一行"></a>一行</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line"><span class="selector-tag">text-overflow</span><span class="selector-pseudo">:ellipsis</span>;</span><br><span class="line"><span class="selector-tag">white-space</span>: <span class="selector-tag">nowrap</span>;</span><br><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:200px</span></span><br></pre></td></tr></table></figure>
+<h2 id="多行"><a href="#多行" class="headerlink" title="多行"></a>多行</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">-webkit-box</span>;</span><br><span class="line"><span class="selector-tag">-webkit-box-orient</span>: <span class="selector-tag">vertical</span>;</span><br><span class="line">-webkit-line-clamp: 3; // 行数</span><br><span class="line"><span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line"><span class="selector-tag">text-overflow</span><span class="selector-pseudo">:ellipsis</span>;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>-webkit-line-clamp用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性：</li>
+<li>display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。</li>
+<li>-webkit-box-orient 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。</li>
+</ol>
+<p><strong>适用范围：</strong><br>因使用了WebKit的CSS扩展属性，该方法适用于WebKit浏览器及移动端；</p>
 
       
     </div>
@@ -456,7 +498,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -469,7 +511,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -502,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-play-state"><span class="nav-number">1.</span> <span class="nav-text">animation-play-state</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#去除掉浏览器对输入框的自动补全"><span class="nav-number">1.0.1.</span> <span class="nav-text">去除掉浏览器对输入框的自动补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制英文大小写"><span class="nav-number">1.0.2.</span> <span class="nav-text">控制英文大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first-letter"><span class="nav-number">1.0.3.</span> <span class="nav-text">:first-letter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first-line"><span class="nav-number">1.0.4.</span> <span class="nav-text">:first-line</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css线型"><span class="nav-number">2.</span> <span class="nav-text">css线型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-play-state"><span class="nav-number">1.</span> <span class="nav-text">animation-play-state</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#去除掉浏览器对输入框的自动补全"><span class="nav-number">1.0.1.</span> <span class="nav-text">去除掉浏览器对输入框的自动补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制英文大小写"><span class="nav-number">1.0.2.</span> <span class="nav-text">控制英文大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first-letter"><span class="nav-number">1.0.3.</span> <span class="nav-text">:first-letter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first-line"><span class="nav-number">1.0.4.</span> <span class="nav-text">:first-line</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css线型"><span class="nav-number">2.</span> <span class="nav-text">css线型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#white-space​​"><span class="nav-number">3.</span> <span class="nav-text">white-space​​</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文本溢出展示省略号"><span class="nav-number">4.</span> <span class="nav-text">文本溢出展示省略号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一行"><span class="nav-number">4.1.</span> <span class="nav-text">一行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多行"><span class="nav-number">4.2.</span> <span class="nav-text">多行</span></a></li></ol></li></ol></div>
             
 
           </div>
