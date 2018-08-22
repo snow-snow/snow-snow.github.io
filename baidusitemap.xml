@@ -4,6 +4,157 @@
 
     
   <url>
+    <loc>http://xueying.me/%E5%8E%BB%E9%99%A4a%E6%A0%87%E7%AD%BE%E7%9A%84%E5%B0%8F%E6%A8%AA%E7%BA%BF.html</loc>
+    <lastmod>2018-08-21T08:51:04.491Z</lastmod>
+    <data>
+        <display>
+        <title>去除a标签的小横线</title>
+        <pubTime>2018-08-21T08:41:20.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/IOS%E8%AE%BE%E5%A4%87%E7%82%B9%E5%87%BB%E6%97%B6%E5%87%BA%E7%8E%B0%E5%8D%8A%E9%80%8F%E6%98%8E%E7%9A%84%E7%81%B0%E8%89%B2%E8%83%8C%E6%99%AF.html</loc>
+    <lastmod>2018-08-16T05:54:46.084Z</lastmod>
+    <data>
+        <display>
+        <title>IOS设备点击时出现半透明的灰色背景</title>
+        <pubTime>2018-08-16T05:51:29.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E5%BE%AE%E4%BF%A1%E4%B8%AD%E7%A6%81%E6%AD%A2%E9%A1%B5%E9%9D%A2%E4%B8%8A%E4%B8%8B%E6%BB%91%E5%8A%A8.html</loc>
+    <lastmod>2018-08-15T03:29:52.112Z</lastmod>
+    <data>
+        <display>
+        <title>微信中禁止页面上下滑动</title>
+        <pubTime>2018-08-15T03:23:41.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/input%E6%A0%B7%E5%BC%8F.html</loc>
+    <lastmod>2018-08-08T03:10:46.264Z</lastmod>
+    <data>
+        <display>
+        <title>input框type=file设置了cursor:pointer不起作用</title>
+        <pubTime>2018-08-08T03:09:32.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E5%BC%95%E5%85%A5element-ui%E7%9A%84%E5%9D%91.html</loc>
+    <lastmod>2018-08-02T02:26:24.474Z</lastmod>
+    <data>
+        <display>
+        <title>引入element-ui的坑</title>
+        <pubTime>2018-07-18T03:25:49.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E8%A7%A3%E8%AF%BBelement-%E4%B8%80-message.html</loc>
+    <lastmod>2018-07-17T09:30:49.285Z</lastmod>
+    <data>
+        <display>
+        <title>解读element(一)message</title>
+        <pubTime>2018-07-17T06:58:33.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/js%E5%8A%A0%E8%BD%BD.html</loc>
+    <lastmod>2018-07-12T03:23:46.732Z</lastmod>
+    <data>
+        <display>
+        <title>js加载</title>
+        <pubTime>2018-07-12T03:21:13.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/vue.html</loc>
+    <lastmod>2018-07-12T02:55:35.182Z</lastmod>
+    <data>
+        <display>
+        <title>vue</title>
+        <pubTime>2018-07-12T02:46:08.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98.html</loc>
+    <lastmod>2018-07-10T04:18:29.986Z</lastmod>
+    <data>
+        <display>
+        <title>浏览器缓存</title>
+        <pubTime>2018-07-10T04:10:55.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xueying.me/location-origin.html</loc>
     <lastmod>2018-07-09T02:47:54.833Z</lastmod>
     <data>
@@ -468,9 +619,9 @@
         <title>css一些关于位置和宽度的属性</title>
         <pubTime>2018-02-26T06:33:59.000Z</pubTime>
         
-        <tag>js</tag>
-         
         <tag>css</tag>
+         
+        <tag>js</tag>
          
          
            
@@ -699,9 +850,9 @@
         <title>js拖拽</title>
         <pubTime>2018-02-24T10:48:00.000Z</pubTime>
         
-        <tag>js</tag>
-         
         <tag>angular</tag>
+         
+        <tag>js</tag>
          
          
            
