@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一些异步事件window.setImmediate该方法用来把一些需要长时间运行的操作放在一个回调函数里,在浏览器完成后面的其他语句后,就立刻执行这个回调函数,  123&amp;gt; var immediateID = setImmediate(func, [param1, param2, ...]);&amp;gt; var immediateID = setImmediate(func);&amp;gt;  im">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="event-loop">
+<meta property="og:url" content="http://xueying.me/event-loop.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="一些异步事件window.setImmediate该方法用来把一些需要长时间运行的操作放在一个回调函数里,在浏览器完成后面的其他语句后,就立刻执行这个回调函数,  123&amp;gt; var immediateID = setImmediate(func, [param1, param2, ...]);&amp;gt; var immediateID = setImmediate(func);&amp;gt;  im">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-15T10:26:34.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="event-loop">
+<meta name="twitter:description" content="一些异步事件window.setImmediate该方法用来把一些需要长时间运行的操作放在一个回调函数里,在浏览器完成后面的其他语句后,就立刻执行这个回调函数,  123&amp;gt; var immediateID = setImmediate(func, [param1, param2, ...]);&amp;gt; var immediateID = setImmediate(func);&amp;gt;  im">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/event-loop.html"/>
+
+
+
+
+
+  <title>event-loop | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/event-loop.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">event-loop</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T11:59:12+08:00">
+                2018-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一些异步事件"><a href="#一些异步事件" class="headerlink" title="一些异步事件"></a>一些异步事件</h1><h2 id="window-setImmediate"><a href="#window-setImmediate" class="headerlink" title="window.setImmediate"></a>window.setImmediate</h2><p>该方法用来把一些需要长时间运行的操作放在一个回调函数里,在浏览器完成后面的其他语句后,就<strong>立刻执行</strong>这个回调函数,</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> immediateID = setImmediate(func, [param1, param2, ...]);</span><br><span class="line">&gt; <span class="keyword">var</span> immediateID = setImmediate(func);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>immediateID 是这次setImmediate方法设置的唯一ID,可以作为 window.clearImmediate 的参数.<br>func 是将要执行的回调函数</p>
+<p>参数param1 param2  …都会直接传给函数func</p>
+<p><strong>window.clearImmediate</strong> 用来取消通过setImmediate设置的将要执行的语句</p>
+<h3 id="与setTimeout"><a href="#与setTimeout" class="headerlink" title="与setTimeout"></a>与setTimeout</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'timeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'immediate'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 输出</span></span><br><span class="line"><span class="comment">// immediate</span></span><br><span class="line"><span class="comment">// timeout</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>setImmediate()</code> 设计为在当前 <strong>轮询</strong> 阶段完成后执行脚本。</li>
+<li><code>setTimeout()</code> 计划在毫秒的最小阈值经过后运行的脚本。</li>
+</ul>
+<h1 id="process-nextTick"><a href="#process-nextTick" class="headerlink" title="process.nextTick"></a>process.nextTick</h1><p>无论事件循环的当前阶段如何，都将在当前操作完成后处理 nextTickQueue</p>
+<ul>
+<li><code>process.nextTick()</code> 在同一个阶段立即执行。</li>
+<li><code>setImmediate()</code> 在以下迭代或 ‘tick’ 上触发事件循环。</li>
+</ul>
+<p>使用时机:</p>
+<ol>
+<li>允许用户处理错误，清理任何不需要的资源，或者在事件循环继续之前重试请求。</li>
+<li>有时在调用堆栈已解除但在事件循环继续之前，必须允许回调运行。</li>
+</ol>
+<h1 id="useMutationObserver"><a href="#useMutationObserver" class="headerlink" title="useMutationObserver"></a>useMutationObserver</h1><p><strong>MutationObserver</strong>接口提供了监视对DOM树所做更改的能力。它被设计为旧的Mutation Events功能的替代品，该功能是DOM3 Events规范的一部分。</p>
+<blockquote>
+<p>构造函数 MutationObserver()<br>创建并返回一个新的 MutationObserver 它会在指定的DOM发生变化时被调用。</p>
+</blockquote>
+<p>很多框架和库都会使用类似下面函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flush</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'MutationObserver'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useMutationObserver</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> iterations = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">var</span> observer = <span class="keyword">new</span> MutationObserver(flush);</span><br><span class="line">  <span class="keyword">var</span> node = <span class="built_in">document</span>.createTextNode(<span class="string">''</span>);</span><br><span class="line">  observer.observe(node, &#123; <span class="attr">characterData</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    node.data = iterations = ++iterations % <span class="number">2</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用Mutation事件可以异步执行操作（例子中的flush函数），一是可以尽快响应变化，二是可以去除重复的计算</p>
+<h1 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h1><p>一个🌰看看, 这些异步是怎么执行的:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'start'</span>)</span><br><span class="line"></span><br><span class="line">setTimeout( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>)</span><br><span class="line">&#125;, <span class="number">0</span> )</span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'immediate'</span>);</span><br><span class="line">&#125;); <span class="comment">// 只在chrome中可以调用</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">useMutationObserver()()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'end'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">// chrome执行顺序:</span></span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// promise1</span></span><br><span class="line"><span class="comment">// MutationObserver</span></span><br><span class="line"><span class="comment">// promise2</span></span><br><span class="line"><span class="comment">// immediate</span></span><br><span class="line"><span class="comment">// setTimeout</span></span><br></pre></td></tr></table></figure>
+<h1 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h1><p>事件轮训是实现异步的一种方式</p>
+<h2 id="任务-1"><a href="#任务-1" class="headerlink" title="任务"></a>任务</h2><p>一个事件轮训有一个或多个任务队列</p>
+<p>每当要执行一个任务时, 必须将这个任务添加到相应的事件轮训队列中</p>
+<p>每一个任务都来自于特定的<strong>任务源</strong>, 被添加到特定的任务队列</p>
+<h2 id="任务源"><a href="#任务源" class="headerlink" title="任务源"></a>任务源</h2><p>任务源种类:</p>
+<ul>
+<li>DOM操作任务源</li>
+<li>用户交互任务源</li>
+<li>网络任务源</li>
+<li>history traversal任务源</li>
+</ul>
+<p>task任务源非常宽泛，比如ajax的onload，click事件，基本上我们经常绑定的各种事件都是task任务源，还有数据库操作（IndexedDB ），需要注意的是setTimeout、setInterval、setImmediate也是task任务源。</p>
+<blockquote>
+<p> 总结来说task任务源：</p>
+<p> ​    setTimeout<br> ​    setInterval<br> ​    setImmediate<br> ​    I/O<br> ​    UI rendering</p>
+</blockquote>
+<h2 id="微任务"><a href="#微任务" class="headerlink" title="微任务"></a>微任务</h2><p>每一个事件轮训, 都有一个微任务队列, 微任务会被排进微任务队列</p>
+<p>微任务有两种: 1.孤立回调微任务 2.复合微任务(不做考虑)</p>
+<p>microtask 队列和task 队列有些相似，都是先进先出的队列，由指定的任务源去提供任务，不同的是一个<br>event loop里只有一个microtask 队列。</p>
+<p>通常认为是microtask任务源有：</p>
+<ul>
+<li>process.nextTick</li>
+<li>promises</li>
+<li>Object.observe</li>
+<li>MutationObserver</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/虚拟DOM.html" rel="next" title="虚拟DOM">
+                <i class="fa fa-chevron-left"></i> 虚拟DOM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/博客搭建4.html" rel="prev" title="博客搭建(四)vue">
+                博客搭建(四)vue <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些异步事件"><span class="nav-number">1.</span> <span class="nav-text">一些异步事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#window-setImmediate"><span class="nav-number">1.1.</span> <span class="nav-text">window.setImmediate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与setTimeout"><span class="nav-number">1.1.1.</span> <span class="nav-text">与setTimeout</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#process-nextTick"><span class="nav-number">2.</span> <span class="nav-text">process.nextTick</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#useMutationObserver"><span class="nav-number">3.</span> <span class="nav-text">useMutationObserver</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步"><span class="nav-number">4.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任务"><span class="nav-number">5.</span> <span class="nav-text">任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务-1"><span class="nav-number">5.1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务源"><span class="nav-number">5.2.</span> <span class="nav-text">任务源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微任务"><span class="nav-number">5.3.</span> <span class="nav-text">微任务</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

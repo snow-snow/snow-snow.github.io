@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="如何美化你的终端界面简单的配置简单的配置在readme里已经说明了 oh-my-zshoh-my-zsh是一个非常棒的软件, 它集成了相当多的功能, 这里只是介绍一下它的主题样式, 剩下的功能有待挖掘 下载1sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot; 或者使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="美化终端">
+<meta property="og:url" content="http://xueying.me/美化终端.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="如何美化你的终端界面简单的配置简单的配置在readme里已经说明了 oh-my-zshoh-my-zsh是一个非常棒的软件, 它集成了相当多的功能, 这里只是介绍一下它的主题样式, 剩下的功能有待挖掘 下载1sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot; 或者使用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xlotq.com1.z0.glb.clouddn.com/o_1blajesuu17qksg3ce4rc31u1r9.png">
+<meta property="og:image" content="http://7xlotq.com1.z0.glb.clouddn.com/o_1blajisic1o1ksporte1eoiks6e.png">
+<meta property="og:image" content="http://7xlotq.com1.z0.glb.clouddn.com/o_1blajrevov9p3hi150f1su7dkmj.png">
+<meta property="og:updated_time" content="2018-09-14T08:40:51.485Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="美化终端">
+<meta name="twitter:description" content="如何美化你的终端界面简单的配置简单的配置在readme里已经说明了 oh-my-zshoh-my-zsh是一个非常棒的软件, 它集成了相当多的功能, 这里只是介绍一下它的主题样式, 剩下的功能有待挖掘 下载1sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot; 或者使用">
+<meta name="twitter:image" content="http://7xlotq.com1.z0.glb.clouddn.com/o_1blajesuu17qksg3ce4rc31u1r9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/美化终端.html"/>
+
+
+
+
+
+  <title>美化终端 | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/美化终端.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">美化终端</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T16:37:40+08:00">
+                2018-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="如何美化你的终端界面"><a href="#如何美化你的终端界面" class="headerlink" title="如何美化你的终端界面"></a>如何美化你的终端界面</h1><h2 id="简单的配置"><a href="#简单的配置" class="headerlink" title="简单的配置"></a>简单的配置</h2><p>简单的配置在<a href="./README.md">readme</a>里已经说明了</p>
+<h2 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h2><p><a href="http://ohmyz.sh/" target="_blank" rel="noopener">oh-my-zsh</a>是一个非常棒的软件, 它集成了相当多的功能, 这里只是介绍一下它的主题样式, 剩下的功能有待挖掘</p>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>或者使用wget命令, 这个mac自身不带的, 可以使用<a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a>去下载这个指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>安装成功之后, 你的终端就变成了强大的 on-my-zsh</p>
+<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><p>oh-my-zsh是有很多<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="noopener">主题</a>的, 可以点击<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="noopener">这里</a>看一看有没有你想要的主题. 这里介绍的是一个功能比较强大的主题. 叫做<a href="https://github.com/bhilburn/powerlevel9k" target="_blank" rel="noopener">powerlevel9k</a>, 这里面有介绍怎么进行安装的, 不过我也在这里简单的复制一下安装过程</p>
+<p>首先把安装包下载到 ~/.oh-my-zsh文件夹下面, 下面的指令已经帮你完成了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k</span><br></pre></td></tr></table></figure>
+<p>安装好了之后需要修改 oh-my-zsh 的配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>找到 <code>ZSH_THEME</code>这个关键字, 然后等号后面的主题名字进行替换</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">"powerlevel9k/powerlevel9k"</span></span><br></pre></td></tr></table></figure>
+<p>替换好之后保存退出, 然后执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>然后你会发现你的终端主题已经发生了变化, 虽然看起来很<strong><em><u>糟糕</u></em></strong>  !!!</p>
+<h3 id="字体样式"><a href="#字体样式" class="headerlink" title="字体样式"></a>字体样式</h3><p>你现在的终端主题样式显得很糟糕的原因是, 你没有下载配套的字体样式. 点击<a href="http://nerdfonts.com/" target="_blank" rel="noopener">这里</a>你能看的<a href="http://nerdfonts.com" target="_blank" rel="noopener">nerd fonts</a>提供的各种各样的字体, 选择一个你喜欢的进行下载吧!! 这里我(其实是另有高人的啦, 传业哥)选择的是<a href="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Knack%20Regular%20Nerd%20Font%20Complete.ttf" target="_blank" rel="noopener">Knack Regular Nerd</a>字体</p>
+<h4 id="inconsolata的下载地址"><a href="#inconsolata的下载地址" class="headerlink" title="inconsolata的下载地址"></a>inconsolata的<a href="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Knack%20Regular%20Nerd%20Font%20Complete.ttf" target="_blank" rel="noopener">下载地址</a></h4><p>下载好之后, 双击文件, 然后右下角有<code>安装字体</code>选择, 点击安装字体(我选择的是文件长度最短的字体安装的), 如题所示:</p>
+<p><img src="http://7xlotq.com1.z0.glb.clouddn.com/o_1blajesuu17qksg3ce4rc31u1r9.png" alt="这是图"></p>
+<p>安装好之后呢, 我们可以在终端进行选择了, 返回你的终端, 打开设置, 修改你的字体文件, 如图</p>
+<p><img src="http://7xlotq.com1.z0.glb.clouddn.com/o_1blajisic1o1ksporte1eoiks6e.png" alt="这是图片"></p>
+<p>找到这个字体之后选中</p>
+<p>现在返回你的终端看一看是不是你的终端的变的好看了一点了呢</p>
+<h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><p>当前的主题是默认的样式, 你现在可以随意的挑选或者自定义你的终端样式了, 首先看看别人怎么炫耀他们的<a href="https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config" target="_blank" rel="noopener">配置文件</a>的把!</p>
+<p>我选择的是<a href="https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config#mavams-configuration" target="_blank" rel="noopener">这个配置</a>(当然还是传业哥的, 我觉得也挺好看, 😁), 然后改了改它的样式, 变成了我现在的样子, 可以看一看</p>
+<p><img src="http://7xlotq.com1.z0.glb.clouddn.com/o_1blajrevov9p3hi150f1su7dkmj.png" alt="图片"></p>
+<p>喜欢这个样式吗? 我把我的配置文件分享出来, 喜欢可以拿来用哟~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/微信小程序.html" rel="next" title="微信小程序">
+                <i class="fa fa-chevron-left"></i> 微信小程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/async.html" rel="prev" title="async">
+                async <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何美化你的终端界面"><span class="nav-number">1.</span> <span class="nav-text">如何美化你的终端界面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的配置"><span class="nav-number">1.1.</span> <span class="nav-text">简单的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oh-my-zsh"><span class="nav-number">1.2.</span> <span class="nav-text">oh-my-zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载"><span class="nav-number">1.2.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主题"><span class="nav-number">1.2.2.</span> <span class="nav-text">主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字体样式"><span class="nav-number">1.2.3.</span> <span class="nav-text">字体样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#inconsolata的下载地址"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">inconsolata的下载地址</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主题配置"><span class="nav-number">1.2.4.</span> <span class="nav-text">主题配置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
