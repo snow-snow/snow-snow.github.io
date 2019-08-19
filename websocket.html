@@ -79,15 +79,18 @@
 
 
 
+<meta name="description" content="错误码   状态码 名称 描述     0–999  保留段, 未使用.   1000 CLOSE_NORMAL 正常关闭; 无论为何目的而创建, 该链接都已成功完成任务.   1001 CLOSE_GOING_AWAY 终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开.   1002 CLOSE_PROTOCOL_ERROR 协议错误而中断连接.   1003 CLO">
 <meta name="keywords" content="websocket">
 <meta property="og:type" content="article">
 <meta property="og:title" content="websocket">
 <meta property="og:url" content="http://xueying.me/websocket.html">
 <meta property="og:site_name" content="Snow">
+<meta property="og:description" content="错误码   状态码 名称 描述     0–999  保留段, 未使用.   1000 CLOSE_NORMAL 正常关闭; 无论为何目的而创建, 该链接都已成功完成任务.   1001 CLOSE_GOING_AWAY 终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开.   1002 CLOSE_PROTOCOL_ERROR 协议错误而中断连接.   1003 CLO">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-12T04:08:49.279Z">
+<meta property="og:updated_time" content="2018-12-07T03:29:11.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="websocket">
+<meta name="twitter:description" content="错误码   状态码 名称 描述     0–999  保留段, 未使用.   1000 CLOSE_NORMAL 正常关闭; 无论为何目的而创建, 该链接都已成功完成任务.   1001 CLOSE_GOING_AWAY 终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开.   1002 CLOSE_PROTOCOL_ERROR 协议错误而中断连接.   1003 CLO">
 
 
 
@@ -269,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T12:27:55+08:00">
-                2018-01-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-07T12:27:55+08:00">
+                2018-12-07
               </time>
             
 
@@ -307,7 +310,126 @@
       
 
       
-        
+        <h1 id="错误码"><a href="#错误码" class="headerlink" title="错误码"></a>错误码</h1><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–999</td>
+<td></td>
+<td>保留段, 未使用.</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>CLOSE_NORMAL</td>
+<td>正常关闭; 无论为何目的而创建, 该链接都已成功完成任务.</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>CLOSE_GOING_AWAY</td>
+<td>终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开.</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>CLOSE_PROTOCOL_ERROR</td>
+<td>协议错误而中断连接.</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>CLOSE_UNSUPPORTED</td>
+<td>由于接收到不允许的数据类型而断开连接 (如仅接收文本数据的终端接收到了二进制数据).</td>
+</tr>
+<tr>
+<td>1004</td>
+<td></td>
+<td>保留. 其意义可能会在未来定义.</td>
+</tr>
+<tr>
+<td>1005</td>
+<td>CLOSE_NO_STATUS</td>
+<td>保留.  表示没有收到预期的状态码.</td>
+</tr>
+<tr>
+<td>1006</td>
+<td>CLOSE_ABNORMAL</td>
+<td>保留. 用于期望收到状态码时连接非正常关闭 (也就是说, 没有发送关闭帧).</td>
+</tr>
+<tr>
+<td>1007</td>
+<td>Unsupported Data</td>
+<td>由于收到了格式不符的数据而断开连接 (如文本消息中包含了非 UTF-8 数据).</td>
+</tr>
+<tr>
+<td>1008</td>
+<td>Policy Violation</td>
+<td>由于收到不符合约定的数据而断开连接. 这是一个通用状态码, 用于不适合使用 1003 和 1009 状态码的场景.</td>
+</tr>
+<tr>
+<td>1009</td>
+<td>CLOSE_TOO_LARGE</td>
+<td>由于收到过大的数据帧而断开连接.</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>Missing Extension</td>
+<td>客户端期望服务器商定一个或多个拓展, 但服务器没有处理, 因此客户端断开连接.</td>
+</tr>
+<tr>
+<td>1011</td>
+<td>Internal Error</td>
+<td>客户端由于遇到没有预料的情况阻止其完成请求, 因此服务端断开连接.</td>
+</tr>
+<tr>
+<td>1012</td>
+<td>Service Restart</td>
+<td>服务器由于重启而断开连接. [Ref]</td>
+</tr>
+<tr>
+<td>1013</td>
+<td>Try Again Later</td>
+<td>服务器由于临时原因断开连接, 如服务器过载因此断开一部分客户端连接. [Ref]</td>
+</tr>
+<tr>
+<td>1014</td>
+<td></td>
+<td>由 WebSocket 标准保留以便未来使用.</td>
+</tr>
+<tr>
+<td>1015</td>
+<td>TLS Handshake</td>
+<td>保留. 表示连接由于无法完成 TLS 握手而关闭 (例如无法验证服务器证书).</td>
+</tr>
+<tr>
+<td>1016–1999</td>
+<td></td>
+<td>由 WebSocket 标准保留以便未来使用.</td>
+</tr>
+<tr>
+<td>2000–2999</td>
+<td></td>
+<td>由 WebSocket 拓展保留使用.</td>
+</tr>
+<tr>
+<td>3000–3999</td>
+<td></td>
+<td>可以由库或框架使用. 不应由应用使用. 可以在 IANA 注册, 先到先得.</td>
+</tr>
+<tr>
+<td>4000–4999</td>
+<td></td>
+<td>可以由应用使用.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="websorket-重连"><a href="#websorket-重连" class="headerlink" title="websorket 重连"></a>websorket 重连</h2><p>在一些运用websorket的场景里需要考虑到websorket 的重连以保证功能的正常运行. 实现如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// onerror :用于指定连接失败后的回调函数</span></span><br><span class="line"><span class="comment">// 建立连接失败后过一段时间重连(例如建立连接没有网络)</span></span><br><span class="line">ws.onerror = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">         <span class="built_in">console</span>.log(<span class="string">'连接失败重新初始化'</span>);</span><br><span class="line">        <span class="comment">// todo 重新建立连接</span></span><br><span class="line">      &#125;,<span class="number">1000</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// onclose: 用于连接关闭后的回调函数</span></span><br><span class="line">ws.onclose = <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ws 已断开'</span>);</span><br><span class="line">  <span class="comment">// res.code 为上表中的错误码</span></span><br><span class="line">  <span class="comment">// 此时过滤掉了1000 和 1005, 其中1000为js中直接调用ws.close()的情况, 1005为后端主动断开(此处和后端确认是否需要重连)</span></span><br><span class="line">    <span class="keyword">if</span> (res.code != <span class="number">1000</span> &amp;&amp; res.code != <span class="number">1005</span>) &#123;</span><br><span class="line">        <span class="comment">// todo 重新建立连接</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意:</strong> 在使用websorket时一般需要定时发送一个心跳, 一方面是防止长时间无交互websocket自然断开连接, 一方面是当网络连接有问题时触发onclose关闭连接</p>
+
       
     </div>
     
@@ -337,8 +459,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/webstorm破解.html" rel="next" title="webstorm破解 License server">
-                <i class="fa fa-chevron-left"></i> webstorm破解 License server
+              <a href="/Function构造函数.html" rel="next" title="Function构造函数">
+                <i class="fa fa-chevron-left"></i> Function构造函数
               </a>
             
           </div>
@@ -347,8 +469,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/redux.html" rel="prev" title="redux">
-                redux <i class="fa fa-chevron-right"></i>
+              <a href="/vue可改变大小的弹框.html" rel="prev" title="vue可改变大小的弹框">
+                vue可改变大小的弹框 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -401,8 +523,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -421,7 +552,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -434,7 +565,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -458,6 +589,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#错误码"><span class="nav-number">1.</span> <span class="nav-text">错误码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#websorket-重连"><span class="nav-number">1.1.</span> <span class="nav-text">websorket 重连</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -471,7 +618,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

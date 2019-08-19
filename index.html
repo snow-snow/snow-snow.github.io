@@ -239,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/Function构造函数.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Function构造函数.html" itemprop="url">Function构造函数</a></h1>
+                <a class="post-title-link" href="/vue源码阅读.html" itemprop="url">vue源码阅读</a></h1>
         
 
         <div class="post-meta">
@@ -270,8 +270,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T11:23:50+08:00">
-                2018-12-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-09T15:35:38+08:00">
+                2019-08-09
               </time>
             
 
@@ -310,12 +310,18 @@
       
         
           
-          Function 构造函数用法创建一个新的Function对象。 在 JavaScript 中, 每个函数实际上都是一个Function对象。
-1234var sum = new Function('a', 'b', 'return a + b');console.log(sum(2, 6));//
+          代码结构主要看src里面的代码:
+-src
+​    -compile (编译)
+​    -core(核心)
+​        -components 组件
+​        -global-api  全局api
+​        -instance 实例
+​        -observer 观
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Function构造函数.html#more" rel="contents">
+            <a class="btn" href="/vue源码阅读.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -366,7 +372,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/微信小程序-1.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/深入浅出Object-defineProperty.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -385,7 +391,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/微信小程序-1.html" itemprop="url">微信小程序 与 webStorm</a></h1>
+                <a class="post-title-link" href="/深入浅出Object-defineProperty.html" itemprop="url">深入浅出Object.defineProperty()</a></h1>
         
 
         <div class="post-meta">
@@ -397,8 +403,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T15:04:29+08:00">
-                2018-12-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-09T15:16:05+08:00">
+                2019-08-09
               </time>
             
 
@@ -437,17 +443,17 @@
       
         
           
-          小程序高亮提示插件
-https://www.cnblogs.com/pansidong/articles/7563155.html
+          Object.defineProperty()语法说明直接在对象上定义一个属性, 或修改一个已存在的属性
+1Object.defineProperty(obj,prop,desc)
+obj - 操作的对象
+prop - 对象上需要操作的属性
+desc - 属性的值
 
-插件地址 https://github.com/miaozhang9/wecharCodejar
-
-格式化rpx前面的不加空格
-https://www.jianshu
+该方法允许精确添加或修改对象的属
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/微信小程序-1.html#more" rel="contents">
+            <a class="btn" href="/深入浅出Object-defineProperty.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -498,7 +504,7 @@ https://www.jianshu
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/webpack.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/css加载相关.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -517,7 +523,7 @@ https://www.jianshu
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/webpack.html" itemprop="url">webpack (一)</a></h1>
+                <a class="post-title-link" href="/css加载相关.html" itemprop="url">css加载相关</a></h1>
         
 
         <div class="post-meta">
@@ -529,8 +535,8 @@ https://www.jianshu
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T15:12:08+08:00">
-                2018-11-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-08T17:44:49+08:00">
+                2019-08-08
               </time>
             
 
@@ -569,13 +575,18 @@ https://www.jianshu
       
         
           
-          基础概念模块化模块化是指将 一个复杂的系统分解为多个模块以方便编码
+          
+css并不会阻塞DOM树的解析
+css加载会阻塞DOM树渲染
+css加载会阻塞后面的js语句的执行
 
-CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块化规范，其核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.exports 导 出需
+因此，为了避免让用户看到长时间的白屏时间，我们应该尽可能的提高css加载速度，比如可以使用以下几种方法:
+
+使用CDN(因为CDN会根据你的网络状况，替你挑选最近的一个具有缓存内容的节点为你提供资
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/webpack.html#more" rel="contents">
+            <a class="btn" href="/css加载相关.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -626,7 +637,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/pm2.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/前端性能之Chrome的Waterfall.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -645,7 +656,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/pm2.html" itemprop="url">pm2</a></h1>
+                <a class="post-title-link" href="/前端性能之Chrome的Waterfall.html" itemprop="url">前端性能之Chrome的Waterfall</a></h1>
         
 
         <div class="post-meta">
@@ -657,8 +668,8 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-28T11:26:54+08:00">
-                2018-11-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-08T17:26:36+08:00">
+                2019-08-08
               </time>
             
 
@@ -697,15 +708,19 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
       
         
           
-          pm2简单入门下载1npm install -g pm2
-启动运用1pm2 start ./bin/www --watch
-这里用了--watch参数，意味着当你应用发生变化时，pm2会帮你重启服务
-停止运用停止特定的应用。可以先通过pm2 list获取应用的名字（–name指定的）或者进程id。
+          Waterfall各项含义排队(Queued)：  出现下面的情况时，浏览器会把当前请求放入队列中进行排队
 
+
+有更高优先级的请求时
+和目标服务器已经建立了6个TCP链接（最多6个，适用于HTTP / 1.0和HTTP / 1.1）     
+浏览器正在硬盘缓存上简单的分配空间     
+
+
+停滞(
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/pm2.html#more" rel="contents">
+            <a class="btn" href="/前端性能之Chrome的Waterfall.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -756,7 +771,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/博客搭建4.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue-electron.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -775,7 +790,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/博客搭建4.html" itemprop="url">博客搭建(四)vue</a></h1>
+                <a class="post-title-link" href="/vue-electron.html" itemprop="url">vue_electron</a></h1>
         
 
         <div class="post-meta">
@@ -787,8 +802,8 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T12:16:14+08:00">
-                2018-11-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T11:16:56+08:00">
+                2019-07-02
               </time>
             
 
@@ -827,14 +842,12 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
       
         
           
-          Vue使用less安装less-loader
-1npm install less less-loader --save
-修改webpack.config.js文件，配置loader加载依赖，让其支持外部的less,在原来的代码上添加
-1234&#123;	test: /\.less$/,	loade
+          Electron 是一个使用 JavaScript, HTML 和 CSS 等 Web 技术创建原生程序的框架.
+从🌰入手(electron-quick-start)12345678# 克隆示例项目的仓库$ git clone https://github.com/electron/electro
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/博客搭建4.html#more" rel="contents">
+            <a class="btn" href="/vue-electron.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -885,7 +898,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/event-loop.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue-typescript.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -904,7 +917,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/event-loop.html" itemprop="url">event-loop</a></h1>
+                <a class="post-title-link" href="/vue-typescript.html" itemprop="url">vue-typescript</a></h1>
         
 
         <div class="post-meta">
@@ -916,8 +929,8 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T11:59:12+08:00">
-                2018-11-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-18T12:11:41+08:00">
+                2019-03-18
               </time>
             
 
@@ -956,13 +969,14 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
       
         
           
-          一些异步事件window.setImmediate该方法用来把一些需要长时间运行的操作放在一个回调函数里,在浏览器完成后面的其他语句后,就立刻执行这个回调函数,
-
-123&gt; var immediateID = setImmediate(func, [param1, param2, ...]);
+          
+vue-class-component：强化 Vue 组件，使用 TypeScript/装饰器 增强 Vue 组件
+vue-property-decorator：在 vue-class-component 上增强更多的结合 Vue 特性的装饰器
+ts-loader：TypeScript 为 Web
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/event-loop.html#more" rel="contents">
+            <a class="btn" href="/vue-typescript.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1013,7 +1027,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/虚拟DOM.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/一些问题.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1032,7 +1046,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/虚拟DOM.html" itemprop="url">虚拟DOM</a></h1>
+                <a class="post-title-link" href="/一些问题.html" itemprop="url">一些问题</a></h1>
         
 
         <div class="post-meta">
@@ -1044,8 +1058,8 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T11:49:03+08:00">
-                2018-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T17:00:15+08:00">
+                2019-03-04
               </time>
             
 
@@ -1085,139 +1099,22 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           
           
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/虚拟DOM.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/博客搭建3.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XueYing Chen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Snow">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/博客搭建3.html" itemprop="url">博客搭建(三) mongoose</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-29T19:48:18+08:00">
-                2018-10-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Mongoose是在node.js异步环境下对mongodb进行便捷操作的对象模型工具
-mongoose安装1npm install mongoose
-安装成功后，就可以通过 require(‘mongoose’) 来使用！
-简介https://mongoosejs.com/docs/index.h
+使用过的koa2中间件
+koa-body原理
+介绍自己写过的中间件
+有没有涉及到Cluster
+介绍pm2
+master挂了的话pm2怎么处理
+如何和MySQL进行通信
+React声明周期及自己的理解
+如何配置React-Router
+路由的动态加载模块
+服务端渲染SSR
+介绍路由的history
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/博客搭建3.html#more" rel="contents">
+            <a class="btn" href="/一些问题.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1268,7 +1165,7 @@ mongoose安装1npm install mongoose
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/博客搭建2.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/js-math对象.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1287,7 +1184,7 @@ mongoose安装1npm install mongoose
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/博客搭建2.html" itemprop="url">博客搭建(二) koa</a></h1>
+                <a class="post-title-link" href="/js-math对象.html" itemprop="url">js的Math对象</a></h1>
         
 
         <div class="post-meta">
@@ -1299,8 +1196,8 @@ mongoose安装1npm install mongoose
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T11:19:26+08:00">
-                2018-10-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T12:22:21+08:00">
+                2019-02-27
               </time>
             
 
@@ -1339,138 +1236,284 @@ mongoose安装1npm install mongoose
       
         
           
-          
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/博客搭建2.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
+          Math 对象Math 对象用于执行数学任务。
+12var pi_value=Math.PI;var sqrt_value=Math.sqrt(15);
+Math 对象属性
 
 
-    
-      
+属性
+描述
 
-  
 
-  
-  
-  
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/按照中文拼音首字母排序.html">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XueYing Chen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
+E
+返回算术常量 e，即自然对数的底数（约等于2.718）。
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Snow">
-    </span>
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/按照中文拼音首字母排序.html" itemprop="url">按照中文拼音首字母排序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T10:50:57+08:00">
-                2018-10-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          12['张三','李四','王五'].sort((a, b) =&gt; a.localeCompare(b, 'zh-Hans-CN', &#123;sensitivity: 'accent'&#125;))// 输出 ["李四", "王五", "张三"]
-localeComparelocaleC
+LN2
+返回 2 的自然对数（约等于
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/按照中文拼音首字母排序.html#more" rel="contents">
+            <a class="btn" href="/js-math对象.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue-cli项目升webpack4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/vue-cli项目升webpack4.html" itemprop="url">vue-cli项目升webpack4</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-07T18:25:34+08:00">
+                2019-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          相关依赖升级将下面的依赖升级到对应版本
+12345678"vue-loader": "^15.3.0","webpack": "^4.5.0",   "webpack-bundle-analyzer": "^2.9.0",   "webpack-cli": "^3.2.0",   "webpack-
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/vue-cli项目升webpack4.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/krpano1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/krpano1.html" itemprop="url">krpano1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T20:13:57+08:00">
+                2018-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          全景漫游
+Krpano对于生成漫游场景数量的限制，事实上Krpano本身对这方面是没有任何限制的，唯一的限制就是CMD调用命令提示符时所生成的命令长度
+
+全选图片把它们全部扔进MAKE VTOUR (MULTIRES) droplet，然后等待Krpano完成你的全景漫游吧。
+生成的文件panos文
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/krpano1.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1512,7 +1555,7 @@ localeComparelocaleC
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1562,7 +1605,7 @@ localeComparelocaleC
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1575,7 +1618,7 @@ localeComparelocaleC
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1612,7 +1655,7 @@ localeComparelocaleC
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="基础概念模块化模块化是指将 一个复杂的系统分解为多个模块以方便编码  CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块化规范，其核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.exports 导 出需要暴露的接口。    采用 CommonJS 导入及导出的代码如下: ​    导入 const m">
+<meta name="description" content="基础概念模块化模块化是指将 一个复杂的系统分解为多个模块以方便编码  CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块化规范，其核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.exports 导 出需要暴露的接口。    采用 CommonJS 导入及导出的代码如下:  ​    导入 const">
 <meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack (一)">
 <meta property="og:url" content="http://xueying.me/webpack.html">
 <meta property="og:site_name" content="Snow">
-<meta property="og:description" content="基础概念模块化模块化是指将 一个复杂的系统分解为多个模块以方便编码  CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块化规范，其核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.exports 导 出需要暴露的接口。    采用 CommonJS 导入及导出的代码如下: ​    导入 const m">
+<meta property="og:description" content="基础概念模块化模块化是指将 一个复杂的系统分解为多个模块以方便编码  CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块化规范，其核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.exports 导 出需要暴露的接口。    采用 CommonJS 导入及导出的代码如下:  ​    导入 const">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-30T04:26:17.940Z">
+<meta property="og:updated_time" content="2018-12-21T04:16:08.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack (一)">
-<meta name="twitter:description" content="基础概念模块化模块化是指将 一个复杂的系统分解为多个模块以方便编码  CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块化规范，其核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.exports 导 出需要暴露的接口。    采用 CommonJS 导入及导出的代码如下: ​    导入 const m">
+<meta name="twitter:description" content="基础概念模块化模块化是指将 一个复杂的系统分解为多个模块以方便编码  CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块化规范，其核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.exports 导 出需要暴露的接口。    采用 CommonJS 导入及导出的代码如下:  ​    导入 const">
 
 
 
@@ -315,8 +315,8 @@
 <li><p><strong>CommonJS</strong> (<a href="http://www.commonjs.org)是一种被广泛使用的" target="_blank" rel="noopener">http://www.commonjs.org)是一种被广泛使用的</a> JavaScript 模块化规范，其核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.exports 导 出需要暴露的接口。 </p>
 <blockquote>
 <p> 采用 CommonJS 导入及导出的代码如下:</p>
-<p>​    导入 const moduleA = require ( ’. / moduleA ’);</p>
-<p>​    导出 module .exports = moduleA.someFunc;</p>
+<p> ​    导入 const moduleA = require ( ’. / moduleA ’);</p>
+<p> ​    导出 module .exports = moduleA.someFunc;</p>
 </blockquote>
 </li>
 <li><p><strong>AMD</strong> (<a href="https://en.wikipedia.org/wiki/Asynchronous_module_definition)也是一种" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Asynchronous_module_definition)也是一种</a> JavaScript模块化规范，与 CommonJS 最大的不同在于，它采用了异步的方式去加载依赖的模块。 AMD规范主 要用于解决针对浏览器环境的模块化问题，最具代表性的实现是requirejs.org)。</p>
@@ -366,7 +366,7 @@
 <p><strong>Webpack在启动后会从 Entry配置的 Module开始，递归解析 Entry依赖的所有 Module。 每找到一个 Module，就会根据配置的 Loader去找出对应的转换规则，对 Module进行转换后， 再解析出当前 Module 依赖的 Modulea 这些模块会以 Entry为单位进行分组， 一个 Entry 及其 所有依赖的 Module被分到一个组也就是一个 Chunk。最后， Webpack会将所有 Chunk转换成 文件输出。在整个流程中， Webpack会在恰当的时机执行 Plugin里定义的逻辑。</strong></p>
 <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h1 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h1><blockquote>
 <p> 简单流程:</p>
-<p>​    初始化配置参数 -&gt; 绑定事件钩子回调 -&gt; 确定Entry逐一遍历 -&gt; 使用loader编译文件 -&gt; 输出文件</p>
+<p> ​    初始化配置参数 -&gt; 绑定事件钩子回调 -&gt; 确定Entry逐一遍历 -&gt; 使用loader编译文件 -&gt; 输出文件</p>
 </blockquote>
 
       
@@ -491,7 +491,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -504,7 +504,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -557,7 +557,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

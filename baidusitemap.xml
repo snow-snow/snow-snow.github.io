@@ -4,6 +4,246 @@
 
     
   <url>
+    <loc>http://xueying.me/vue-cli%E9%A1%B9%E7%9B%AE%E5%8D%87webpack4.html</loc>
+    <lastmod>2019-08-19T06:30:09.624Z</lastmod>
+    <data>
+        <display>
+        <title>vue-cli项目升webpack4</title>
+        <pubTime>2019-01-07T10:25:34.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+        <tag>vue</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/vue%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.html</loc>
+    <lastmod>2019-08-09T07:49:20.659Z</lastmod>
+    <data>
+        <display>
+        <title>vue源码阅读</title>
+        <pubTime>2019-08-09T07:35:38.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAObject-defineProperty.html</loc>
+    <lastmod>2019-08-09T07:21:50.771Z</lastmod>
+    <data>
+        <display>
+        <title>深入浅出Object.defineProperty()</title>
+        <pubTime>2019-08-09T07:16:05.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/css%E5%8A%A0%E8%BD%BD%E7%9B%B8%E5%85%B3.html</loc>
+    <lastmod>2019-08-08T09:53:40.036Z</lastmod>
+    <data>
+        <display>
+        <title>css加载相关</title>
+        <pubTime>2019-08-08T09:44:49.000Z</pubTime>
+        
+        <tag>-css</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%B9%8BChrome%E7%9A%84Waterfall.html</loc>
+    <lastmod>2019-08-08T09:43:37.481Z</lastmod>
+    <data>
+        <display>
+        <title>前端性能之Chrome的Waterfall</title>
+        <pubTime>2019-08-08T09:26:36.000Z</pubTime>
+        
+        <tag>性能</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/vue-electron.html</loc>
+    <lastmod>2019-07-02T03:52:59.562Z</lastmod>
+    <data>
+        <display>
+        <title>vue_electron</title>
+        <pubTime>2019-07-02T03:16:56.000Z</pubTime>
+        
+        <tag>-vue -electro</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/vue-typescript.html</loc>
+    <lastmod>2019-03-18T04:13:50.803Z</lastmod>
+    <data>
+        <display>
+        <title>vue-typescript</title>
+        <pubTime>2019-03-18T04:11:41.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+        <tag>ts</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98.html</loc>
+    <lastmod>2019-03-04T09:02:43.572Z</lastmod>
+    <data>
+        <display>
+        <title>一些问题</title>
+        <pubTime>2019-03-04T09:00:15.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/js-math%E5%AF%B9%E8%B1%A1.html</loc>
+    <lastmod>2019-02-27T07:55:59.743Z</lastmod>
+    <data>
+        <display>
+        <title>js的Math对象</title>
+        <pubTime>2019-02-27T04:22:21.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/webpack.html</loc>
+    <lastmod>2018-12-21T04:16:08.163Z</lastmod>
+    <data>
+        <display>
+        <title>webpack (一)</title>
+        <pubTime>2018-11-29T07:12:08.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/krpano1.html</loc>
+    <lastmod>2018-12-17T10:43:52.133Z</lastmod>
+    <data>
+        <display>
+        <title>krpano1</title>
+        <pubTime>2018-12-10T12:13:57.000Z</pubTime>
+        
+        <tag>krpano</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-1.html</loc>
+    <lastmod>2018-12-10T11:47:50.039Z</lastmod>
+    <data>
+        <display>
+        <title>微信小程序 与 webStorm</title>
+        <pubTime>2018-12-04T07:04:29.000Z</pubTime>
+        
+        <tag>其他</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/vue%E5%8F%AF%E6%94%B9%E5%8F%98%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%BC%B9%E6%A1%86.html</loc>
+    <lastmod>2018-12-07T08:04:18.193Z</lastmod>
+    <data>
+        <display>
+        <title>vue可改变大小的弹框</title>
+        <pubTime>2018-12-07T07:55:40.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xueying.me/websocket.html</loc>
+    <lastmod>2018-12-07T03:29:11.837Z</lastmod>
+    <data>
+        <display>
+        <title>websocket</title>
+        <pubTime>2018-12-07T04:27:55.000Z</pubTime>
+        
+        <tag>websocket</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xueying.me/Function%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0.html</loc>
     <lastmod>2018-12-05T03:35:03.142Z</lastmod>
     <data>
@@ -21,23 +261,6 @@
 
     
   <url>
-    <loc>http://xueying.me/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-1.html</loc>
-    <lastmod>2018-12-04T07:09:53.756Z</lastmod>
-    <data>
-        <display>
-        <title>微信小程序 与 webStorm</title>
-        <pubTime>2018-12-04T07:04:29.000Z</pubTime>
-        
-        <tag>其他</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://xueying.me/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98.html</loc>
     <lastmod>2018-11-30T09:47:26.094Z</lastmod>
     <data>
@@ -45,23 +268,6 @@
         <title>浏览器缓存</title>
         <pubTime>2018-07-10T04:10:55.000Z</pubTime>
         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xueying.me/webpack.html</loc>
-    <lastmod>2018-11-30T04:26:17.940Z</lastmod>
-    <data>
-        <display>
-        <title>webpack (一)</title>
-        <pubTime>2018-11-29T07:12:08.000Z</pubTime>
-        
-        <tag>webpack</tag>
-         
          
            
         </display>
@@ -882,23 +1088,6 @@
 
     
   <url>
-    <loc>http://xueying.me/websocket.html</loc>
-    <lastmod>2018-03-12T04:08:49.279Z</lastmod>
-    <data>
-        <display>
-        <title>websocket</title>
-        <pubTime>2018-01-24T04:27:55.000Z</pubTime>
-        
-        <tag>websocket</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://xueying.me/mpvue.html</loc>
     <lastmod>2018-03-09T08:53:17.524Z</lastmod>
     <data>
@@ -921,9 +1110,9 @@
         <title>css一些关于位置和宽度的属性</title>
         <pubTime>2018-02-26T06:33:59.000Z</pubTime>
         
-        <tag>css</tag>
-         
         <tag>js</tag>
+         
+        <tag>css</tag>
          
          
            
@@ -1135,9 +1324,9 @@
         <title>js拖拽</title>
         <pubTime>2018-02-24T10:48:00.000Z</pubTime>
         
-        <tag>angular</tag>
-         
         <tag>js</tag>
+         
+        <tag>angular</tag>
          
          
            
