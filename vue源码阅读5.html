@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="现在我们来看 vm.$options.render 是在哪里定义的? 在 entry-runtime-with-compiler.js中我们可以看到 1234567891011121314const options = this.$options....if (!options.render) &amp;#123;  .....const &amp;#123; render, staticRenderFns &amp;#">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue源码阅读(五) $mount 【compile parse函数生成AST】">
+<meta property="og:url" content="http://xueying.me/vue源码阅读5.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="现在我们来看 vm.$options.render 是在哪里定义的? 在 entry-runtime-with-compiler.js中我们可以看到 1234567891011121314const options = this.$options....if (!options.render) &amp;#123;  .....const &amp;#123; render, staticRenderFns &amp;#">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://xueying.me/source/image/WechatIMG5.jpeg">
+<meta property="og:image" content="http://xueying.me/source/image/parse-end.png">
+<meta property="og:updated_time" content="2019-10-12T07:48:36.820Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue源码阅读(五) $mount 【compile parse函数生成AST】">
+<meta name="twitter:description" content="现在我们来看 vm.$options.render 是在哪里定义的? 在 entry-runtime-with-compiler.js中我们可以看到 1234567891011121314const options = this.$options....if (!options.render) &amp;#123;  .....const &amp;#123; render, staticRenderFns &amp;#">
+<meta name="twitter:image" content="http://xueying.me/source/image/WechatIMG5.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/vue源码阅读5.html"/>
+
+
+
+
+
+  <title>vue源码阅读(五) $mount 【compile parse函数生成AST】 | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue源码阅读(五) $mount 【compile parse函数生成AST】</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T18:38:08+08:00">
+                2019-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>现在我们来看 vm.$options.render 是在哪里定义的?</p>
+<p>在 entry-runtime-with-compiler.js中我们可以看到</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> options = <span class="keyword">this</span>.$options</span><br><span class="line">....</span><br><span class="line"><span class="keyword">if</span> (!options.render) &#123;</span><br><span class="line">  .....</span><br><span class="line"><span class="keyword">const</span> &#123; render, staticRenderFns &#125; = compileToFunctions(template, &#123;</span><br><span class="line">        outputSourceRange: process.env.NODE_ENV !== <span class="string">'production'</span>,</span><br><span class="line">        shouldDecodeNewlines,</span><br><span class="line">        shouldDecodeNewlinesForHref,</span><br><span class="line">        delimiters: options.delimiters,</span><br><span class="line">        comments: options.comments</span><br><span class="line">      &#125;, <span class="keyword">this</span>)</span><br><span class="line">      options.render = render</span><br><span class="line">  .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>👇我们来看看compileToFunctions</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; compile, compileToFunctions &#125; = createCompiler(baseOptions)</span><br></pre></td></tr></table></figure>
+<p>然后我们就来到了本文的重点<strong>compile 函数</strong></p>
+<p><strong><u>compile 函数（src/compiler/index.js）就是将 template 编译成 render function 的字符串形式</u></strong> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> createCompiler = createCompilerCreator(<span class="function"><span class="keyword">function</span> <span class="title">baseCompile</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  template: string,</span></span></span><br><span class="line"><span class="function"><span class="params">  options: CompilerOptions</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">CompiledResult</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> ast = parse(template.trim(), options) <span class="comment">//1. parse</span></span><br><span class="line">  optimize(ast, options) <span class="comment">//2.optimize</span></span><br><span class="line">  <span class="keyword">const</span> code = generate(ast, options) <span class="comment">//3.generate</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    ast,</span><br><span class="line">    render: code.render,</span><br><span class="line">    staticRenderFns: code.staticRenderFns</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>createCompiler 函数主要通过3个步骤：<strong>parse、optimize、generate</strong>来生成一个包含ast、render、staticRenderFns的对象传给createCompilerCreator方法。</p>
+<p>下面我们先看看parse：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">const</span> ast = parse(template.trim(), options)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="parse-—-把HTML转换成AST树"><a href="#parse-—-把HTML转换成AST树" class="headerlink" title="parse — 把HTML转换成AST树"></a>parse — 把HTML转换成AST树</h1><blockquote>
+<p>AST 的全称是 Abstract Syntax Tree（抽象语法树），是源代码的抽象语法结构的树状表现形式，计算机学科中编译原理的概念。Vue 源码中借鉴 jQuery 作者 John Resig 的 HTML Parser 对模板进行解析，得到的就是 AST 代码。</p>
+</blockquote>
+<h2 id="Vue的AST节点"><a href="#Vue的AST节点" class="headerlink" title="Vue的AST节点"></a>Vue的AST节点</h2><p>Vue自己是怎么来定义每个AST节点的呢？ </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">declare type ASTNode = ASTElement | ASTText | ASTExpression;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 元素节点</span></span><br><span class="line">declare type ASTElement = &#123;</span><br><span class="line">  type: <span class="number">1</span>;</span><br><span class="line">  tag: string;</span><br><span class="line">  attrsList: <span class="built_in">Array</span>&lt;&#123; <span class="attr">name</span>: string; value: string &#125;&gt;;</span><br><span class="line">  attrsMap: &#123; [key: string]: string | <span class="literal">null</span> &#125;;</span><br><span class="line">  parent: ASTElement | <span class="keyword">void</span>;</span><br><span class="line">  children: <span class="built_in">Array</span>&lt;ASTNode&gt;;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 表达式节点</span></span><br><span class="line">declare type ASTExpression = &#123;</span><br><span class="line">  type: <span class="number">2</span>;</span><br><span class="line">  expression: string;</span><br><span class="line">  text: string;</span><br><span class="line">  <span class="keyword">static</span>?: boolean;</span><br><span class="line">  <span class="comment">// 2.4 ssr optimization</span></span><br><span class="line">  <span class="comment">// 2.4+ 增加了对ssr的标识</span></span><br><span class="line">  ssrOptimizability?: number;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文本节点</span></span><br><span class="line">declare type ASTText = &#123;</span><br><span class="line">  type: <span class="number">3</span>;</span><br><span class="line">  text: string;</span><br><span class="line">  <span class="keyword">static</span>?: boolean;</span><br><span class="line">  isComment?: boolean;</span><br><span class="line">  <span class="comment">// 2.4 ssr optimization</span></span><br><span class="line">  <span class="comment">// 2.4+ 增加了对ssr的标识</span></span><br><span class="line">  ssrOptimizability?: number;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Vue的AST节点有3类： ASTElement | ASTText | ASTExpression， 通过type来标记</p>
+<h2 id="parse函数"><a href="#parse函数" class="headerlink" title="parse函数"></a>parse函数</h2><p><strong>采用了 jQuery 作者 <a href="https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E9%9B%B7%E8%A5%BF%E6%A0%BC" target="_blank" rel="noopener">John Resig</a> 的 <a href="http://ejohn.org/blog/pure-javascript-html-parser/" target="_blank" rel="noopener">HTML Parser</a> ，将 template字符串解析成 AST。。</strong></p>
+<p>基本流程图</p>
+<p><img src="../../source/image/WechatIMG5.jpeg" alt="WechatIMG5"></p>
+<p>下面开始看parse函数的主要部分</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parse</span>(<span class="params">template</span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">const</span> stack = [];</span><br><span class="line">    <span class="keyword">let</span> currentParent;    <span class="comment">//当前父节点</span></span><br><span class="line">    <span class="keyword">let</span> root;            <span class="comment">//最终返回出去的AST树根节点</span></span><br><span class="line">    ...</span><br><span class="line">    parseHTML(template, &#123;</span><br><span class="line">      <span class="comment">// start方法就是处理 element 元素的过程。确定命名空间；创建AST元素 element；</span></span><br><span class="line">      <span class="comment">// 执行预处理；定义root；处理各类 v- 标签的逻辑；最后更新 root、currentParent、stack 的结果。 </span></span><br><span class="line">      <span class="comment">// 最终通过 createASTElement 方法定义了一个新的 AST 对象</span></span><br><span class="line">        start: <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params">tag, attrs, unary</span>) </span>&#123;</span><br><span class="line">           ......</span><br><span class="line">        &#125;,</span><br><span class="line">        end: <span class="function"><span class="keyword">function</span> <span class="title">end</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          ......</span><br><span class="line">        &#125;,</span><br><span class="line">        chars: <span class="function"><span class="keyword">function</span> <span class="title">chars</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">           ......</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> root</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="parseHTML"><a href="#parseHTML" class="headerlink" title="parseHTML"></a>parseHTML</h3><p>我们可以发现关键是parseHTML，下面看下parseHTML</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">parseHTML</span> (<span class="params">html, options</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">while</span> (html) &#123;</span><br><span class="line">    <span class="comment">// 保留 html 副本</span></span><br><span class="line">    last = html</span><br><span class="line">    <span class="comment">/* 首先通过while (html)去循环判断html内容是否存在。</span></span><br><span class="line"><span class="comment">    * 再判断文本内容是否在script/style标签中</span></span><br><span class="line"><span class="comment">    * 上述条件都满足的话，开始解析html字符串*/</span></span><br><span class="line">    <span class="keyword">if</span> (!lastTag || !isPlainTextElement(lastTag)) &#123;</span><br><span class="line">      <span class="keyword">let</span> textEnd = html.indexOf(<span class="string">'&lt;'</span>)</span><br><span class="line">      <span class="keyword">if</span> (textEnd === <span class="number">0</span>) &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// End tag:</span></span><br><span class="line">        <span class="comment">//判断此段html是否结束标签</span></span><br><span class="line">        <span class="comment">// const endTag = new RegExp(`^&lt;\\/$&#123;qnameCapture&#125;[^&gt;]*&gt;`)</span></span><br><span class="line">        <span class="comment">// const qnameCapture = `((?:$&#123;ncname&#125;\\:)?$&#123;ncname&#125;)`</span></span><br><span class="line">        <span class="keyword">const</span> endTagMatch = html.match(endTag)</span><br><span class="line">        <span class="keyword">if</span> (endTagMatch) &#123;</span><br><span class="line">          <span class="keyword">const</span> curIndex = index</span><br><span class="line">          advance(endTagMatch[<span class="number">0</span>].length)</span><br><span class="line">          parseEndTag(endTagMatch[<span class="number">1</span>], curIndex, index)</span><br><span class="line">          <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Start tag:</span></span><br><span class="line">        <span class="comment">// 匹配开始标签，获取match对象</span></span><br><span class="line">        <span class="keyword">const</span> startTagMatch = parseStartTag()</span><br><span class="line">        <span class="keyword">if</span> (startTagMatch) &#123;</span><br><span class="line">          handleStartTag(startTagMatch)</span><br><span class="line">          <span class="keyword">if</span> (shouldIgnoreFirstNewline(startTagMatch.tagName, html)) &#123;</span><br><span class="line">            advance(<span class="number">1</span>)</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们从标签开始的匹配开始看，这里我们先关注下parseStartTag和handleStartTag函数</p>
+<blockquote>
+<p>假设我们传递这样一个html字符串<code>&lt;div id=&quot;demo&quot;&gt;&lt;/div&gt;</code></p>
+</blockquote>
+<h4 id="parseStartTag函数"><a href="#parseStartTag函数" class="headerlink" title="parseStartTag函数"></a>parseStartTag函数</h4><blockquote>
+<p>处理匹配到的开始标签部分（<div id="demo">），生成一个记录所有状态的对象match</div></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseStartTag</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//判断html中是否存在开始标签</span></span><br><span class="line">    <span class="comment">// const startTagOpen = new RegExp(`^&lt;$&#123;qnameCapture&#125;`)</span></span><br><span class="line">    <span class="keyword">const</span> start = html.match(startTagOpen)</span><br><span class="line">    <span class="keyword">if</span> (start) &#123;</span><br><span class="line">      <span class="comment">// 定义 match 结构</span></span><br><span class="line">      <span class="keyword">const</span> match = &#123;</span><br><span class="line">        tagName: start[<span class="number">1</span>],</span><br><span class="line">        attrs: [],</span><br><span class="line">        start: index</span><br><span class="line">      &#125;</span><br><span class="line">      advance(start[<span class="number">0</span>].length)</span><br><span class="line">      <span class="keyword">let</span> end, attr</span><br><span class="line">      <span class="comment">// const startTagClose = /^\s*(\/?)&gt;/</span></span><br><span class="line">      <span class="comment">// 如果还没有到结束标签的位置</span></span><br><span class="line">      <span class="comment">// 存入属性</span></span><br><span class="line">      <span class="comment">// const dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'&lt;&gt;\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=&lt;&gt;`]+)))?/</span></span><br><span class="line">      <span class="keyword">while</span> (!(end = html.match(startTagClose))</span><br><span class="line">      &amp;&amp; (attr = html.match(dynamicArgAttribute) || html.match(attribute))) &#123;</span><br><span class="line"></span><br><span class="line">        attr.start = index</span><br><span class="line">        advance(attr[<span class="number">0</span>].length)</span><br><span class="line">        attr.end = index</span><br><span class="line">        match.attrs.push(attr)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 返回处理后的标签match结构</span></span><br><span class="line">      <span class="keyword">if</span> (end) &#123;</span><br><span class="line">        match.unarySlash = end[<span class="number">1</span>]</span><br><span class="line">        advance(end[<span class="number">0</span>].length)</span><br><span class="line">        match.end = index</span><br><span class="line">        <span class="keyword">return</span> match</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>返回的match应为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt; &#123;</span><br><span class="line">&gt;   tagName:<span class="string">'div'</span>,</span><br><span class="line">&gt;   attrs:[[</span><br><span class="line">&gt;     <span class="string">''</span>,</span><br><span class="line">&gt;     <span class="string">'id'</span>,</span><br><span class="line">&gt;     <span class="string">'='</span>,</span><br><span class="line">&gt;     <span class="string">'demo'</span>,</span><br><span class="line">&gt;     <span class="literal">undefined</span>,</span><br><span class="line">&gt;     <span class="literal">undefined</span></span><br><span class="line">&gt;     start：<span class="number">6</span>，</span><br><span class="line">&gt;     end：<span class="number">14</span>,</span><br><span class="line">&gt;     groups: <span class="literal">undefined</span>,</span><br><span class="line">&gt;     index:<span class="number">0</span>,</span><br><span class="line">&gt;     input: <span class="string">" id="</span>demo<span class="string">"&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt;"</span></span><br><span class="line">&gt;   ]],</span><br><span class="line">&gt;   start:<span class="number">0</span>,</span><br><span class="line">&gt;   end:<span class="number">28</span>，</span><br><span class="line">&gt;   unarySlash：<span class="string">''</span></span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="handleStartTag函数"><a href="#handleStartTag函数" class="headerlink" title="handleStartTag函数"></a>handleStartTag函数</h4><p>下面看下handleStartTag函数，handleStartTag对match接着进行了改造</p>
+<blockquote>
+<p>接着处理上一步返回的match对象， 对match改造成易用的对象， 去掉不需要的属性</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleStartTag</span> (<span class="params">match</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// match 是上面调用方法的时候传递过来的数据结构</span></span><br><span class="line">   <span class="keyword">const</span> tagName = match.tagName</span><br><span class="line">   <span class="keyword">const</span> unarySlash = match.unarySlash</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (expectHTML) &#123;</span><br><span class="line">     <span class="keyword">if</span> (lastTag === <span class="string">'p'</span> &amp;&amp; isNonPhrasingTag(tagName)) &#123;</span><br><span class="line">       parseEndTag(lastTag)</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span> (canBeLeftOpenTag(tagName) &amp;&amp; lastTag === tagName) &#123;</span><br><span class="line">       parseEndTag(tagName)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 是否是一元元素</span></span><br><span class="line">   <span class="keyword">const</span> unary = isUnaryTag(tagName) || !!unarySlash</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 备份属性数组的长度</span></span><br><span class="line">   <span class="keyword">const</span> l = match.attrs.length</span><br><span class="line">   <span class="keyword">const</span> attrs = <span class="keyword">new</span> <span class="built_in">Array</span>(l)</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; l; i++) &#123;</span><br><span class="line">     <span class="keyword">const</span> args = match.attrs[i]</span><br><span class="line">     <span class="comment">// 取定义属性的值</span></span><br><span class="line">     <span class="keyword">const</span> value = args[<span class="number">3</span>] || args[<span class="number">4</span>] || args[<span class="number">5</span>] || <span class="string">''</span></span><br><span class="line">     <span class="keyword">const</span> shouldDecodeNewlines = tagName === <span class="string">'a'</span> &amp;&amp; args[<span class="number">1</span>] === <span class="string">'href'</span></span><br><span class="line">       ? options.shouldDecodeNewlinesForHref</span><br><span class="line">       : options.shouldDecodeNewlines</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 改变attr的格式为 [&#123;name: 'id', value: 'demo'&#125;]</span></span><br><span class="line">     attrs[i] = &#123;</span><br><span class="line">       name: args[<span class="number">1</span>],</span><br><span class="line">       value: decodeAttr(value, shouldDecodeNewlines)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (!unary) &#123;</span><br><span class="line">     stack.push(&#123; <span class="attr">tag</span>: tagName, <span class="attr">lowerCasedTag</span>: tagName.toLowerCase(), <span class="attr">attrs</span>: attrs, <span class="attr">start</span>: match.start, <span class="attr">end</span>: match.end &#125;)</span><br><span class="line">     lastTag = tagName</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// stack中记录当前解析的标签</span></span><br><span class="line">   <span class="comment">// 如果不是自闭和标签</span></span><br><span class="line">   <span class="comment">// 这里的stack这个变量在parseHTML中定义，作用是为了存放标签名 为了和结束标签进行匹配的作用。</span></span><br><span class="line">   <span class="keyword">if</span> (options.start) &#123;</span><br><span class="line">     <span class="comment">// parse 函数传入的 start 方法</span></span><br><span class="line">     options.start(tagName, attrs, unary, match.start, match.end)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>进过再次处理后mack函数为</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; &#123;</span><br><span class="line">&gt;   tagName =<span class="string">''</span> div<span class="string">'</span></span><br><span class="line"><span class="string">&gt;   attrs = [&#123;name: '</span>id<span class="string">', value: '</span>demo<span class="string">'&#125;]</span></span><br><span class="line"><span class="string">&gt;   unary=false</span></span><br><span class="line"><span class="string">&gt;   match.start = 0</span></span><br><span class="line"><span class="string">&gt;   match.end = 28</span></span><br><span class="line"><span class="string">&gt; &#125;</span></span><br><span class="line"><span class="string">&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>到这里似乎一切明朗了许多，<code>parseHTML</code>主要用来蚕食html字符串，解析出字符串中的<code>tagName</code>， <code>attrs</code>， <code>match</code>等元素，传入<code>start</code>方法：</strong></p>
+<h4 id="start方法"><a href="#start方法" class="headerlink" title="start方法"></a>start方法</h4><p>看下start（start 是从函数外部传入的函数），在compiler/parser/index.js中可见</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// start方法就是处理 element 元素的过程。确定命名空间；创建AST元素 element；执行预处理；定义root；</span></span><br><span class="line"><span class="comment">// 处理各类 v- 标签的逻辑；最后更新 root、currentParent、stack 的结果。 </span></span><br><span class="line"><span class="comment">// 最终通过 createASTElement 方法定义了一个新的 AST 对象</span></span><br><span class="line">start (tag, attrs, unary) &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// 创建基础的 ASTElement</span></span><br><span class="line">  <span class="keyword">let</span> element: ASTElement = createASTElement(tag, attrs, currentParent)</span><br><span class="line">  <span class="keyword">if</span> (ns) &#123;</span><br><span class="line">    element.ns = ns</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!inVPre) &#123;</span><br><span class="line">    <span class="comment">// 判断有没有 v-pre 指令的元素。如果有的话 element.pre = true</span></span><br><span class="line">    <span class="comment">// 官网有介绍：&lt;span v-pre&gt;&#123;&#123; this will not be compiled &#125;&#125;&lt;/span&gt;</span></span><br><span class="line">    <span class="comment">// 跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。</span></span><br><span class="line">    processPre(element)</span><br><span class="line">    <span class="keyword">if</span> (element.pre) &#123;</span><br><span class="line">      inVPre = <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (platformIsPreTag(element.tag)) &#123;</span><br><span class="line">    inPre = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (inVPre) &#123;</span><br><span class="line">    <span class="comment">// 处理原始属性</span></span><br><span class="line">    processRawAttrs(element)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!element.processed) &#123;</span><br><span class="line">    <span class="comment">// structural directives</span></span><br><span class="line">    <span class="comment">// v-for v-if v-once 结构指令</span></span><br><span class="line">    processFor(element)</span><br><span class="line">    processIf(element)</span><br><span class="line">    processOnce(element)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 检查根节点约束</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">checkRootConstraints</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (el.tag === <span class="string">'slot'</span> || el.tag === <span class="string">'template'</span>) &#123;</span><br><span class="line">        warnOnce(</span><br><span class="line">          <span class="string">`Cannot use &lt;<span class="subst">$&#123;el.tag&#125;</span>&gt; as component root element because it may `</span> +</span><br><span class="line">          <span class="string">'contain multiple nodes.'</span></span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (el.attrsMap.hasOwnProperty(<span class="string">'v-for'</span>)) &#123;</span><br><span class="line">        warnOnce(</span><br><span class="line">          <span class="string">'Cannot use v-for on stateful component root element because '</span> +</span><br><span class="line">          <span class="string">'it renders multiple elements.'</span></span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// tree management</span></span><br><span class="line">  <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">    <span class="comment">// 如果不存在根节点</span></span><br><span class="line">    root = element</span><br><span class="line">    checkRootConstraints(root)</span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">if</span> (!unary) &#123;</span><br><span class="line">    currentParent = element</span><br><span class="line">    stack.push(element)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    closeElement(element)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过createASTElement创建一个新的ASTElement对象， 并进行一系列操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createASTElement</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  tag: string,</span></span></span><br><span class="line"><span class="function"><span class="params">  attrs: Array&lt;Attr&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">  parent: ASTElement | void</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">ASTElement</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    type: <span class="number">1</span>,</span><br><span class="line">    tag,</span><br><span class="line">    attrsList: attrs,</span><br><span class="line">    attrsMap: makeAttrsMap(attrs),</span><br><span class="line">    parent,</span><br><span class="line">    children: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终生成的AST语法树对象：</p>
+<p><img src="../../source/image/parse-end.png" alt="parse-end"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/rollup.html" rel="next" title="rollup">
+                <i class="fa fa-chevron-left"></i> rollup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/抽象语法树AST.html" rel="prev" title="抽象语法树AST">
+                抽象语法树AST <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#parse-—-把HTML转换成AST树"><span class="nav-number">1.</span> <span class="nav-text">parse — 把HTML转换成AST树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue的AST节点"><span class="nav-number">1.1.</span> <span class="nav-text">Vue的AST节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#parse函数"><span class="nav-number">1.2.</span> <span class="nav-text">parse函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#parseHTML"><span class="nav-number">1.2.1.</span> <span class="nav-text">parseHTML</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#parseStartTag函数"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">parseStartTag函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#handleStartTag函数"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">handleStartTag函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#start方法"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">start方法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

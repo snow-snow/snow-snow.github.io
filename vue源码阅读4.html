@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在上篇中， 我们实现了一个简单的Compiler类来实现最简单的编译， 不难发现Compiler类还存在很多缺陷， 那么接下来我们看看vue是怎么做到 在initMixin函数中有这么一段代码来执行$mount 1234// 第六步：render &amp;amp; mount   if (vm.$options.el) &amp;#123;     vm.$mount(vm.$options.el)   &amp;#1">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue源码阅读（四）mount基本流程">
+<meta property="og:url" content="http://xueying.me/vue源码阅读4.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="在上篇中， 我们实现了一个简单的Compiler类来实现最简单的编译， 不难发现Compiler类还存在很多缺陷， 那么接下来我们看看vue是怎么做到 在initMixin函数中有这么一段代码来执行$mount 1234// 第六步：render &amp;amp; mount   if (vm.$options.el) &amp;#123;     vm.$mount(vm.$options.el)   &amp;#1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-12T02:58:30.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue源码阅读（四）mount基本流程">
+<meta name="twitter:description" content="在上篇中， 我们实现了一个简单的Compiler类来实现最简单的编译， 不难发现Compiler类还存在很多缺陷， 那么接下来我们看看vue是怎么做到 在initMixin函数中有这么一段代码来执行$mount 1234// 第六步：render &amp;amp; mount   if (vm.$options.el) &amp;#123;     vm.$mount(vm.$options.el)   &amp;#1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/vue源码阅读4.html"/>
+
+
+
+
+
+  <title>vue源码阅读（四）mount基本流程 | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue源码阅读（四）mount基本流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T14:33:21+08:00">
+                2019-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在上篇中， 我们实现了一个简单的Compiler类来实现最简单的编译， 不难发现Compiler类还存在很多缺陷， 那么接下来我们看看vue是怎么做到</p>
+<p>在initMixin函数中有这么一段代码来执行$mount</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第六步：render &amp; mount</span></span><br><span class="line">   <span class="keyword">if</span> (vm.$options.el) &#123;</span><br><span class="line">     vm.$mount(vm.$options.el)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 官网介绍</p>
+<p> vm.$mount( [elementOrSelector] )<br> 参数：</p>
+<p> {Element | string} [elementOrSelector]<br> {boolean} [hydrating]<br> 返回值：vm - 实例自身</p>
+<p> 用法：</p>
+<p> 如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素。可以使用 vm.$mount() 手动地挂载一个未挂载的实例。</p>
+<p> 如果没有提供 elementOrSelector 参数，模板将被渲染为文档之外的的元素，并且你必须使用原生 DOM API 把它插入文档中。</p>
+<p> 这个方法返回实例自身，因而可以链式调用其它实例方法。</p>
+</blockquote>
+<p><strong>其大致过程为： html字符串 → render函数 → vnode → 真实dom节点 而运行时渲染即所谓的去掉编译器的过程：render函数 → vnode → 真实dom节点。</strong></p>
+<h1 id="mount的实现"><a href="#mount的实现" class="headerlink" title="$mount的实现"></a>$mount的实现</h1><p>我们可以发现vue运行 run dev的入口文件是 core/platforms/entry-runtime-with-compiler.js</p>
+<p>所以我们先看看entry-runtime-with-compiler.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处mount即为运行时版的 $mount</span></span><br><span class="line"><span class="keyword">const</span> mount = Vue.prototype.$mount</span><br><span class="line">Vue.prototype.$mount = <span class="function"><span class="keyword">function</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  el?: string | Element,</span></span></span><br><span class="line"><span class="function"><span class="params">  hydrating?: boolean</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">Component</span> </span>&#123;</span><br><span class="line">  el = el &amp;&amp; query(el)</span><br><span class="line">....</span><br><span class="line"> <span class="comment">// 如果不存在 render 函数，则会将模板转换成render函数</span></span><br><span class="line">      <span class="keyword">const</span> &#123; render, staticRenderFns &#125; = compileToFunctions(template, &#123;</span><br><span class="line">        outputSourceRange: process.env.NODE_ENV !== <span class="string">'production'</span>,</span><br><span class="line">        shouldDecodeNewlines,</span><br><span class="line">        shouldDecodeNewlinesForHref,</span><br><span class="line">        delimiters: options.delimiters,</span><br><span class="line">        comments: options.comments</span><br><span class="line">      &#125;, <span class="keyword">this</span>)</span><br><span class="line">      options.render = render</span><br><span class="line">      options.staticRenderFns = staticRenderFns</span><br><span class="line"> ....</span><br><span class="line">  <span class="keyword">return</span> mount.call(<span class="keyword">this</span>, el, hydrating)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们主要看一下mount， 发现这里的Vue来着import Vue from ‘./runtime/index’</p>
+<p>看下这里对mount做了什么</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$mount = <span class="function"><span class="keyword">function</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  el?: string | Element,</span></span></span><br><span class="line"><span class="function"><span class="params">  hydrating?: boolean</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">Component</span> </span>&#123;</span><br><span class="line">  el = el &amp;&amp; inBrowser ? query(el) : <span class="literal">undefined</span></span><br><span class="line">  <span class="keyword">return</span> mountComponent(<span class="keyword">this</span>, el, hydrating)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="render-–-gt-VNode"><a href="#render-–-gt-VNode" class="headerlink" title="render –&gt; VNode"></a>render –&gt; VNode</h2><p>下面我们来看mountComponent</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mountComponent</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  vm,</span></span></span><br><span class="line"><span class="function"><span class="params">  el,</span></span></span><br><span class="line"><span class="function"><span class="params">  hydrating</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">    vm.$el = el;</span><br><span class="line">      <span class="comment">// 如果不存在render函数，则直接创建一个空的VNode节点</span></span><br><span class="line">      <span class="keyword">if</span> (!vm.$options.render) &#123;</span><br><span class="line">        vm.$options.render = createEmptyVNode;</span><br><span class="line">      &#125;</span><br><span class="line">    callHook(vm, <span class="string">'beforeMount'</span>);</span><br><span class="line">    <span class="keyword">var</span> updateComponent;</span><br><span class="line">    updateComponent = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="comment">// 渲染</span></span><br><span class="line">          vm._update(vm._render(), hydrating);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 这里是上面所说的观察者，这里注意第二个expOrFn参数是一个函数</span></span><br><span class="line">    <span class="comment">// 会在new Watcher的时候通过get方法执行一次</span></span><br><span class="line">    <span class="comment">// 也就是会触发第一次Dom的更新</span></span><br><span class="line">    <span class="keyword">new</span> Watcher(vm, updateComponent, noop, <span class="literal">null</span>, <span class="literal">true</span> <span class="comment">/* isRenderWatcher */</span>);</span><br><span class="line">    hydrating = <span class="literal">false</span>;</span><br><span class="line">   <span class="comment">// 触发$mount函数</span></span><br><span class="line">    <span class="keyword">if</span> (vm.$vnode == <span class="literal">null</span>) &#123;</span><br><span class="line">      vm._isMounted = <span class="literal">true</span>;</span><br><span class="line">      callHook(vm, <span class="string">'mounted'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> vm</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：这里用到了我们之前所一直说明的<code>Watcher</code>，也就是在这里定义的。</p>
+</blockquote>
+<p>这里先说明一下<strong>依赖收集的过程</strong>：</p>
+<blockquote>
+<p>​    因为Vue数据里定义的Data可能并不是所有数据都是视图渲染所需要的。也就是说，我们需要知道哪些数据的变动是需要更新视图，哪些是不需要重新渲染视图的， 在我们执行<code>new Watcher(vm, updateComponent, noop)</code> 时，或执行到构造函数中的 <code>vm._watcher =this</code>，会触发我们定义的<code>Watcher</code>里面的<code>get</code>方法。同时设置了<code>Dep.target = watcher</code>。</p>
+<p>​    get 方法会去执行传入的<code>updateComponent</code> 方法，也就是说会去做<code>template --&gt; AST --&gt; render Function --&gt; VNode --&gt; patch Dom</code>这样一个流程。这个过程中，会去读取我们绑定的数据。</p>
+<p>​    由于之前我们通过<code>observer</code>进行了数据劫持( 在Vue的构造中执行了observer(vm._data) )，这样会触发数据的<code>get</code>方法。此时会将<code>watcher</code>添加到 对应的<code>dep</code>中。当有数据更新时，通过<code>dep.notify()</code>去通知到<code>watcher</code>，然后执行<code>watcher</code>中的<code>update</code>方法。此时又会去重新执行<code>get updateComponent</code>，至此完成对视图的重新渲染。</p>
+</blockquote>
+<h3 id="那么updateComponent函数是怎么来渲染的呢？"><a href="#那么updateComponent函数是怎么来渲染的呢？" class="headerlink" title="那么updateComponent函数是怎么来渲染的呢？"></a>那么updateComponent函数是怎么来渲染的呢？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm._update(vm._render(), hydrating)</span><br></pre></td></tr></table></figure>
+<h3 id="vm-render"><a href="#vm-render" class="headerlink" title="vm._render"></a>vm._render</h3><p><code>vm._render</code>函数(在renderMixin中被混入Vue)返回一个<code>vnode</code>作为<code>vm._update</code>（在lifecycleMixin中定义）的第一个参数</p>
+<p>在 core/render.js 中我们可以看到</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">var</span> render = vm.$options.render</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  vnode = render.call(vm._renderProxy, vm.$createElement);</span><br><span class="line">&#125;<span class="keyword">catch</span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处，使用call方法， 将this指向 <code>vm.renderProxy</code>，<code>vm.renderProxy</code>是个代理，代理vm，主要用来报错，如果render函数上使用了vm上没有的属性或方法，就会报错。 <code>vm.$createElement</code> 这个是创建vnode的方法，作为第一个参数传入。 我们写render函数的时候会是这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> createElement(<span class="string">'h1'</span>, <span class="string">'标题'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是说我们这里定义的<code>render</code>，将会被执行返回一个VNode:</p>
+<h2 id="vnode-–-gt-真实的el节点"><a href="#vnode-–-gt-真实的el节点" class="headerlink" title="vnode –&gt; 真实的el节点"></a>vnode –&gt; 真实的el节点</h2><p>接下来也就是将我们的虚拟节点VNode转成真实的node节点。实现过程主要是通过vm.$el = vm.__patch__(prevVnode, vnode);这部分 也就是patch函数。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/npm-package.html" rel="next" title="npm 的 package.json">
+                <i class="fa fa-chevron-left"></i> npm 的 package.json
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/rollup.html" rel="prev" title="rollup">
+                rollup <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mount的实现"><span class="nav-number">1.</span> <span class="nav-text">$mount的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#render-–-gt-VNode"><span class="nav-number">1.1.</span> <span class="nav-text">render –&gt; VNode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#那么updateComponent函数是怎么来渲染的呢？"><span class="nav-number">1.1.1.</span> <span class="nav-text">那么updateComponent函数是怎么来渲染的呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vm-render"><span class="nav-number">1.1.2.</span> <span class="nav-text">vm._render</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vnode-–-gt-真实的el节点"><span class="nav-number">1.2.</span> <span class="nav-text">vnode –&gt; 真实的el节点</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

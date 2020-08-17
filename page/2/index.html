@@ -239,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue可改变大小的弹框.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/proxy.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/vue可改变大小的弹框.html" itemprop="url">vue可改变大小的弹框</a></h1>
+                <a class="post-title-link" href="/proxy.html" itemprop="url">proxy</a></h1>
         
 
         <div class="post-meta">
@@ -270,8 +270,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-07T15:55:40+08:00">
-                2018-12-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-20T11:01:29+08:00">
+                2019-12-20
               </time>
             
 
@@ -310,19 +310,16 @@
       
         
           
-          思路:
+          据悉 Vue 3.0 中将用 proxy 代替原来的Object.defineProperty() 来实现双向绑定
+下面我们来了解下proxy：
+Proxy 对象用于定义基本操作的自定义行为（如属性查找，赋值，枚举，函数调用等）。
+语法
 
-在弹框四周拖拽改变大小的区域(上,下,左,右,左上,右上,左下,右下)
-在上述区域的元素添加mousedown事件绑定resize函数
-resize函数用来改变弹框大小
-在遮罩层绑定mouseup事件, 用于释放onmousemove事件
-
-源码:
-12345678910111213141
+let p = new Proxy(target, hand
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/vue可改变大小的弹框.html#more" rel="contents">
+            <a class="btn" href="/proxy.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -373,7 +370,7 @@ resize函数用来改变弹框大小
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/websocket.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读9.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -392,7 +389,7 @@ resize函数用来改变弹框大小
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/websocket.html" itemprop="url">websocket</a></h1>
+                <a class="post-title-link" href="/vue源码阅读9.html" itemprop="url">vue源码阅读（九） $mount 内部实现 --- patch</a></h1>
         
 
         <div class="post-meta">
@@ -404,8 +401,8 @@ resize函数用来改变弹框大小
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-07T12:27:55+08:00">
-                2018-12-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T16:46:10+08:00">
+                2019-10-14
               </time>
             
 
@@ -444,33 +441,14 @@ resize函数用来改变弹框大小
       
         
           
-          错误码
-
-
-状态码
-名称
-描述
-
-
-
-
-0–999
-
-保留段, 未使用.
-
-
-1000
-CLOSE_NORMAL
-正常关闭; 无论为何目的而创建, 该链接都已成功完成任务.
-
-
-1001
-CLOSE_GOING_AWAY
-终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开.
+          patch将VNode转换成真实的node节点，需要通过patch函数来实现
+在Vue.prototype._update的定义中有如下调用
+1vm.$el = vm.__patch__(prevVnode, vnode)
+__patch__的定义如下：（platforms/runtime/inde
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/websocket.html#more" rel="contents">
+            <a class="btn" href="/vue源码阅读9.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -521,7 +499,7 @@ CLOSE_GOING_AWAY
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/Function构造函数.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读8.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -540,7 +518,7 @@ CLOSE_GOING_AWAY
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Function构造函数.html" itemprop="url">Function构造函数</a></h1>
+                <a class="post-title-link" href="/vue源码阅读8.html" itemprop="url">vue源码阅读(八) $mount 内部实现 --- render函数 --> VNode</a></h1>
         
 
         <div class="post-meta">
@@ -552,8 +530,8 @@ CLOSE_GOING_AWAY
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T11:23:50+08:00">
-                2018-12-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T14:38:02+08:00">
+                2019-10-14
               </time>
             
 
@@ -592,12 +570,12 @@ CLOSE_GOING_AWAY
       
         
           
-          Function 构造函数用法创建一个新的Function对象。 在 JavaScript 中, 每个函数实际上都是一个Function对象。
-1234var sum = new Function('a', 'b', 'return a + b');console.log(sum(2, 6));//
+          VnodeVNode 是 VDOM 中的概念，是真实 DOM 元素的简化版，与真实 DOM 元素是一一对应的关系。
+1234567891011121314151617181920constructor &#123;  this.tag = tag   //元素标签  this.data = data
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Function构造函数.html#more" rel="contents">
+            <a class="btn" href="/vue源码阅读8.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -648,7 +626,7 @@ CLOSE_GOING_AWAY
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/微信小程序-1.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读7.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -667,7 +645,7 @@ CLOSE_GOING_AWAY
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/微信小程序-1.html" itemprop="url">微信小程序 与 webStorm</a></h1>
+                <a class="post-title-link" href="/vue源码阅读7.html" itemprop="url">vue源码阅读（七） mount【compile generate 生成render函数】</a></h1>
         
 
         <div class="post-meta">
@@ -679,8 +657,8 @@ CLOSE_GOING_AWAY
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T15:04:29+08:00">
-                2018-12-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-12T15:10:31+08:00">
+                2019-10-12
               </time>
             
 
@@ -719,17 +697,15 @@ CLOSE_GOING_AWAY
       
         
           
-          小程序高亮提示插件
-https://www.cnblogs.com/pansidong/articles/7563155.html
+          
+12&gt; const code = generate(ast, options)&gt;
 
-插件地址 https://github.com/miaozhang9/wecharCodejar
-
-格式化rpx前面的不加空格
-https://www.jianshu
+generategenerate 函数（src/compiler/codegen/index.js）主要功能就是根据 AST 结构拼接生成 render function 的字符串。
+123456789
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/微信小程序-1.html#more" rel="contents">
+            <a class="btn" href="/vue源码阅读7.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -780,7 +756,7 @@ https://www.jianshu
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/webpack.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读6.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -799,7 +775,7 @@ https://www.jianshu
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/webpack.html" itemprop="url">webpack (一)</a></h1>
+                <a class="post-title-link" href="/vue源码阅读6.html" itemprop="url">vue源码阅读（六）$mount 【compile optimize标记节点】</a></h1>
         
 
         <div class="post-meta">
@@ -811,8 +787,8 @@ https://www.jianshu
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T15:12:08+08:00">
-                2018-11-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-12T16:35:05+08:00">
+                2019-09-12
               </time>
             
 
@@ -851,13 +827,14 @@ https://www.jianshu
       
         
           
-          基础概念模块化模块化是指将 一个复杂的系统分解为多个模块以方便编码
+          
+1234&gt; if (options.optimize !== false) &#123;&gt;   optimize(ast, options)&gt; &#125;&gt;
 
-CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块化规范，其核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.exports 导 出需
+optimize主要功能就是标记静态节点，为后面 patch 过程中对比新旧 VNode 树形结构做优化。被标记
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/webpack.html#more" rel="contents">
+            <a class="btn" href="/vue源码阅读6.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -908,7 +885,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/pm2.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/抽象语法树AST.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -927,7 +904,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/pm2.html" itemprop="url">pm2</a></h1>
+                <a class="post-title-link" href="/抽象语法树AST.html" itemprop="url">抽象语法树AST</a></h1>
         
 
         <div class="post-meta">
@@ -939,8 +916,8 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-28T11:26:54+08:00">
-                2018-11-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T11:29:28+08:00">
+                2019-08-26
               </time>
             
 
@@ -979,15 +956,16 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
       
         
           
-          pm2简单入门下载1npm install -g pm2
-启动运用1pm2 start ./bin/www --watch
-这里用了--watch参数，意味着当你应用发生变化时，pm2会帮你重启服务
-停止运用停止特定的应用。可以先通过pm2 list获取应用的名字（–name指定的）或者进程id。
+          https://baijiahao.baidu.com/s?id=1626159656211187310&amp;wfr=spider&amp;for=pc
 
+ 什么是语法树？
+它是一种分层的程序表示，它根据编程语言的语法来表示源代码结构，每个AST节点对应于源代码的一个项。
+
+如何从纯文本代码得到
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/pm2.html#more" rel="contents">
+            <a class="btn" href="/抽象语法树AST.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1038,7 +1016,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/博客搭建4.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读5.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1057,7 +1035,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/博客搭建4.html" itemprop="url">博客搭建(四)vue</a></h1>
+                <a class="post-title-link" href="/vue源码阅读5.html" itemprop="url">vue源码阅读(五) $mount 【compile parse函数生成AST】</a></h1>
         
 
         <div class="post-meta">
@@ -1069,8 +1047,8 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T12:16:14+08:00">
-                2018-11-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T18:38:08+08:00">
+                2019-08-23
               </time>
             
 
@@ -1109,14 +1087,13 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
       
         
           
-          Vue使用less安装less-loader
-1npm install less less-loader --save
-修改webpack.config.js文件，配置loader加载依赖，让其支持外部的less,在原来的代码上添加
-1234&#123;	test: /\.less$/,	loade
+          现在我们来看 vm.$options.render 是在哪里定义的?
+在 entry-runtime-with-compiler.js中我们可以看到
+1234567891011121314const options = this.$options....if (!options.render) &#
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/博客搭建4.html#more" rel="contents">
+            <a class="btn" href="/vue源码阅读5.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1167,7 +1144,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/event-loop.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/rollup.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1186,7 +1163,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/event-loop.html" itemprop="url">event-loop</a></h1>
+                <a class="post-title-link" href="/rollup.html" itemprop="url">rollup</a></h1>
         
 
         <div class="post-meta">
@@ -1198,8 +1175,8 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T11:59:12+08:00">
-                2018-11-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T14:58:57+08:00">
+                2019-08-22
               </time>
             
 
@@ -1238,13 +1215,14 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
       
         
           
-          一些异步事件window.setImmediate该方法用来把一些需要长时间运行的操作放在一个回调函数里,在浏览器完成后面的其他语句后,就立刻执行这个回调函数,
-
-123&gt; var immediateID = setImmediate(func, [param1, param2, ...]);
+          在看vue的源码是看的使用rollup进行了打包， 做一下基础了解
+rollup和webpack的区别首先为什么使用rollup呢？ rollup和最常见的打包工具webpack有什么区别呢？我们从以下几方面看下
+特性：webpack 拆分代码， 按需加载；
+Rollup 所有资源放在同一个地方，一
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/event-loop.html#more" rel="contents">
+            <a class="btn" href="/rollup.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1295,7 +1273,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/虚拟DOM.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读4.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1314,7 +1292,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/虚拟DOM.html" itemprop="url">虚拟DOM</a></h1>
+                <a class="post-title-link" href="/vue源码阅读4.html" itemprop="url">vue源码阅读（四）mount基本流程</a></h1>
         
 
         <div class="post-meta">
@@ -1326,8 +1304,8 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T11:49:03+08:00">
-                2018-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T14:33:21+08:00">
+                2019-08-22
               </time>
             
 
@@ -1366,11 +1344,13 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
       
         
           
-          
-          
+          在上篇中， 我们实现了一个简单的Compiler类来实现最简单的编译， 不难发现Compiler类还存在很多缺陷， 那么接下来我们看看vue是怎么做到
+在initMixin函数中有这么一段代码来执行$mount
+1234// 第六步：render &amp; mount   if (vm.$opti
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/虚拟DOM.html#more" rel="contents">
+            <a class="btn" href="/vue源码阅读4.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1421,7 +1401,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/博客搭建3.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/npm-package.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1440,7 +1420,7 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/博客搭建3.html" itemprop="url">博客搭建(三) mongoose</a></h1>
+                <a class="post-title-link" href="/npm-package.html" itemprop="url">npm 的 package.json</a></h1>
         
 
         <div class="post-meta">
@@ -1452,8 +1432,8 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-29T19:48:18+08:00">
-                2018-10-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-21T10:59:36+08:00">
+                2019-08-21
               </time>
             
 
@@ -1492,14 +1472,12 @@ CommonJS (http://www.commonjs.org)是一种被广泛使用的 JavaScript 模块�
       
         
           
-          Mongoose是在node.js异步环境下对mongodb进行便捷操作的对象模型工具
-mongoose安装1npm install mongoose
-安装成功后，就可以通过 require(‘mongoose’) 来使用！
-简介https://mongoosejs.com/docs/index.h
+          package.json 必须是一个json 不能只是一个js对象.
+name和version在package.json中最重要的两个参数, name和version. 这两个从参数是必须的， 如果没有这两个参数将无法install。 name和version的唯一标识服。对包的更改应随版本的更改而
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/博客搭建3.html#more" rel="contents">
+            <a class="btn" href="/npm-package.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1541,7 +1519,7 @@ mongoose安装1npm install mongoose
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1591,7 +1569,7 @@ mongoose安装1npm install mongoose
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1604,7 +1582,7 @@ mongoose安装1npm install mongoose
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1641,7 +1619,7 @@ mongoose安装1npm install mongoose
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="element 源码解读1npm run dev 运行 命令详情1npm run bootstrap &amp;amp;&amp;amp; npm run build:file &amp;amp;&amp;amp; cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js &amp;amp; node build/bin/templa">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="element组件库源码 — 官网打包原理">
+<meta property="og:url" content="http://xueying.me/element组件库源码.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="element 源码解读1npm run dev 运行 命令详情1npm run bootstrap &amp;amp;&amp;amp; npm run build:file &amp;amp;&amp;amp; cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js &amp;amp; node build/bin/templa">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-23T13:02:22.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="element组件库源码 — 官网打包原理">
+<meta name="twitter:description" content="element 源码解读1npm run dev 运行 命令详情1npm run bootstrap &amp;amp;&amp;amp; npm run build:file &amp;amp;&amp;amp; cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js &amp;amp; node build/bin/templa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/element组件库源码.html"/>
+
+
+
+
+
+  <title>element组件库源码 — 官网打包原理 | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/element组件库源码.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">element组件库源码 — 官网打包原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-23T16:26:13+08:00">
+                2020-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="element-源码解读"><a href="#element-源码解读" class="headerlink" title="element 源码解读"></a>element 源码解读</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<h2 id="运行-命令详情"><a href="#运行-命令详情" class="headerlink" title="运行 命令详情"></a>运行 命令详情</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run bootstrap &amp;&amp; npm run build:file &amp;&amp; cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js &amp; node build/bin/template.js<span class="string">"</span></span><br></pre></td></tr></table></figure>
+<h2 id="更新依赖-npm-run-bootstrap"><a href="#更新依赖-npm-run-bootstrap" class="headerlink" title="更新依赖 npm run bootstrap"></a>更新依赖 npm run bootstrap</h2><p>更新项目依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn || npm i</span><br></pre></td></tr></table></figure>
+<h2 id="文件预处理-npm-run-build-file"><a href="#文件预处理-npm-run-build-file" class="headerlink" title="文件预处理  npm run build:file"></a>文件预处理  npm run build:file</h2><p>处理文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node build/bin/iconInit.js &amp; node build/bin/build-entry.js &amp; node build/bin/i18n.js &amp; node build/bin/version.js</span><br></pre></td></tr></table></figure>
+<p>让我们看看每个部分分别作了什么</p>
+<h3 id="处理icon-node-build-bin-iconInit-js"><a href="#处理icon-node-build-bin-iconInit-js" class="headerlink" title="处理icon node build/bin/iconInit.js"></a>处理icon node build/bin/iconInit.js</h3><p>通过读取icon.scss文件初始化icon列表，生成文件输出到example/icon.json</p>
+<p><strong>☁️ 通过postcss解析文件</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> postcss = <span class="built_in">require</span>(<span class="string">'postcss'</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> fontFile = fs.readFileSync(path.resolve(__dirname, <span class="string">'../../packages/theme-chalk/src/icon.scss'</span>), <span class="string">'utf8'</span>);</span><br><span class="line"><span class="keyword">var</span> nodes = postcss.parse(fontFile).nodes;</span><br><span class="line"><span class="keyword">var</span> classList = [];</span><br><span class="line"></span><br><span class="line">nodes.forEach(<span class="function">(<span class="params">node</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> selector = node.selector || <span class="string">''</span>;</span><br><span class="line">  <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/\.el-icon-([^:]+):before/</span>);</span><br><span class="line">  <span class="keyword">var</span> arr = selector.match(reg);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (arr &amp;&amp; arr[<span class="number">1</span>]) &#123;</span><br><span class="line">    classList.push(arr[<span class="number">1</span>]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fs.writeFile(path.resolve(__dirname, <span class="string">'../../examples/icon.json'</span>), <span class="built_in">JSON</span>.stringify(classList), () =&gt; &#123;&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="生成入口文件-node-build-bin-build-entry-js"><a href="#生成入口文件-node-build-bin-build-entry-js" class="headerlink" title="生成入口文件 node build/bin/build-entry.js"></a>生成入口文件 node build/bin/build-entry.js</h3><p>生成src/index.js文件</p>
+<ul>
+<li>components.json文件（文件中保存所有组件，key为组件名称，value为组件文件路径）</li>
+<li>定义一个index.js文件内容的基本模板</li>
+<li>读取components.json文件，动态根据模板生成index.js文件，其中包含所有组件的引用</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Components = <span class="built_in">require</span>(<span class="string">'../../components.json'</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> render = <span class="built_in">require</span>(<span class="string">'json-templater/string'</span>); <span class="comment">// 模板字符替换</span></span><br><span class="line"><span class="keyword">var</span> uppercamelcase = <span class="built_in">require</span>(<span class="string">'uppercamelcase'</span>); <span class="comment">// 转换驼峰命名</span></span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> endOfLine = <span class="built_in">require</span>(<span class="string">'os'</span>).EOL;</span><br><span class="line"><span class="keyword">var</span> MAIN_TEMPLATE = <span class="string">`/* Automatically generated by './build/bin/build-entry.js' */</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;&#123;include&#125;&#125;</span></span><br><span class="line"><span class="string">import locale from 'element-ui/src/locale';</span></span><br><span class="line"><span class="string">import CollapseTransition from 'element-ui/src/transitions/collapse-transition';</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">const components = [</span></span><br><span class="line"><span class="string">&#123;&#123;install&#125;&#125;,</span></span><br><span class="line"><span class="string">  CollapseTransition</span></span><br><span class="line"><span class="string">];</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">const install = function(Vue, opts = &#123;&#125;) &#123;</span></span><br><span class="line"><span class="string">  locale.use(opts.locale);</span></span><br><span class="line"><span class="string">  locale.i18n(opts.i18n);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  components.map(component =&gt; &#123;</span></span><br><span class="line"><span class="string">    Vue.component(component.name, component); //注册为全局组件</span></span><br><span class="line"><span class="string">  &#125;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  Vue.use(Loading.directive); // 安装插件</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  Vue.prototype.$ELEMENT = &#123;</span></span><br><span class="line"><span class="string">    size: opts.size || '',</span></span><br><span class="line"><span class="string">    zIndex: opts.zIndex || 2000</span></span><br><span class="line"><span class="string">  &#125;;  // 定义$ELEMENT 遍历保存全局变量</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // 注册全局方法</span></span><br><span class="line"><span class="string">  Vue.prototype.$loading = Loading.service;</span></span><br><span class="line"><span class="string">  Vue.prototype.$msgbox = MessageBox;</span></span><br><span class="line"><span class="string">  Vue.prototype.$alert = MessageBox.alert;</span></span><br><span class="line"><span class="string">  Vue.prototype.$confirm = MessageBox.confirm;</span></span><br><span class="line"><span class="string">  Vue.prototype.$prompt = MessageBox.prompt;</span></span><br><span class="line"><span class="string">  Vue.prototype.$notify = Notification;</span></span><br><span class="line"><span class="string">  Vue.prototype.$message = Message;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">/* istanbul ignore if */</span></span><br><span class="line"><span class="string">if (typeof window !== 'undefined' &amp;&amp; window.Vue) &#123;</span></span><br><span class="line"><span class="string">  install(window.Vue);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">module.exports = &#123;</span></span><br><span class="line"><span class="string">  version: '&#123;&#123;version&#125;&#125;',</span></span><br><span class="line"><span class="string">  locale: locale.use,</span></span><br><span class="line"><span class="string">  i18n: locale.i18n,</span></span><br><span class="line"><span class="string">  install,</span></span><br><span class="line"><span class="string">  CollapseTransition,</span></span><br><span class="line"><span class="string">  Loading,</span></span><br><span class="line"><span class="string">&#123;&#123;list&#125;&#125;</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">module.exports.default = module.exports;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> Components.font;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ComponentNames = <span class="built_in">Object</span>.keys(Components); <span class="comment">// 获取所有组件名称</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> includeComponentTemplate = [];</span><br><span class="line"><span class="keyword">var</span> installTemplate = [];</span><br><span class="line"><span class="keyword">var</span> listTemplate = [];</span><br><span class="line"></span><br><span class="line">ComponentNames.forEach(<span class="function"><span class="params">name</span> =&gt;</span> &#123; <span class="comment">// 遍历处理组件</span></span><br><span class="line">  <span class="keyword">var</span> componentName = uppercamelcase(name); <span class="comment">// 转换为驼峰命名</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//IMPORT_TEMPLATE:  </span></span><br><span class="line">  includeComponentTemplate.push(</span><br><span class="line">    render(<span class="string">'import &#123;&#123;name&#125;&#125; from \'../packages/&#123;&#123;package&#125;&#125;/index.js\';'</span>,  &#123;</span><br><span class="line">      name: componentName,</span><br><span class="line">      package: name</span><br><span class="line">    &#125;));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ([<span class="string">'Loading'</span>, <span class="string">'MessageBox'</span>, <span class="string">'Notification'</span>, <span class="string">'Message'</span>].indexOf(componentName) === <span class="number">-1</span>) &#123;</span><br><span class="line">    installTemplate.push(render(<span class="string">'  &#123;&#123;name&#125;&#125;'</span>, &#123;</span><br><span class="line">      name: componentName,</span><br><span class="line">      component: name</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (componentName !== <span class="string">'Loading'</span>) listTemplate.push(<span class="string">`  <span class="subst">$&#123;componentName&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> template = render(MAIN_TEMPLATE, &#123;</span><br><span class="line">  include: includeComponentTemplate.join(endOfLine),</span><br><span class="line">  install: installTemplate.join(<span class="string">','</span> + endOfLine),</span><br><span class="line">  version: process.env.VERSION || <span class="built_in">require</span>(<span class="string">'../../package.json'</span>).version,</span><br><span class="line">  list: listTemplate.join(<span class="string">','</span> + endOfLine)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fs.writeFileSync(path.join(__dirname, <span class="string">'../../src/index.js'</span>), template);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'[build entry] DONE:'</span>, OUTPUT_PATH);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🍃知识点：</p>
+<p>Vue.use(plugin)  安装插件（plugin：如果是对象要包含install方法）<strong>使用Vue.use会自动足迹多次调用，保证install函数只会调用一次</strong></p>
+<p>使用场景</p>
+<ul>
+<li>添加全局方法</li>
+<li>添加全局资源，如directive</li>
+<li>注入组件选项，Vue.mix</li>
+<li>添加示例， Vue.prototype.$myMethod </li>
+</ul>
+</blockquote>
+<h3 id="国际化-node-build-bin-i18n-js"><a href="#国际化-node-build-bin-i18n-js" class="headerlink" title="国际化 node build/bin/i18n.js"></a>国际化 node build/bin/i18n.js</h3><p>关于国际化的处理【此处处理的十几个大的板块的页面】</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">use strict<span class="string">';</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">var fs = require('</span>fs<span class="string">');</span></span><br><span class="line"><span class="string">var path = require('</span>path<span class="string">');</span></span><br><span class="line"><span class="string">var langConfig = require('</span>../../examples/i18n/page.json<span class="string">'); // 保存国际化各个相关页面的文案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">langConfig.forEach(lang =&gt; &#123;</span></span><br><span class="line"><span class="string">  // 判断目标文件是否存在，如果不存在新建一个</span></span><br><span class="line"><span class="string">  try &#123;</span></span><br><span class="line"><span class="string">    fs.statSync(path.resolve(__dirname, `../../examples/pages/$&#123; lang.lang &#125;`));</span></span><br><span class="line"><span class="string">  &#125; catch (e) &#123;</span></span><br><span class="line"><span class="string">    fs.mkdirSync(path.resolve(__dirname, `../../examples/pages/$&#123; lang.lang &#125;`));</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  // 遍历lang.pages</span></span><br><span class="line"><span class="string">  Object.keys(lang.pages).forEach(page =&gt; &#123;</span></span><br><span class="line"><span class="string">    var templatePath = path.resolve(__dirname, `../../examples/pages/template/$&#123; page &#125;.tpl`);</span></span><br><span class="line"><span class="string">    var outputPath = path.resolve(__dirname, `../../examples/pages/$&#123; lang.lang &#125;/$&#123; page &#125;.vue`);</span></span><br><span class="line"><span class="string">    var content = fs.readFileSync(templatePath, '</span>utf8<span class="string">');</span></span><br><span class="line"><span class="string">    var pairs = lang.pages[page];</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    // 替换模板文件中的站位符</span></span><br><span class="line"><span class="string">    Object.keys(pairs).forEach(key =&gt; &#123;</span></span><br><span class="line"><span class="string">      content = content.replace(new RegExp(`&lt;%=\\s*$&#123; key &#125;\\s*&gt;`, '</span>g<span class="string">'), pairs[key]);</span></span><br><span class="line"><span class="string">    &#125;);</span></span><br><span class="line"><span class="string">    fs.writeFileSync(outputPath, content);</span></span><br><span class="line"><span class="string">  &#125;);</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🍃 知识点</p>
+<p>.<em>tpl</em>文件,是template的缩写,用来保存模板文件</p>
+</blockquote>
+<h3 id="版本处理-node-build-bin-version-js"><a href="#版本处理-node-build-bin-version-js" class="headerlink" title="版本处理 node build/bin/version.js"></a>版本处理 node build/bin/version.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> version = process.env.VERSION || <span class="built_in">require</span>(<span class="string">'../../package.json'</span>).version;</span><br><span class="line"><span class="keyword">var</span> content = &#123; <span class="string">'1.4.13'</span>: <span class="string">'1.4'</span>, <span class="string">'2.0.11'</span>: <span class="string">'2.0'</span>, <span class="string">'2.1.0'</span>: <span class="string">'2.1'</span>, <span class="string">'2.2.2'</span>: <span class="string">'2.2'</span>, <span class="string">'2.3.9'</span>: <span class="string">'2.3'</span> &#125;;</span><br><span class="line"><span class="keyword">if</span> (!content[version]) content[version] = <span class="string">'2.4'</span>;</span><br><span class="line">fs.writeFileSync(path.resolve(__dirname, <span class="string">'../../examples/versions.json'</span>), <span class="built_in">JSON</span>.stringify(content));</span><br></pre></td></tr></table></figure>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><h4 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h4><p>运行指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js</span><br></pre></td></tr></table></figure>
+<p>✨ build/webpack.demo.js 文件</p>
+<p>🍃相关知识了解</p>
+<h4 id="vue-markdown-loader"><a href="#vue-markdown-loader" class="headerlink" title="vue-markdown-loader"></a>vue-markdown-loader</h4><p><a href="https://www.npmjs.com/package/vue-markdown-loader" target="_blank" rel="noopener">https://www.npmjs.com/package/vue-markdown-loader</a></p>
+<p>使用markdown-it 吧.md文件转换为Vue 组件</p>
+<blockquote>
+<p> 也可以自定义模块，例如下面🌰</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; ::: warning</span></span><br><span class="line"><span class="quote">&gt; *here be dragons*</span></span><br><span class="line"><span class="quote">&gt; :::</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>将转换为</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"warning"</span>&gt;</span></span><br><span class="line">&gt; <span class="tag">&lt;<span class="name">em</span>&gt;</span>here be dragons<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line">&gt; <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="markdown-it-anchor"><a href="#markdown-it-anchor" class="headerlink" title="markdown-it-anchor"></a>markdown-it-anchor</h4><p><a href="https://github.com/valeriangalliat/markdown-it-anchor" target="_blank" rel="noopener">https://github.com/valeriangalliat/markdown-it-anchor</a></p>
+<p>为md文件转换的html添加锚点</p>
+<h4 id="markdown-it-container"><a href="#markdown-it-container" class="headerlink" title="markdown-it-container"></a>markdown-it-container</h4><p>对自定义模块进行特殊处理</p>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>主要看对.md 文件的处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> md = <span class="built_in">require</span>(<span class="string">'markdown-it'</span>)();</span><br><span class="line"><span class="keyword">const</span> slugify = <span class="built_in">require</span>(<span class="string">'transliteration'</span>).slugify;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> striptags = <span class="built_in">require</span>(<span class="string">'./strip-tags'</span>);</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'./config'</span>);</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convert</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  str = str.replace(<span class="regexp">/(&amp;#x)(\w&#123;4&#125;);/gi</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$<span class="number">0</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">String</span>.fromCharCode(<span class="built_in">parseInt</span>(<span class="built_in">encodeURIComponent</span>($<span class="number">0</span>).replace(<span class="regexp">/(%26%23x)(\w&#123;4&#125;)(%3B)/g</span>, <span class="string">'$2'</span>), <span class="number">16</span>));</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrap</span>(<span class="params">render</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> render.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)</span><br><span class="line">      .replace(<span class="string">'&lt;code v-pre class="'</span>, <span class="string">'&lt;code class="hljs '</span>)</span><br><span class="line">      .replace(<span class="string">'&lt;code&gt;'</span>, <span class="string">'&lt;code class="hljs"&gt;'</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> webpackConfig = &#123;</span><br><span class="line"> ...</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">     ...</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.md$/</span>,</span><br><span class="line">        loader: <span class="string">'vue-markdown-loader'</span>, <span class="comment">// https://www.npmjs.com/package/vue-markdown-loader</span></span><br><span class="line">        options: &#123;</span><br><span class="line">          use: [ <span class="comment">// https://github.com/valeriangalliat/markdown-it-anchor</span></span><br><span class="line">            [<span class="built_in">require</span>(<span class="string">'markdown-it-anchor'</span>), &#123;</span><br><span class="line">              level: <span class="number">2</span>, <span class="comment">// 在所选级别或所选级别数组上应用锚点的最低级别。</span></span><br><span class="line">              slugify: slugify, <span class="comment">// 自定义分段功能。</span></span><br><span class="line">              permalink: <span class="literal">true</span>, <span class="comment">// 是否在标题旁边添加永久链接。</span></span><br><span class="line">              permalinkBefore: <span class="literal">true</span> <span class="comment">// 将永久链接放在标题之前。</span></span><br><span class="line">            &#125;],</span><br><span class="line">            <span class="comment">/**  https://www.npmjs.com/package/markdown-it-container</span></span><br><span class="line"><span class="comment">             * Params:</span></span><br><span class="line"><span class="comment">                name - container name (mandatory)</span></span><br><span class="line"><span class="comment">                options:</span></span><br><span class="line"><span class="comment">                validate - optional, function to validate tail after opening marker, should return true on success.</span></span><br><span class="line"><span class="comment">                render - optional, renderer function for opening/closing tokens.</span></span><br><span class="line"><span class="comment">                marker - optional (:), character to use in delimiter.</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            [<span class="built_in">require</span>(<span class="string">'markdown-it-container'</span>), <span class="string">'demo'</span>, &#123;</span><br><span class="line">              <span class="comment">// 将.md文件里的demo模块，转换为demo-block组件</span></span><br><span class="line">              validate: <span class="function"><span class="keyword">function</span>(<span class="params">params</span>) </span>&#123; <span class="comment">// 匹配规则</span></span><br><span class="line">                <span class="keyword">return</span> params.trim().match(<span class="regexp">/^demo\s*(.*)$/</span>);</span><br><span class="line">              &#125;,</span><br><span class="line"></span><br><span class="line">              render: <span class="function"><span class="keyword">function</span>(<span class="params">tokens, idx</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> m = tokens[idx].info.trim().match(<span class="regexp">/^demo\s*(.*)$/</span>);</span><br><span class="line">                <span class="keyword">if</span> (tokens[idx].nesting === <span class="number">1</span>) &#123;</span><br><span class="line">                  <span class="keyword">var</span> description = (m &amp;&amp; m.length &gt; <span class="number">1</span>) ? m[<span class="number">1</span>] : <span class="string">''</span>;</span><br><span class="line">                  <span class="keyword">var</span> content = tokens[idx + <span class="number">1</span>].content;</span><br><span class="line">                  <span class="keyword">var</span> html = convert(striptags.strip(content, [<span class="string">'script'</span>, <span class="string">'style'</span>])).replace(<span class="regexp">/(&lt;[^&gt;]*)=""(?=.*&gt;)/g</span>, <span class="string">'$1'</span>); <span class="comment">// 提取 html 的内容作为参数传给demo-block组件</span></span><br><span class="line">                  <span class="keyword">var</span> script = striptags.fetch(content, <span class="string">'script'</span>);</span><br><span class="line">                  <span class="keyword">var</span> style = striptags.fetch(content, <span class="string">'style'</span>);</span><br><span class="line">                  <span class="keyword">var</span> jsfiddle = &#123; <span class="attr">html</span>: html, <span class="attr">script</span>: script, <span class="attr">style</span>: style &#125;;</span><br><span class="line">                  <span class="keyword">var</span> descriptionHTML = description</span><br><span class="line">                    ? md.render(description)</span><br><span class="line">                    : <span class="string">''</span>; <span class="comment">// 使用markdown-it渲染内容</span></span><br><span class="line"></span><br><span class="line">                  jsfiddle = md.utils.escapeHtml(<span class="built_in">JSON</span>.stringify(jsfiddle));</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">return</span> <span class="string">`&lt;demo-block class="demo-box" :jsfiddle="<span class="subst">$&#123;jsfiddle&#125;</span>"&gt;</span></span><br><span class="line"><span class="string">                            &lt;div class="source" slot="source"&gt;<span class="subst">$&#123;html&#125;</span>&lt;/div&gt;</span></span><br><span class="line"><span class="string">                            <span class="subst">$&#123;descriptionHTML&#125;</span></span></span><br><span class="line"><span class="string">                            &lt;div class="highlight" slot="highlight"&gt;`</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">'&lt;/div&gt;&lt;/demo-block&gt;\n'</span>;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;],</span><br><span class="line">            [<span class="built_in">require</span>(<span class="string">'markdown-it-container'</span>), <span class="string">'tip'</span>],</span><br><span class="line">            [<span class="built_in">require</span>(<span class="string">'markdown-it-container'</span>), <span class="string">'warning'</span>]</span><br><span class="line">          ],</span><br><span class="line">          preprocess: <span class="function"><span class="keyword">function</span>(<span class="params">MarkdownIt, source</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 处理 table</span></span><br><span class="line">            MarkdownIt.renderer.rules.table_open = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="string">'&lt;table class="table"&gt;'</span>;</span><br><span class="line">            &#125;;</span><br><span class="line">            MarkdownIt.renderer.rules.fence = wrap(MarkdownIt.renderer.rules.fence);</span><br><span class="line">            <span class="keyword">return</span> source;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">        ....</span><br><span class="line">     ]</span><br><span class="line">  &#125;,</span><br><span class="line">...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = webpackConfig;</span><br></pre></td></tr></table></figure>
+<h2 id="node-build-bin-template-js"><a href="#node-build-bin-template-js" class="headerlink" title="node build/bin/template.js"></a>node build/bin/template.js</h2><p>监听模板文件（‘./examples/pages/template’）如果模板文件变化运行 npm run i18n</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/微前端.html" rel="next" title="微前端">
+                <i class="fa fa-chevron-left"></i> 微前端
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/node.html" rel="prev" title="node">
+                node <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#element-源码解读"><span class="nav-number">1.</span> <span class="nav-text">element 源码解读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行-命令详情"><span class="nav-number">1.1.</span> <span class="nav-text">运行 命令详情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新依赖-npm-run-bootstrap"><span class="nav-number">1.2.</span> <span class="nav-text">更新依赖 npm run bootstrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件预处理-npm-run-build-file"><span class="nav-number">1.3.</span> <span class="nav-text">文件预处理  npm run build:file</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理icon-node-build-bin-iconInit-js"><span class="nav-number">1.3.1.</span> <span class="nav-text">处理icon node build/bin/iconInit.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成入口文件-node-build-bin-build-entry-js"><span class="nav-number">1.3.2.</span> <span class="nav-text">生成入口文件 node build/bin/build-entry.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#国际化-node-build-bin-i18n-js"><span class="nav-number">1.3.3.</span> <span class="nav-text">国际化 node build/bin/i18n.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本处理-node-build-bin-version-js"><span class="nav-number">1.3.4.</span> <span class="nav-text">版本处理 node build/bin/version.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">1.3.5.</span> <span class="nav-text">运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-dev-server"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">webpack-dev-server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-markdown-loader"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">vue-markdown-loader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#markdown-it-anchor"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">markdown-it-anchor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#markdown-it-container"><span class="nav-number">1.3.5.4.</span> <span class="nav-text">markdown-it-container</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用"><span class="nav-number">1.3.5.5.</span> <span class="nav-text">应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-build-bin-template-js"><span class="nav-number">1.4.</span> <span class="nav-text">node build/bin/template.js</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

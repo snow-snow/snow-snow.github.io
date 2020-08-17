@@ -239,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue源码阅读.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/nginx.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/vue源码阅读.html" itemprop="url">vue源码阅读</a></h1>
+                <a class="post-title-link" href="/nginx.html" itemprop="url">nginx</a></h1>
         
 
         <div class="post-meta">
@@ -270,8 +270,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-09T15:35:38+08:00">
-                2019-08-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T11:12:20+08:00">
+                2020-08-17
               </time>
             
 
@@ -310,18 +310,12 @@
       
         
           
-          代码结构主要看src里面的代码:
--src
-​    -compile (编译)
-​    -core(核心)
-​        -components 组件
-​        -global-api  全局api
-​        -instance 实例
-​        -observer 观
+          nginx判断移动端跳转不同页面
+123456789101112131415161718192021222324252627282930location /admin &#123;	// 判断是不是移动端(是则定义参数mob为1)       if ($http_user_agent ~* (mob
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/vue源码阅读.html#more" rel="contents">
+            <a class="btn" href="/nginx.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -372,7 +366,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/深入浅出Object-defineProperty.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/开发cli.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -391,7 +385,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/深入浅出Object-defineProperty.html" itemprop="url">深入浅出Object.defineProperty()</a></h1>
+                <a class="post-title-link" href="/开发cli.html" itemprop="url">开发cli</a></h1>
         
 
         <div class="post-meta">
@@ -403,8 +397,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-09T15:16:05+08:00">
-                2019-08-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-29T15:58:25+08:00">
+                2020-07-29
               </time>
             
 
@@ -443,17 +437,12 @@
       
         
           
-          Object.defineProperty()语法说明直接在对象上定义一个属性, 或修改一个已存在的属性
-1Object.defineProperty(obj,prop,desc)
-obj - 操作的对象
-prop - 对象上需要操作的属性
-desc - 属性的值
-
-该方法允许精确添加或修改对象的属
+          Commander.jshttps://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md
+Commander 使用.option() 方法来定义选项，同时可以附加选项的简介。每个选项可以定义一个短选项名称（-后面接单个字符）和一个长选项名称（–
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/深入浅出Object-defineProperty.html#more" rel="contents">
+            <a class="btn" href="/开发cli.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -504,7 +493,7 @@ desc - 属性的值
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/css加载相关.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/koa2.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -523,7 +512,7 @@ desc - 属性的值
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/css加载相关.html" itemprop="url">css加载相关</a></h1>
+                <a class="post-title-link" href="/koa2.html" itemprop="url">koa2</a></h1>
         
 
         <div class="post-meta">
@@ -535,8 +524,8 @@ desc - 属性的值
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-08T17:44:49+08:00">
-                2019-08-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-29T15:12:48+08:00">
+                2020-07-29
               </time>
             
 
@@ -576,17 +565,10 @@ desc - 属性的值
         
           
           
-css并不会阻塞DOM树的解析
-css加载会阻塞DOM树渲染
-css加载会阻塞后面的js语句的执行
-
-因此，为了避免让用户看到长时间的白屏时间，我们应该尽可能的提高css加载速度，比如可以使用以下几种方法:
-
-使用CDN(因为CDN会根据你的网络状况，替你挑选最近的一个具有缓存内容的节点为你提供资
-          ...
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/css加载相关.html#more" rel="contents">
+            <a class="btn" href="/koa2.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -637,7 +619,7 @@ css加载会阻塞后面的js语句的执行
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/前端性能之Chrome的Waterfall.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/node.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -656,7 +638,7 @@ css加载会阻塞后面的js语句的执行
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/前端性能之Chrome的Waterfall.html" itemprop="url">前端性能之Chrome的Waterfall</a></h1>
+                <a class="post-title-link" href="/node.html" itemprop="url">node</a></h1>
         
 
         <div class="post-meta">
@@ -668,8 +650,8 @@ css加载会阻塞后面的js语句的执行
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-08T17:26:36+08:00">
-                2019-08-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-22T17:12:38+08:00">
+                2020-07-22
               </time>
             
 
@@ -708,19 +690,18 @@ css加载会阻塞后面的js语句的执行
       
         
           
-          Waterfall各项含义排队(Queued)：  出现下面的情况时，浏览器会把当前请求放入队列中进行排队
+          搭建node + typescript搭建服务
+npm init  生成 package.json 文件
 
+安装  node 模块的 ts 声明文件
+12npm install --save typescriptnpm i --save @types/node
 
-有更高优先级的请求时
-和目标服务器已经建立了6个TCP链接（最多6个，适用于HTTP / 1.0和HTTP / 1.1）     
-浏览器正在硬盘缓存上简单的分配空间     
-
-
-停滞(
+目录结构
+1234567891011
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/前端性能之Chrome的Waterfall.html#more" rel="contents">
+            <a class="btn" href="/node.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -771,7 +752,7 @@ css加载会阻塞后面的js语句的执行
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue-electron.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/element组件库源码.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -790,7 +771,7 @@ css加载会阻塞后面的js语句的执行
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/vue-electron.html" itemprop="url">vue_electron</a></h1>
+                <a class="post-title-link" href="/element组件库源码.html" itemprop="url">element组件库源码 — 官网打包原理</a></h1>
         
 
         <div class="post-meta">
@@ -802,8 +783,8 @@ css加载会阻塞后面的js语句的执行
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T11:16:56+08:00">
-                2019-07-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-23T16:26:13+08:00">
+                2020-06-23
               </time>
             
 
@@ -842,12 +823,12 @@ css加载会阻塞后面的js语句的执行
       
         
           
-          Electron 是一个使用 JavaScript, HTML 和 CSS 等 Web 技术创建原生程序的框架.
-从🌰入手(electron-quick-start)12345678# 克隆示例项目的仓库$ git clone https://github.com/electron/electro
+          element 源码解读1npm run dev
+运行 命令详情1npm run bootstrap &amp;&amp; npm run build:file &amp;&amp; cross-env NODE_ENV=development webpack-dev-server --config
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/vue-electron.html#more" rel="contents">
+            <a class="btn" href="/element组件库源码.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -898,7 +879,7 @@ css加载会阻塞后面的js语句的执行
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue-typescript.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/微前端.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -917,7 +898,7 @@ css加载会阻塞后面的js语句的执行
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/vue-typescript.html" itemprop="url">vue-typescript</a></h1>
+                <a class="post-title-link" href="/微前端.html" itemprop="url">微前端</a></h1>
         
 
         <div class="post-meta">
@@ -929,8 +910,8 @@ css加载会阻塞后面的js语句的执行
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-18T12:11:41+08:00">
-                2019-03-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-10T10:27:49+08:00">
+                2020-04-10
               </time>
             
 
@@ -969,14 +950,13 @@ css加载会阻塞后面的js语句的执行
       
         
           
-          
-vue-class-component：强化 Vue 组件，使用 TypeScript/装饰器 增强 Vue 组件
-vue-property-decorator：在 vue-class-component 上增强更多的结合 Vue 特性的装饰器
-ts-loader：TypeScript 为 Web
+          美团 Bifrost：https://tech.meituan.com/2019/12/26/meituan-bifrost.html
+字节跳动：https://juejin.im/post/5e17f064e51d45315d648b95
+阿里：https://qiankun.umijs.org/
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/vue-typescript.html#more" rel="contents">
+            <a class="btn" href="/微前端.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1027,7 +1007,7 @@ ts-loader：TypeScript 为 Web
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/一些问题.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/webpack-react.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1046,7 +1026,7 @@ ts-loader：TypeScript 为 Web
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/一些问题.html" itemprop="url">一些问题</a></h1>
+                <a class="post-title-link" href="/webpack-react.html" itemprop="url">webpack-react</a></h1>
         
 
         <div class="post-meta">
@@ -1058,8 +1038,8 @@ ts-loader：TypeScript 为 Web
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T17:00:15+08:00">
-                2019-03-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-12T17:44:41+08:00">
+                2020-03-12
               </time>
             
 
@@ -1098,23 +1078,19 @@ ts-loader：TypeScript 为 Web
       
         
           
-          
-使用过的koa2中间件
-koa-body原理
-介绍自己写过的中间件
-有没有涉及到Cluster
-介绍pm2
-master挂了的话pm2怎么处理
-如何和MySQL进行通信
-React声明周期及自己的理解
-如何配置React-Router
-路由的动态加载模块
-服务端渲染SSR
-介绍路由的history
+          使用webpack搭建react项目初始化1npm init
+下载相关依赖webpack
+webpack
+
+webpack-cli 
+https://www.npmjs.com/package/webpack-cli
+webpack-cli init  ：创建一个新的webpack配置。
+
+webp
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/一些问题.html#more" rel="contents">
+            <a class="btn" href="/webpack-react.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1165,7 +1141,7 @@ React声明周期及自己的理解
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/js-math对象.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/xlsx-style.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1184,7 +1160,7 @@ React声明周期及自己的理解
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/js-math对象.html" itemprop="url">js的Math对象</a></h1>
+                <a class="post-title-link" href="/xlsx-style.html" itemprop="url">xlsx-style 前端js导出带样式的excel</a></h1>
         
 
         <div class="post-meta">
@@ -1196,8 +1172,8 @@ React声明周期及自己的理解
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T12:22:21+08:00">
-                2019-02-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-03T14:57:02+08:00">
+                2020-01-03
               </time>
             
 
@@ -1236,27 +1212,13 @@ React声明周期及自己的理解
       
         
           
-          Math 对象Math 对象用于执行数学任务。
-12var pi_value=Math.PI;var sqrt_value=Math.sqrt(15);
-Math 对象属性
-
-
-属性
-描述
-
-
-
-
-E
-返回算术常量 e，即自然对数的底数（约等于2.718）。
-
-
-LN2
-返回 2 的自然对数（约等于
+          前端导出excel
+原来在项目中导出excel使用的是xlsx 库，使用中发现该库无法给要导出的excel添加样式（据说pro版可以，但并找到pro版 ￣□￣｜｜），所以尝试了新的库xlsx-style，在使用xlsx-style库的过程中遇到了一下坑，特此记录一下📝
+下载xlsx-style直接
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/js-math对象.html#more" rel="contents">
+            <a class="btn" href="/xlsx-style.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1307,7 +1269,7 @@ LN2
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/vue-cli项目升webpack4.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/ssr.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1326,7 +1288,7 @@ LN2
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/vue-cli项目升webpack4.html" itemprop="url">vue-cli项目升webpack4</a></h1>
+                <a class="post-title-link" href="/ssr.html" itemprop="url">服务器端渲染（ssr）</a></h1>
         
 
         <div class="post-meta">
@@ -1338,8 +1300,8 @@ LN2
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-07T18:25:34+08:00">
-                2019-01-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-31T14:23:41+08:00">
+                2019-12-31
               </time>
             
 
@@ -1378,12 +1340,19 @@ LN2
       
         
           
-          相关依赖升级将下面的依赖升级到对应版本
-12345678"vue-loader": "^15.3.0","webpack": "^4.5.0",   "webpack-bundle-analyzer": "^2.9.0",   "webpack-cli": "^3.2.0",   "webpack-
+          服务器端渲染什么是服务器端渲染将组件或页面通过服务器生成html字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。
+服务器端渲染的优缺优势
+利于SEO
+加快首屏渲染
+
+缺点
+增大服务器端压力
+开发受限（有的第三方库可能无法正常使用）
+学习成本变高（node + koa2 等
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/vue-cli项目升webpack4.html#more" rel="contents">
+            <a class="btn" href="/ssr.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1434,7 +1403,7 @@ LN2
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/krpano1.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/snabbdom.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -1453,7 +1422,7 @@ LN2
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/krpano1.html" itemprop="url">krpano1</a></h1>
+                <a class="post-title-link" href="/snabbdom.html" itemprop="url">从 snabbdom 看虚拟dom</a></h1>
         
 
         <div class="post-meta">
@@ -1465,8 +1434,8 @@ LN2
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T20:13:57+08:00">
-                2018-12-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-20T11:46:35+08:00">
+                2019-12-20
               </time>
             
 
@@ -1505,15 +1474,18 @@ LN2
       
         
           
-          全景漫游
-Krpano对于生成漫游场景数量的限制，事实上Krpano本身对这方面是没有任何限制的，唯一的限制就是CMD调用命令提示符时所生成的命令长度
+           Vue 的虚拟 DOM 方案衍生于snabbdom 工具，所以我们来看下snabbdom都做了什么
 
-全选图片把它们全部扔进MAKE VTOUR (MULTIRES) droplet，然后等待Krpano完成你的全景漫游吧。
-生成的文件panos文
+ snabbdom只有200行的代码量，非常适合阅读。
+
+snabbdom核心关注点关于虚拟DOM的实现以下几个核心内容是我们必须关注的：
+
+compile  将真实DOM编译为Vnode
+dif
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/krpano1.html#more" rel="contents">
+            <a class="btn" href="/snabbdom.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1555,7 +1527,7 @@ Krpano对于生成漫游场景数量的限制，事实上Krpano本身对这方�
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1605,7 +1577,7 @@ Krpano对于生成漫游场景数量的限制，事实上Krpano本身对这方�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1618,7 +1590,7 @@ Krpano对于生成漫游场景数量的限制，事实上Krpano本身对这方�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1655,7 +1627,7 @@ Krpano对于生成漫游场景数量的限制，事实上Krpano本身对这方�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
