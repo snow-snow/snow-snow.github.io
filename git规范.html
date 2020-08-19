@@ -87,16 +87,17 @@
 <meta property="og:site_name" content="Snow">
 <meta property="og:description" content="分支相关分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支； release: 发布分支，主要用于测试或修复bug。 fix: 为bug修复分支，需要根据实际情况对已发">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://xueying.me/git规范/branch.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-merge.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase0.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase1.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase2.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase-error.png">
-<meta property="og:updated_time" content="2020-08-19T08:31:48.358Z">
+<meta property="og:updated_time" content="2020-08-19T09:02:31.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git规范">
 <meta name="twitter:description" content="分支相关分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支； release: 发布分支，主要用于测试或修复bug。 fix: 为bug修复分支，需要根据实际情况对已发">
-<meta name="twitter:image" content="http://xueying.me/git规范/git-merge.png">
+<meta name="twitter:image" content="http://xueying.me/git规范/branch.png">
 
 
 
@@ -323,6 +324,7 @@
 <li>release: 发布分支，主要用于测试或修复bug。</li>
 <li>fix: 为bug修复分支，需要根据实际情况对已发布的版本进行漏洞修复，必须从master拉取；</li>
 </ul>
+<p><img src="/git规范/branch.png" alt="branch"></p>
 <h2 id="分支命名"><a href="#分支命名" class="headerlink" title="分支命名"></a>分支命名</h2><p>功能分支： featrue/功能名称<br>发布分支：release/版本号-功能名称-发布日期<br>维护分支：fix/版本号-问题概述或issueid-日期 (最好使用issue建立问题描述?)</p>
 <h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><h3 id="develop为集成开发分支"><a href="#develop为集成开发分支" class="headerlink" title="develop为集成开发分支"></a>develop为集成开发分支</h3><p>自己分支自测完毕； review通过再合并；</p>
 <h3 id="本地分支管理"><a href="#本地分支管理" class="headerlink" title="本地分支管理"></a>本地分支管理</h3><ul>
@@ -417,7 +419,10 @@
 <p>提交关键词搜索</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; git <span class="built_in">log</span> --grep keywords</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h1 id="git打tag"><a href="#git打tag" class="headerlink" title="git打tag"></a>git打tag</h1>
+<h1 id="git打tag"><a href="#git打tag" class="headerlink" title="git打tag"></a>git打tag</h1><p>tag 对应某次commit, 是一个点，是不可移动的。</p>
+<p>branch 对应一系列commit，是很多点连成的一根线，有一个HEAD 指针，是可以依靠 HEAD 指针移动的。<br>所以，两者的区别决定了使用方式，改动代码用 branch ,不改动只查看用 tag。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git tag &lt;tagName&gt; // 创建本地tag</span><br><span class="line"></span><br><span class="line">git push origin &lt;tagName&gt; // 推送到远程仓库</span><br><span class="line"></span><br><span class="line">git tag -d &lt;tagName&gt; // 本地 tag 的删除</span><br><span class="line"></span><br><span class="line">git push origin :&lt;tagName&gt; // 远程 tag 的删除：</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
