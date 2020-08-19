@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="Snow">
 <meta property="og:description" content="在各种项目中, 我们常常遇到需要在iframe之间互相传递信息的场景 同域 父页面获取子页面 1234// 可以获取到iframe内的window对象，包括iframe内自行声明的全局方法等。document.querySelector(&apos;#XXXX&apos;).contentWindowwindow.frames[x] window.frames注意事项：  该属性返回窗口中所有命名的框架()。 直接打">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://xueying.me/Users/chenxueying/learn/blog/public/image/3060550691-594cbe7c71477_articlex.png">
+<meta property="og:image" content="http://xueying.me/ifram消息传递/chenxueying/learn/blog/public/image/3060550691-594cbe7c71477_articlex.png">
 <meta property="og:updated_time" content="2018-07-04T07:32:51.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ifram消息传递">
 <meta name="twitter:description" content="在各种项目中, 我们常常遇到需要在iframe之间互相传递信息的场景 同域 父页面获取子页面 1234// 可以获取到iframe内的window对象，包括iframe内自行声明的全局方法等。document.querySelector(&apos;#XXXX&apos;).contentWindowwindow.frames[x] window.frames注意事项：  该属性返回窗口中所有命名的框架()。 直接打">
-<meta name="twitter:image" content="http://xueying.me/Users/chenxueying/learn/blog/public/image/3060550691-594cbe7c71477_articlex.png">
+<meta name="twitter:image" content="http://xueying.me/ifram消息传递/chenxueying/learn/blog/public/image/3060550691-594cbe7c71477_articlex.png">
 
 
 
@@ -358,7 +358,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父:</span></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#xx'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.frames[<span class="number">0</span>].postMessage(<span class="string">'testPost'</span>,<span class="string">'*'</span>); </span><br><span class="line">    <span class="comment">//document.querySelector('#Yiframe').contentWindow.postMessage('testPost','*'); 也可以</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//子：</span></span><br><span class="line"><span class="built_in">window</span>.onmessage =<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'onmessage2'</span>,e,<span class="built_in">document</span>.domain);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>子向父</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子:</span></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#btn5'</span>).addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    parent.window.postMessage(<span class="string">'testChildPost'</span>,<span class="string">'*'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//父：</span></span><br><span class="line"><span class="built_in">window</span>.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'onmessage父'</span>,e) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性:"></a>兼容性:</h2><p><img src="/Users/chenxueying/learn/blog/public/image/3060550691-594cbe7c71477_articlex.png" alt="3060550691-594cbe7c71477_articlex"></p>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性:"></a>兼容性:</h2><p><img src="/ifram消息传递/chenxueying/learn/blog/public/image/3060550691-594cbe7c71477_articlex.png" alt="3060550691-594cbe7c71477_articlex"></p>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
 <li>iframe内的路由变化，iframe的src值不会变！！！</li>
 <li>要获取iframe内的当前url，用document.querySelector(‘#Yiframe’).contentWindow.location.href;(只在不跨域时可以使用)</li>
@@ -487,7 +487,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -500,7 +500,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

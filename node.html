@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="搭建node + typescript搭建服务 npm init  生成 package.json 文件  安装  node 模块的 ts 声明文件 12npm install --save typescriptnpm i --save @types/node  目录结构 123456789101112131415161718.├── config.js // 配置文件，保存不同环境的全局变量(如">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建node + typescript搭建服务">
+<meta property="og:url" content="http://xueying.me/node.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="搭建node + typescript搭建服务 npm init  生成 package.json 文件  安装  node 模块的 ts 声明文件 12npm install --save typescriptnpm i --save @types/node  目录结构 123456789101112131415161718.├── config.js // 配置文件，保存不同环境的全局变量(如">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-18T03:34:14.676Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建node + typescript搭建服务">
+<meta name="twitter:description" content="搭建node + typescript搭建服务 npm init  生成 package.json 文件  安装  node 模块的 ts 声明文件 12npm install --save typescriptnpm i --save @types/node  目录结构 123456789101112131415161718.├── config.js // 配置文件，保存不同环境的全局变量(如">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/node.html"/>
+
+
+
+
+
+  <title>搭建node + typescript搭建服务 | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/node.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">搭建node + typescript搭建服务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-22T17:12:38+08:00">
+                2020-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="搭建node-typescript搭建服务"><a href="#搭建node-typescript搭建服务" class="headerlink" title="搭建node + typescript搭建服务"></a>搭建node + typescript搭建服务</h1><ul>
+<li><p>npm init  生成 package.json 文件</p>
+</li>
+<li><p>安装  node 模块的 ts 声明文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save typescript</span><br><span class="line">npm i --save @types/node</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>目录结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── config.js <span class="comment">// 配置文件，保存不同环境的全局变量(如数据库相关参数)</span></span><br><span class="line">├── index.ts <span class="comment">// 入口文件</span></span><br><span class="line">├── package.json</span><br><span class="line">├── src</span><br><span class="line">│   ├── auth.js <span class="comment">// 登录中间库</span></span><br><span class="line">│   ├── controller <span class="comment">// 接口相关</span></span><br><span class="line">│   │   ├── comment.controller.ts</span><br><span class="line">│   ├── service <span class="comment">// 服务相关</span></span><br><span class="line">│   │   ├── comment.service.ts</span><br><span class="line">│   ├── types <span class="comment">// 类型</span></span><br><span class="line">│   │   └── BaseContest.ts</span><br><span class="line">│   └── utils <span class="comment">// 通用函数</span></span><br><span class="line">│       ├── http.ts</span><br><span class="line">│       ├── redis.ts</span><br><span class="line">│       ├── statusCode.ts</span><br><span class="line">│       └── token.ts</span><br><span class="line">└── tsconfig.json <span class="comment">// ts相关配置</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Koa <span class="keyword">from</span> <span class="string">'koa'</span>;</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-bodyparser'</span>);</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>);</span><br><span class="line"><span class="keyword">import</span> errorHandler <span class="keyword">from</span> <span class="string">'./utils/error_handler'</span>;</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="comment">// 路由目录</span></span><br><span class="line"><span class="keyword">const</span> auth = <span class="built_in">require</span>(<span class="string">'./src/auth'</span>);</span><br><span class="line"><span class="keyword">import</span> loginRoute <span class="keyword">from</span> <span class="string">'./src/controller/login.controller'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 解决跨域</span></span><br><span class="line">  app.use(cors());</span><br><span class="line">  <span class="comment">// 解析post的body内容</span></span><br><span class="line">  app.use(bodyParser());</span><br><span class="line">  <span class="comment">// 错误处理</span></span><br><span class="line">  app.use(errorHandler);</span><br><span class="line">  <span class="comment">// 获取用户信息</span></span><br><span class="line">  app.use(auth());</span><br><span class="line">  <span class="comment">// 注册路由</span></span><br><span class="line">  app.use(loginRoute.routes()).use(loginRoute.allowedMethods());</span><br><span class="line">  app.listen(<span class="number">3200</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Server start on 3200'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">start();</span><br></pre></td></tr></table></figure>
+<h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><h3 id="koa-body-parser-解析请求体"><a href="#koa-body-parser-解析请求体" class="headerlink" title="koa-body-parser 解析请求体"></a>koa-body-parser 解析请求体</h3><blockquote>
+<p>koa-body-parser 中间件用来解析http请求体，把koa2上下文的formData数据解析到ctx.request.body</p>
+</blockquote>
+<h3 id="Koa2-cors-解决跨域"><a href="#Koa2-cors-解决跨域" class="headerlink" title="Koa2-cors 解决跨域"></a>Koa2-cors 解决跨域</h3><p>由于浏览器同源策略，凡是发送请求url的协议、域名、端口三者之间任意一个与当前页面地址不同即为跨域。</p>
+<p>koa2直接设置跨域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 允许来自所有域名请求</span></span><br><span class="line">    ctx.set(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);</span><br><span class="line">    <span class="comment">// 这样就能只允许 http://localhost:8080 这个域名的请求了</span></span><br><span class="line">    <span class="comment">// ctx.set("Access-Control-Allow-Origin", "http://localhost:8080"); </span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置所允许的HTTP请求方法</span></span><br><span class="line">    ctx.set(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"OPTIONS, GET, PUT, POST, DELETE"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 字段是必需的。它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段.</span></span><br><span class="line">    ctx.set(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"x-requested-with, accept, origin, content-type"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 服务器收到请求以后，检查了Origin、Access-Control-Request-Method和Access-Control-Request-Headers字段以后，确认允许跨源请求，就可以做出回应。</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Content-Type表示具体请求中的媒体类型信息</span></span><br><span class="line">    ctx.set(<span class="string">"Content-Type"</span>, <span class="string">"application/json;charset=utf-8"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 该字段可选。它的值是一个布尔值，表示是否允许发送Cookie。默认情况下，Cookie不包括在CORS请求之中。</span></span><br><span class="line">    <span class="comment">// 当设置成允许请求携带cookie时，需要保证"Access-Control-Allow-Origin"是服务器有的域名，而不能是"*";</span></span><br><span class="line">    ctx.set(<span class="string">"Access-Control-Allow-Credentials"</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 该字段可选，用来指定本次预检请求的有效期，单位为秒。</span></span><br><span class="line">    <span class="comment">// 当请求方法是PUT或DELETE等特殊方法或者Content-Type字段的类型是application/json时，服务器会提前发送一次请求进行验证</span></span><br><span class="line">    <span class="comment">// 下面的的设置只本次验证的有效时间，即在该时间段内服务端可以不用进行验证</span></span><br><span class="line">    ctx.set(<span class="string">"Access-Control-Max-Age"</span>, <span class="number">300</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：</span></span><br><span class="line"><span class="comment">        Cache-Control、</span></span><br><span class="line"><span class="comment">        Content-Language、</span></span><br><span class="line"><span class="comment">        Content-Type、</span></span><br><span class="line"><span class="comment">        Expires、</span></span><br><span class="line"><span class="comment">        Last-Modified、</span></span><br><span class="line"><span class="comment">        Pragma。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">// 需要获取其他字段时，使用Access-Control-Expose-Headers，</span></span><br><span class="line">    <span class="comment">// getResponseHeader('myData')可以返回我们所需的值</span></span><br><span class="line">    <span class="comment">//https://www.rails365.net/articles/cors-jin-jie-expose-headers-wu</span></span><br><span class="line">    ctx.set(<span class="string">"Access-Control-Expose-Headers"</span>, <span class="string">"myData"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>使用中间件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">.....</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体参数我们在后面进行解释</span></span><br><span class="line">app.use(cors(&#123;</span><br><span class="line">    origin: <span class="function"><span class="keyword">function</span> (<span class="params">ctx</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ctx.url === <span class="string">'/test'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"*"</span>; <span class="comment">// 允许来自所有域名请求</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'http://localhost:8080'</span>; <span class="regexp">/ 这样就能只允许 http:/</span><span class="regexp">/localhost:8080 这个域名的请求了</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],</span></span><br><span class="line"><span class="regexp">    maxAge: 5,</span></span><br><span class="line"><span class="regexp">    credentials: true,</span></span><br><span class="line"><span class="regexp">    allowMethods: ['GET', 'POST', 'DELETE'],</span></span><br><span class="line"><span class="regexp">    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],</span></span><br><span class="line"><span class="regexp">&#125;))</span></span><br><span class="line"><span class="regexp">.....</span></span><br></pre></td></tr></table></figure>
+<h2 id="自定义中间件"><a href="#自定义中间件" class="headerlink" title="自定义中间件"></a>自定义中间件</h2><h3 id="error-handler-错误处理中间件"><a href="#error-handler-错误处理中间件" class="headerlink" title="error_handler 错误处理中间件"></a>error_handler 错误处理中间件</h3><p>处理所有内部函数抛出的错误</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json <span class="keyword">from</span> <span class="string">'./json'</span></span><br><span class="line"><span class="keyword">import</span> Koa <span class="keyword">from</span> <span class="string">'koa'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在最为外层包一层，处理所有未被catch的异常</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">async</span> (ctx: Koa.BaseContext, next: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">await</span> next()</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="comment">// Unknown Exception</span></span><br><span class="line">        <span class="built_in">console</span>.warn(e);</span><br><span class="line">        json(ctx, &#123;</span><br><span class="line">            code: STATUS.ERROR,</span><br><span class="line">            msg: e.msg || <span class="string">'Unknown Internal Server Error'</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>./json 文件处理返回的函数</p>
+<blockquote>
+<p>保证所有接口返回统一的结构</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Koa <span class="keyword">from</span> <span class="string">'koa'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (ctx: Koa.BaseContext, returnData: <span class="built_in">Object</span> = &#123;&#125;) =&gt; &#123;</span><br><span class="line">    ctx.type = <span class="string">'application/json'</span>;</span><br><span class="line">    <span class="keyword">const</span> newReturn = <span class="built_in">Object</span>.assign(&#123;</span><br><span class="line">        code: STATUS.ERROR</span><br><span class="line">        msg: <span class="string">'ok'</span>,</span><br><span class="line">        data: &#123;&#125;</span><br><span class="line">    &#125;, returnData);</span><br><span class="line">    ctx.body = <span class="built_in">JSON</span>.stringify(newReturn)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自定义中间件-Auth-获取当前用户数据"><a href="#自定义中间件-Auth-获取当前用户数据" class="headerlink" title="自定义中间件 Auth 获取当前用户数据"></a>自定义中间件 Auth 获取当前用户数据</h3><p>可以自定义已些全局的中间件，此处以获取当前用户信息为例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义的type，继承自Koa.ExtendableContext，添加了userInfo</span></span><br><span class="line"><span class="keyword">import</span> &#123; MvpBaseContext &#125; <span class="keyword">from</span> <span class="string">'./types/BaseContest'</span>; </span><br><span class="line"><span class="keyword">const</span> STATUS = <span class="built_in">require</span>(<span class="string">'./utils/statusCode'</span>);</span><br><span class="line"><span class="keyword">const</span> tokenUtil = <span class="built_in">require</span>(<span class="string">'./utils/token'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从所有请求中解析cookie有效性，传递用户id</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">async</span> (ctx: MvpBaseContext, <span class="attr">next</span>: any) =&gt; &#123; </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> cookie: string = ctx.cookies.get(<span class="string">'p-auth'</span>);</span><br><span class="line">      <span class="keyword">if</span> (cookie) &#123;</span><br><span class="line">        <span class="comment">// 校验token并获取当然用户，赋值给ctx，以便在后面的环节使用</span></span><br><span class="line">        <span class="keyword">const</span> token = <span class="keyword">await</span> tokenUtil.checkToken(cookie);</span><br><span class="line">        <span class="keyword">if</span> (token.code == STATUS.SUCCESS) &#123;</span><br><span class="line">          ctx.userInfo = &#123;</span><br><span class="line">            code: STATUS.SUCCESS,</span><br><span class="line">            username: token.username,</span><br><span class="line">            uid: token.uid,</span><br><span class="line">            cookie: cookie,</span><br><span class="line">            id: token.id,</span><br><span class="line">          &#125;;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          ctx.userInfo = &#123; <span class="attr">code</span>: token.code &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ctx.userInfo = &#123; <span class="attr">code</span>: STATUS.TOKEN_ERROR &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'auth------error:'</span>, error);</span><br><span class="line">      ctx.userInfo = &#123; <span class="attr">code</span>: STATUS.TOKEN_ERROR &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>🍃 下面看下tokenUtils里做了什么</p>
+<blockquote>
+<p>这里使用了redis来缓存token和用户信息的映射，从而避免平凡获取用户信息</p>
+<p>给每个检制度对设定了清空时间，以保证token的安全性</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; setRedis, getRedis &#125; = <span class="built_in">require</span>(<span class="string">'./redis'</span>);</span><br><span class="line"><span class="keyword">const</span> STATUS = <span class="built_in">require</span>(<span class="string">'./statusCode'</span>);</span><br><span class="line"><span class="keyword">const</span> loginService = <span class="built_in">require</span>(<span class="string">'../service/login.services'</span>);</span><br><span class="line"><span class="keyword">const</span> userService = <span class="built_in">require</span>(<span class="string">'../service/user.service'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> UserType = &#123; uid: <span class="built_in">string</span>; username: <span class="built_in">string</span>; id: <span class="built_in">string</span> &#125;;</span><br><span class="line"><span class="keyword">type</span> userInfoType = <span class="literal">null</span> | &#123; data: <span class="literal">null</span> | &#123; data: <span class="literal">null</span> | UserType &#125; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 向redis中插入token</span></span><br><span class="line"><span class="comment"> * 逻辑是返回给用户的token是由用户id+唯一的随机key组成，redis中存储的是用户id和key的关联，当账号再另一个地方登录，redis中的key会发生改变，之前用户token中解码出来的key就跟redis中的不相同了，redise绘制在2小时后过期自动清理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">insertUserToken</span>(<span class="params">cookie: <span class="built_in">string</span>, value: UserType</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">await</span> setRedis(cookie, <span class="built_in">JSON</span>.stringify(value), <span class="number">7200</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 验证token有效性</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; token</span></span><br><span class="line"><span class="comment"> * @returns &#123;code, uid&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">checkToken</span>(<span class="params">token: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">   <span class="comment">// 从redis缓存中获取</span></span><br><span class="line">  <span class="keyword">const</span> temp: <span class="built_in">string</span> = <span class="keyword">await</span> getRedis(token);</span><br><span class="line">  <span class="keyword">if</span> (temp) &#123;</span><br><span class="line">    <span class="keyword">const</span> re: &#123; uid: <span class="built_in">string</span>; username: <span class="built_in">string</span>; id: <span class="built_in">string</span> &#125; | <span class="literal">null</span> = <span class="built_in">JSON</span>.parse(</span><br><span class="line">      temp</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">if</span> (re &amp;&amp; re.uid &amp;&amp; re.username) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        code: STATUS.SUCCESS,</span><br><span class="line">        uid: re.uid,</span><br><span class="line">        username: re.username,</span><br><span class="line">        id: re.id,</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123; code: STATUS.TOKEN_INVALID, uid: <span class="string">''</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// redis中不存在是，重新调用service获取userInfo，并缓存到redis</span></span><br><span class="line">    <span class="keyword">const</span> userInfo: userInfoType = <span class="keyword">await</span> loginService.checkCookie(token);</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      userInfo &amp;&amp;</span><br><span class="line">      userInfo.data &amp;&amp;</span><br><span class="line">      userInfo.data.data &amp;&amp;</span><br><span class="line">      userInfo.data.data.username</span><br><span class="line">    ) &#123;</span><br><span class="line">      <span class="comment">// 调用service获取userInfo</span></span><br><span class="line">      <span class="keyword">const</span> user = <span class="keyword">await</span> userService.getUserInfoByUserName(</span><br><span class="line">        userInfo.data.data.username,</span><br><span class="line">        &#123;</span><br><span class="line">          username: userInfo.data.data.username,</span><br><span class="line">          cookie: token,</span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">      <span class="keyword">if</span> (</span><br><span class="line">        user &amp;&amp;</span><br><span class="line">        user.data &amp;&amp;</span><br><span class="line">        user.data.data &amp;&amp;</span><br><span class="line">        user.data.data.loginName == userInfo.data.data.username</span><br><span class="line">      ) &#123;</span><br><span class="line">        <span class="comment">// 缓存到redis</span></span><br><span class="line">        <span class="keyword">await</span> insertUserToken(token, &#123;</span><br><span class="line">          id: user.data.data.id,</span><br><span class="line">          uid: user.data.data.uid,</span><br><span class="line">          username: user.data.data.loginName,</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          code: STATUS.SUCCESS,</span><br><span class="line">          id: user.data.data.id,</span><br><span class="line">          uid: user.data.data.uid,</span><br><span class="line">          username: user.data.data.loginName,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; code: STATUS.TOKEN_EXPIRE &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123; code: STATUS.TOKEN_EXPIRE &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="koa-router-处理url映射"><a href="#koa-router-处理url映射" class="headerlink" title="koa-router 处理url映射"></a>koa-router 处理url映射</h2><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install koa-router --save</span><br></pre></td></tr></table></figure>
+<p>以login为例🌰：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Koa <span class="keyword">from</span> <span class="string">'koa'</span>;</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> STATUS = <span class="built_in">require</span>(<span class="string">'../utils/statusCode'</span>);</span><br><span class="line"><span class="comment">// 定义router的前缀为'/login'</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router(&#123; prefix: <span class="string">'/login'</span> &#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>, <span class="keyword">async</span> (ctx: Koa.BaseContext) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 重定向到第三方登录</span></span><br><span class="line">  ctx.redirect(</span><br><span class="line">    ssoURL + <span class="string">'/login?redirect_url='</span> + getBackUrl(ctx.query.redirect_url)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注册到app，index.ts</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">........</span><br><span class="line"><span class="keyword">import</span> loginRoute <span class="keyword">from</span> <span class="string">'./src/controller/login.controller'</span>;</span><br><span class="line">.......</span><br><span class="line">app.use(loginRoute.routes()).use(loginRoute.allowedMethods());</span><br><span class="line">.......</span><br></pre></td></tr></table></figure>
+<h2 id="封装http"><a href="#封装http" class="headerlink" title="封装http"></a>封装http</h2><p>当node需要以http的方式调用其他服务，且需要对这些请求做同意处理时，可以封装一个http的函数</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">'axios'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> http = axios.create();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当前请求为跨域类型时是否在请求中协带cookie。</span></span><br><span class="line">http.defaults.withCredentials = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// 请求超时时间</span></span><br><span class="line">http.defaults.timeout = <span class="number">100000</span>;</span><br><span class="line"></span><br><span class="line">http.interceptors.request.use(<span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.interceptors.response.use(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 在这里你可以判断后台返回数据携带的请求码</span></span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;,</span><br><span class="line">  (error) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 对错误的请求返回做处理</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"------http error:"</span>, error);</span><br><span class="line">    <span class="keyword">return</span> error;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">// export default http</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  http</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Redis使用"><a href="#Redis使用" class="headerlink" title="Redis使用"></a>Redis使用</h1><p><strong>Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库</strong></p>
+<h1 id="apiDoc-生成接口文档"><a href="#apiDoc-生成接口文档" class="headerlink" title="apiDoc 生成接口文档"></a>apiDoc 生成接口文档</h1><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install apidoc</span><br></pre></td></tr></table></figure>
+<p>在你的项目根目录下新建<strong>apidoc.json</strong>文件,该文件描述了项目对外提供接口的概要信息如名称、版本、描述、文档打开时浏览器显示标题和接口缺省访问地址。</p>
+<p>apidoc.json ：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"XXX API"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"接口文档"</span>,</span><br><span class="line">  <span class="attr">"title"</span>: <span class="string">"XXX API"</span>,</span><br><span class="line">  <span class="attr">"url"</span> : <span class="string">"http://localhost:8080/api"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><ul>
+<li><p>HTTP接口调用方法、路径及名称 <code>@api {method} path [title]</code></p>
+</li>
+<li><p>名称 <code>@apiName {name}</code></p>
+</li>
+<li><p>分组 <code>@apiGroup {name}</code></p>
+</li>
+<li><p>请求头参数 <code>@apiHeader [(group)][{type}] [field=defaultValue][description]</code></p>
+</li>
+<li><p>请求参数 <code>@apiParam [(group)][{type}] [field=defaultValue][description]</code></p>
+</li>
+<li><p>返回数据描述 <code>@apiSuccess [(group)][{type}] field [description]</code></p>
+</li>
+<li><p>接口成功返回样例 <code>@apiSuccessExample [{type}][title] {example}</code></p>
+</li>
+<li><p>接口失败描述 <code>@apiError [(group)][{type}] field [description]</code></p>
+</li>
+<li><p>接口失败返回样例 <code>@apiErrorExample [{type}][title] {example}</code></p>
+</li>
+<li><p>使用模板 <code>@apiUse {name}</code> name-&gt;模板名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @apiDefine MySuccess</span></span><br><span class="line"><span class="comment"> * @apiSuccess &#123;string&#125; firstname The users firstname.</span></span><br><span class="line"><span class="comment"> * @apiSuccess &#123;number&#125; age The users age.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @api &#123;get&#125; /user/:id</span></span><br><span class="line"><span class="comment"> * @apiUse MySuccess</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="文档生成"><a href="#文档生成" class="headerlink" title="文档生成"></a>文档生成</h3><p>生成api文档，在package.json中添加生成api的指令</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ....</span><br><span class="line">  "scripts":&#123;</span><br><span class="line">    ...</span><br><span class="line">    "doc": "apidoc -i ./src/controller -o ./api-docs"</span><br><span class="line">  &#125;</span><br><span class="line"> ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/element组件库源码.html" rel="next" title="element组件库源码 — 官网打包原理">
+                <i class="fa fa-chevron-left"></i> element组件库源码 — 官网打包原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/koa2.html" rel="prev" title="koa2">
+                koa2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建node-typescript搭建服务"><span class="nav-number">1.</span> <span class="nav-text">搭建node + typescript搭建服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#入口文件"><span class="nav-number">1.1.</span> <span class="nav-text">入口文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间件"><span class="nav-number">1.2.</span> <span class="nav-text">中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#koa-body-parser-解析请求体"><span class="nav-number">1.2.1.</span> <span class="nav-text">koa-body-parser 解析请求体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Koa2-cors-解决跨域"><span class="nav-number">1.2.2.</span> <span class="nav-text">Koa2-cors 解决跨域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义中间件"><span class="nav-number">1.3.</span> <span class="nav-text">自定义中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#error-handler-错误处理中间件"><span class="nav-number">1.3.1.</span> <span class="nav-text">error_handler 错误处理中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义中间件-Auth-获取当前用户数据"><span class="nav-number">1.3.2.</span> <span class="nav-text">自定义中间件 Auth 获取当前用户数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#koa-router-处理url映射"><span class="nav-number">1.4.</span> <span class="nav-text">koa-router 处理url映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装http"><span class="nav-number">1.5.</span> <span class="nav-text">封装http</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis使用"><span class="nav-number">2.</span> <span class="nav-text">Redis使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apiDoc-生成接口文档"><span class="nav-number">3.</span> <span class="nav-text">apiDoc 生成接口文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装依赖"><span class="nav-number">3.0.1.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用说明"><span class="nav-number">3.0.2.</span> <span class="nav-text">使用说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档生成"><span class="nav-number">3.0.3.</span> <span class="nav-text">文档生成</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

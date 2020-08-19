@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="js,node," />
+  <meta name="keywords" content="性能," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="服务器端渲染什么是服务器端渲染将组件或页面通过服务器生成html字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。 服务器端渲染的优缺优势 利于SEO 加快首屏渲染  缺点 增大服务器端压力 开发受限（有的第三方库可能无法正常使用） 学习成本变高（node + koa2 等）  耗时对比 数据请求 由服务端请求首屏数据，而不是客户端请求首屏数据，这是“快”的一个主要原因。">
-<meta name="keywords" content="js,node">
+<meta name="description" content="webpack-bundle-analyzer 分析SPA应用安装1npm install --save-dev webpack-bundle-analyzer 使用webpack1在webpack的plugins中配置： new BundleAnalyzerPlugin()  在package.json 中增加： “analyz”: “NODE_ENV=production npm_config">
+<meta name="keywords" content="性能">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务器端渲染（ssr）">
-<meta property="og:url" content="http://xueying.me/ssr.html">
+<meta property="og:title" content="前端性能分析优化">
+<meta property="og:url" content="http://xueying.me/前端性能分析优化.html">
 <meta property="og:site_name" content="Snow">
-<meta property="og:description" content="服务器端渲染什么是服务器端渲染将组件或页面通过服务器生成html字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。 服务器端渲染的优缺优势 利于SEO 加快首屏渲染  缺点 增大服务器端压力 开发受限（有的第三方库可能无法正常使用） 学习成本变高（node + koa2 等）  耗时对比 数据请求 由服务端请求首屏数据，而不是客户端请求首屏数据，这是“快”的一个主要原因。">
+<meta property="og:description" content="webpack-bundle-analyzer 分析SPA应用安装1npm install --save-dev webpack-bundle-analyzer 使用webpack1在webpack的plugins中配置： new BundleAnalyzerPlugin()  在package.json 中增加： “analyz”: “NODE_ENV=production npm_config">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-17T05:37:27.617Z">
+<meta property="og:updated_time" content="2020-08-19T07:36:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="服务器端渲染（ssr）">
-<meta name="twitter:description" content="服务器端渲染什么是服务器端渲染将组件或页面通过服务器生成html字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。 服务器端渲染的优缺优势 利于SEO 加快首屏渲染  缺点 增大服务器端压力 开发受限（有的第三方库可能无法正常使用） 学习成本变高（node + koa2 等）  耗时对比 数据请求 由服务端请求首屏数据，而不是客户端请求首屏数据，这是“快”的一个主要原因。">
+<meta name="twitter:title" content="前端性能分析优化">
+<meta name="twitter:description" content="webpack-bundle-analyzer 分析SPA应用安装1npm install --save-dev webpack-bundle-analyzer 使用webpack1在webpack的plugins中配置： new BundleAnalyzerPlugin()  在package.json 中增加： “analyz”: “NODE_ENV=production npm_config">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://xueying.me/ssr.html"/>
+  <link rel="canonical" href="http://xueying.me/前端性能分析优化.html"/>
 
 
 
 
 
-  <title>服务器端渲染（ssr） | Snow</title>
+  <title>前端性能分析优化 | Snow</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/ssr.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/前端性能分析优化.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">服务器端渲染（ssr）</h1>
+          <h1 class="post-title" itemprop="name headline">前端性能分析优化</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-31T14:23:41+08:00">
-                2019-12-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-18T15:02:52+08:00">
+                2020-08-18
               </time>
             
 
@@ -310,30 +310,17 @@
       
 
       
-        <h1 id="服务器端渲染"><a href="#服务器端渲染" class="headerlink" title="服务器端渲染"></a>服务器端渲染</h1><h2 id="什么是服务器端渲染"><a href="#什么是服务器端渲染" class="headerlink" title="什么是服务器端渲染"></a>什么是服务器端渲染</h2><p><strong>将组件或页面通过服务器生成html字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。</strong></p>
-<h2 id="服务器端渲染的优缺"><a href="#服务器端渲染的优缺" class="headerlink" title="服务器端渲染的优缺"></a>服务器端渲染的优缺</h2><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
-<li>利于SEO</li>
-<li>加快首屏渲染</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>增大服务器端压力</li>
-<li>开发受限（有的第三方库可能无法正常使用）</li>
-<li>学习成本变高（node + koa2 等）</li>
-</ul>
-<h3 id="耗时对比"><a href="#耗时对比" class="headerlink" title="耗时对比"></a>耗时对比</h3><ul>
-<li>数据请求<ul>
-<li>由服务端请求首屏数据，而不是客户端请求首屏数据，这是“快”的一个主要原因。</li>
-<li>服务端在内网进行请求，数据响应速度快。客户端在不同网络环境进行数据请求，且外网http请求开销大，导致时间差。</li>
-</ul>
-</li>
-<li>html 渲染<ul>
-<li>服务端渲染是先向后端服务器请求数据，然后生成完整首屏html返回给浏览器</li>
-<li>客户端渲染是等js代码下载、加载、解析完成后再请求数据渲染，等待的过程页面是什么都没有的，就是用户看到的白屏</li>
-<li>服务端渲染不需要等待js代码下载完成并请求数据，就可以返回一个已有完整数据的首屏页面。</li>
-</ul>
-</li>
-</ul>
-
+        <h1 id="webpack-bundle-analyzer-分析SPA应用"><a href="#webpack-bundle-analyzer-分析SPA应用" class="headerlink" title="webpack-bundle-analyzer 分析SPA应用"></a>webpack-bundle-analyzer 分析SPA应用</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack-bundle-analyzer</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在webpack的plugins中配置： new BundleAnalyzerPlugin()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在package.json 中增加： “analyz”: “NODE_ENV=production npm_config_report=true npm run build”</p>
+</blockquote>
+<p>npm run analyz  后会自动打开 <a href="http://127.0.0.1:8888/" target="_blank" rel="noopener">http://127.0.0.1:8888/</a> 查监控监控</p>
+<h3 id="vue-cli"><a href="#vue-cli" class="headerlink" title="vue cli"></a>vue cli</h3><p>在vue.config.js中添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  ....</span><br><span class="line">  chainWebpack: <span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line">    config.plugin(<span class="string">'webpack-bundle-analyzer'</span>)</span><br><span class="line">              .use(<span class="built_in">require</span>(<span class="string">'webpack-bundle-analyzer'</span>).BundleAnalyzerPlugin);</span><br><span class="line">  &#125;</span><br><span class="line">.....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接运行 vue-cli-service serve 后会直接打开 <a href="http://127.0.0.1:8888/" target="_blank" rel="noopener">http://127.0.0.1:8888/</a> 查监控监控</p>
+<p>观察各个部分的大小进行优化，或者找小体积的替代方案</p>
+<h1 id="tree-shaking"><a href="#tree-shaking" class="headerlink" title="tree-shaking"></a>tree-shaking</h1>
       
     </div>
     
@@ -350,9 +337,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js/" rel="tag"># js</a>
-          
-            <a href="/tags/node/" rel="tag"># node</a>
+            <a href="/tags/性能/" rel="tag"># 性能</a>
           
         </div>
       
@@ -365,8 +350,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/snabbdom.html" rel="next" title="从 snabbdom 看虚拟dom">
-                <i class="fa fa-chevron-left"></i> 从 snabbdom 看虚拟dom
+              <a href="/node缓存.html" rel="next" title="node缓存">
+                <i class="fa fa-chevron-left"></i> node缓存
               </a>
             
           </div>
@@ -375,8 +360,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/xlsx-style.html" rel="prev" title="xlsx-style 前端js导出带样式的excel">
-                xlsx-style 前端js导出带样式的excel <i class="fa fa-chevron-right"></i>
+              <a href="/git规范.html" rel="prev" title="git规范">
+                git规范 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -504,7 +489,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器端渲染"><span class="nav-number">1.</span> <span class="nav-text">服务器端渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是服务器端渲染"><span class="nav-number">1.1.</span> <span class="nav-text">什么是服务器端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器端渲染的优缺"><span class="nav-number">1.2.</span> <span class="nav-text">服务器端渲染的优缺</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">1.2.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.2.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#耗时对比"><span class="nav-number">1.2.3.</span> <span class="nav-text">耗时对比</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack-bundle-analyzer-分析SPA应用"><span class="nav-number">1.</span> <span class="nav-text">webpack-bundle-analyzer 分析SPA应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">1.2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack"><span class="nav-number">1.2.1.</span> <span class="nav-text">webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-cli"><span class="nav-number">1.2.2.</span> <span class="nav-text">vue cli</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tree-shaking"><span class="nav-number">2.</span> <span class="nav-text">tree-shaking</span></a></li></ol></div>
             
 
           </div>

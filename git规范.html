@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git：," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="分支相关分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支； release: 发布分支，主要用于测试或修复bug。 fix: 为bug修复分支，需要根据实际情况对已发">
+<meta name="keywords" content="git：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git规范">
+<meta property="og:url" content="http://xueying.me/git规范.html">
+<meta property="og:site_name" content="Snow">
+<meta property="og:description" content="分支相关分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支； release: 发布分支，主要用于测试或修复bug。 fix: 为bug修复分支，需要根据实际情况对已发">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://xueying.me/git规范/git-merge.png">
+<meta property="og:image" content="http://xueying.me/git规范/git-rebase0.png">
+<meta property="og:image" content="http://xueying.me/git规范/git-rebase1.png">
+<meta property="og:image" content="http://xueying.me/git规范/git-rebase2.png">
+<meta property="og:image" content="http://xueying.me/git规范/git-rebase-error.png">
+<meta property="og:updated_time" content="2020-08-19T08:31:48.358Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git规范">
+<meta name="twitter:description" content="分支相关分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支； release: 发布分支，主要用于测试或修复bug。 fix: 为bug修复分支，需要根据实际情况对已发">
+<meta name="twitter:image" content="http://xueying.me/git规范/git-merge.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xueying.me/git规范.html"/>
+
+
+
+
+
+  <title>git规范 | Snow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/git规范.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XueYing Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">git规范</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-19T15:24:11+08:00">
+                2020-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="分支相关"><a href="#分支相关" class="headerlink" title="分支相关"></a>分支相关</h1><h2 id="分支分类"><a href="#分支分类" class="headerlink" title="分支分类"></a>分支分类</h2><ul>
+<li>master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交;</li>
+<li>develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支;</li>
+<li>feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支；</li>
+<li>release: 发布分支，主要用于测试或修复bug。</li>
+<li>fix: 为bug修复分支，需要根据实际情况对已发布的版本进行漏洞修复，必须从master拉取；</li>
+</ul>
+<h2 id="分支命名"><a href="#分支命名" class="headerlink" title="分支命名"></a>分支命名</h2><p>功能分支： featrue/功能名称<br>发布分支：release/版本号-功能名称-发布日期<br>维护分支：fix/版本号-问题概述或issueid-日期 (最好使用issue建立问题描述?)</p>
+<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><h3 id="develop为集成开发分支"><a href="#develop为集成开发分支" class="headerlink" title="develop为集成开发分支"></a>develop为集成开发分支</h3><p>自己分支自测完毕； review通过再合并；</p>
+<h3 id="本地分支管理"><a href="#本地分支管理" class="headerlink" title="本地分支管理"></a>本地分支管理</h3><ul>
+<li>本地分支要做到勤提交，分小功能提交；</li>
+<li>一个功能点一个分支(自己控制)，至少保证保留两个分支：  新版本分支、优化分支；</li>
+<li>本地分支merge到develop分支时，必须先merge develop到本地分支，自测通过再提交；</li>
+</ul>
+<blockquote>
+<p>开发者相同版本尽量不要修改相同功能，提前划分或协商清楚；<br>如果修改代码涉及多人功能，提交完毕请及时告知相关人员；<br>开发者每天更新develop分支内容到本地分支，避免大规模merge;<br>fixbug分支修改测试完，立即合并到develop上！ </p>
+</blockquote>
+<h1 id="提交相关"><a href="#提交相关" class="headerlink" title="提交相关"></a>提交相关</h1><h2 id="关于提交-git-commit"><a href="#关于提交-git-commit" class="headerlink" title="关于提交 git commit"></a>关于提交 git commit</h2><p>详细内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用 <code>git commit -m &#39;——&#39;</code>  时，输入的其实是<code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</code>的部分</p>
+</blockquote>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>type在commit的是否必须存在。</p>
+<ul>
+<li>feat: 添加新特性</li>
+<li>fix: 修复bug</li>
+<li>docs: 仅仅修改了文档</li>
+<li>style: 仅仅修改了空格、格式缩进、逗号等等，不改变代码逻辑</li>
+<li>refactor: 代码重构，没有加新功能或者修复bug</li>
+<li>perf: 优化相关，比如提升性能、体验</li>
+<li>test: 增加测试用例</li>
+<li>chore: 改变构建流程、或者增加依赖库、工具等</li>
+<li>revert: 回滚到上一个版本</li>
+</ul>
+<h4 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h4><p>scope：【可选】用于说明commit的影响范围</p>
+<h4 id="subjec"><a href="#subjec" class="headerlink" title="subjec"></a>subjec</h4><p>subject：commit的简要说明，尽量简短</p>
+<h4 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h4><p>对本次commit的详细描述，可分多行</p>
+<h4 id="Footer"><a href="#Footer" class="headerlink" title="Footer"></a>Footer</h4><p>不兼容变动：需要描述相关信息<br>关闭指定Issue：输入Issue信息</p>
+<ul>
+<li>关联 Issue（Issue #1, #2, #3）</li>
+<li>关闭 Issue（Close #1, #2, #3）</li>
+</ul>
+<p>可用github关闭issue，或者与自己的任务相关联</p>
+<h2 id="Commitizen-使用方法"><a href="#Commitizen-使用方法" class="headerlink" title="Commitizen 使用方法"></a>Commitizen 使用方法</h2><p>全局安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g commitizen</span><br></pre></td></tr></table></figure>
+<p>然后，在项目目录里，运行下面的命令，使其支持 Angular 的 Commit message 格式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ commitizen init cz-conventional-changelog --save --save-exact</span><br></pre></td></tr></table></figure>
+<p>以后，凡是用到<code>git commit</code>命令，一律改为使用<code>git cz</code>。这时，就会出现选项，用来生成符合格式的 Commit message。</p>
+<h2 id="规范提交信息"><a href="#规范提交信息" class="headerlink" title="规范提交信息"></a>规范提交信息</h2><p><strong>cz-conventional-changelog</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cz-conventional-changelog -D</span><br></pre></td></tr></table></figure>
+<h2 id="生成change-log"><a href="#生成change-log" class="headerlink" title="生成change log"></a>生成change log</h2><p>conventional-changelog-cli 通过提交记录生成 CHANGELOG.md</p>
+<p><a href="https://github.com/conventional-changelog-archived-repos/conventional-changelog-cli" target="_blank" rel="noopener">https://github.com/conventional-changelog-archived-repos/conventional-changelog-cli</a></p>
+<p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g conventional-changelog-cli</span><br></pre></td></tr></table></figure>
+<p>生成change log</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conventional-changelog -p angular -i CHANGELOG.md -s</span><br></pre></td></tr></table></figure>
+<p>通过以上命令你就会发现在项目中多了个<code>CHANGELOG.md</code>文件，表示生成 Change log成功了。</p>
+<h2 id="合并代码"><a href="#合并代码" class="headerlink" title="合并代码"></a>合并代码</h2><h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p>将一个分支合并到当前分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>git pull = git fetch + git merge</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;git fetch orgin master //将远程仓库的master分支下载到本地当前branch中</span><br><span class="line">&gt;</span><br><span class="line">&gt;git log -p master  ..origin/master //比较本地的master分支和origin/master分支的差别</span><br><span class="line">&gt;</span><br><span class="line">&gt;git merge origin/master //进行合并</span><br><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;<br>&gt;</p>
+<p><img src="/git规范/git-merge.png" alt="merge"></p>
+<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>变基，改变当前分支的基点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i dev</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>git pull —rebase = git fetch + git rebase</p>
+</blockquote>
+<p>在mywork分支上rebase，将基点从C2改为C4，在C4后添加C5’ C6’（即：C5 C6的拷贝节点，与C5 C6不是一个节点但内容保留）</p>
+<p><img src="/git规范/git-rebase0.png" alt="rebase0"></p>
+<p>移除C5 C6节点</p>
+<p><img src="/git规范/git-rebase1.png" alt="rebase1"></p>
+<p>追后结果</p>
+<p><img src="/git规范/git-rebase2.png" alt="rebase2"></p>
+<p>综上rebase是对一个分支做“变基”操作，这意味着改变这个分支的base commit。它会在新的base上一个一个地运行这个分支上的所有commits.</p>
+<blockquote>
+<p>rebase 冲突</p>
+<ul>
+<li>rebase过程中也会出现冲突 解决冲突后，使⽤用git add添加，然后执⾏<code>git rebase - - continue</code>。接下来Git会继续应⽤用余下的补丁。</li>
+</ul>
+<ul>
+<li><p>任何时候都可以通过如下命令终⽌止rebase，分⽀支会恢复到rebase开始前的状态</p>
+<p>   git rebase - - abort</p>
+</li>
+</ul>
+</blockquote>
+<p>注意：</p>
+<p>不要rebase一个已经在远程库中已经存在的分支，只能rebase你自己使用的私有分支。</p>
+<p><img src="/git规范/git-rebase-error.png" alt="git-rebase-error"></p>
+<p>rebase远程分支在提交将导致历史混乱，并且merge后存在多个完全相同修改记录</p>
+<blockquote>
+<p>查看分支图</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; git <span class="built_in">log</span> --graph --oneline --decorate</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>提交关键词搜索</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; git <span class="built_in">log</span> --grep keywords</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="git打tag"><a href="#git打tag" class="headerlink" title="git打tag"></a>git打tag</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git：/" rel="tag"># git：</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/前端性能分析优化.html" rel="next" title="前端性能分析优化">
+                <i class="fa fa-chevron-left"></i> 前端性能分析优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="XueYing Chen" />
+            
+              <p class="site-author-name" itemprop="name">XueYing Chen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分支相关"><span class="nav-number">1.</span> <span class="nav-text">分支相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支分类"><span class="nav-number">1.1.</span> <span class="nav-text">分支分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支命名"><span class="nav-number">1.2.</span> <span class="nav-text">分支命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.3.</span> <span class="nav-text">分支管理策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#develop为集成开发分支"><span class="nav-number">1.3.1.</span> <span class="nav-text">develop为集成开发分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地分支管理"><span class="nav-number">1.3.2.</span> <span class="nav-text">本地分支管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提交相关"><span class="nav-number">2.</span> <span class="nav-text">提交相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于提交-git-commit"><span class="nav-number">2.1.</span> <span class="nav-text">关于提交 git commit</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#type"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scope"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">scope</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#subjec"><span class="nav-number">2.1.0.3.</span> <span class="nav-text">subjec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Body"><span class="nav-number">2.1.0.4.</span> <span class="nav-text">Body</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Footer"><span class="nav-number">2.1.0.5.</span> <span class="nav-text">Footer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Commitizen-使用方法"><span class="nav-number">2.2.</span> <span class="nav-text">Commitizen 使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范提交信息"><span class="nav-number">2.3.</span> <span class="nav-text">规范提交信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成change-log"><span class="nav-number">2.4.</span> <span class="nav-text">生成change log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并代码"><span class="nav-number">2.5.</span> <span class="nav-text">合并代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-merge"><span class="nav-number">2.5.1.</span> <span class="nav-text">git merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase"><span class="nav-number">2.5.2.</span> <span class="nav-text">git rebase</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git打tag"><span class="nav-number">3.</span> <span class="nav-text">git打tag</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XueYing Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

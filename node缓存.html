@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="js,node," />
+  <meta name="keywords" content="node," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="服务器端渲染什么是服务器端渲染将组件或页面通过服务器生成html字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。 服务器端渲染的优缺优势 利于SEO 加快首屏渲染  缺点 增大服务器端压力 开发受限（有的第三方库可能无法正常使用） 学习成本变高（node + koa2 等）  耗时对比 数据请求 由服务端请求首屏数据，而不是客户端请求首屏数据，这是“快”的一个主要原因。">
-<meta name="keywords" content="js,node">
+<meta name="description" content="node 服务器端缓存内存缓存 直接将数据缓存在服务的内存中  定义一个全局变量来缓存一些需要被频繁读取的信息，从而避免频繁的读取数据库或调用接口 可以选择Map()，WeakMap(), WeakRef等数据类型  此处我们聊一聊WeakMap： WeakMap 是一个储存弱引用对象的集合，他的key为对象 弱引用：垃圾回收机制不考虑对该对象的引用，如果无其他元素或对象引用，改对象将被回收。 应">
+<meta name="keywords" content="node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务器端渲染（ssr）">
-<meta property="og:url" content="http://xueying.me/ssr.html">
+<meta property="og:title" content="node缓存">
+<meta property="og:url" content="http://xueying.me/node缓存.html">
 <meta property="og:site_name" content="Snow">
-<meta property="og:description" content="服务器端渲染什么是服务器端渲染将组件或页面通过服务器生成html字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。 服务器端渲染的优缺优势 利于SEO 加快首屏渲染  缺点 增大服务器端压力 开发受限（有的第三方库可能无法正常使用） 学习成本变高（node + koa2 等）  耗时对比 数据请求 由服务端请求首屏数据，而不是客户端请求首屏数据，这是“快”的一个主要原因。">
+<meta property="og:description" content="node 服务器端缓存内存缓存 直接将数据缓存在服务的内存中  定义一个全局变量来缓存一些需要被频繁读取的信息，从而避免频繁的读取数据库或调用接口 可以选择Map()，WeakMap(), WeakRef等数据类型  此处我们聊一聊WeakMap： WeakMap 是一个储存弱引用对象的集合，他的key为对象 弱引用：垃圾回收机制不考虑对该对象的引用，如果无其他元素或对象引用，改对象将被回收。 应">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-17T05:37:27.617Z">
+<meta property="og:updated_time" content="2020-08-17T06:55:54.600Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="服务器端渲染（ssr）">
-<meta name="twitter:description" content="服务器端渲染什么是服务器端渲染将组件或页面通过服务器生成html字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。 服务器端渲染的优缺优势 利于SEO 加快首屏渲染  缺点 增大服务器端压力 开发受限（有的第三方库可能无法正常使用） 学习成本变高（node + koa2 等）  耗时对比 数据请求 由服务端请求首屏数据，而不是客户端请求首屏数据，这是“快”的一个主要原因。">
+<meta name="twitter:title" content="node缓存">
+<meta name="twitter:description" content="node 服务器端缓存内存缓存 直接将数据缓存在服务的内存中  定义一个全局变量来缓存一些需要被频繁读取的信息，从而避免频繁的读取数据库或调用接口 可以选择Map()，WeakMap(), WeakRef等数据类型  此处我们聊一聊WeakMap： WeakMap 是一个储存弱引用对象的集合，他的key为对象 弱引用：垃圾回收机制不考虑对该对象的引用，如果无其他元素或对象引用，改对象将被回收。 应">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://xueying.me/ssr.html"/>
+  <link rel="canonical" href="http://xueying.me/node缓存.html"/>
 
 
 
 
 
-  <title>服务器端渲染（ssr） | Snow</title>
+  <title>node缓存 | Snow</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xueying.me/ssr.html">
+    <link itemprop="mainEntityOfPage" href="http://xueying.me/node缓存.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XueYing Chen">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">服务器端渲染（ssr）</h1>
+          <h1 class="post-title" itemprop="name headline">node缓存</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-31T14:23:41+08:00">
-                2019-12-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T14:34:49+08:00">
+                2020-08-17
               </time>
             
 
@@ -310,29 +310,27 @@
       
 
       
-        <h1 id="服务器端渲染"><a href="#服务器端渲染" class="headerlink" title="服务器端渲染"></a>服务器端渲染</h1><h2 id="什么是服务器端渲染"><a href="#什么是服务器端渲染" class="headerlink" title="什么是服务器端渲染"></a>什么是服务器端渲染</h2><p><strong>将组件或页面通过服务器生成html字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。</strong></p>
-<h2 id="服务器端渲染的优缺"><a href="#服务器端渲染的优缺" class="headerlink" title="服务器端渲染的优缺"></a>服务器端渲染的优缺</h2><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
-<li>利于SEO</li>
-<li>加快首屏渲染</li>
+        <h1 id="node-服务器端缓存"><a href="#node-服务器端缓存" class="headerlink" title="node 服务器端缓存"></a>node 服务器端缓存</h1><h2 id="内存缓存"><a href="#内存缓存" class="headerlink" title="内存缓存"></a>内存缓存</h2><blockquote>
+<p>直接将数据缓存在服务的内存中</p>
+</blockquote>
+<p>定义一个全局变量来缓存一些需要被频繁读取的信息，从而避免频繁的读取数据库或调用接口</p>
+<p>可以选择<code>Map()</code>，<code>WeakMap()</code>, <code>WeakRef</code>等数据类型</p>
+<blockquote>
+<p>此处我们聊一聊WeakMap：</p>
+<p><strong>WeakMap 是一个储存弱引用对象的集合，他的key为对象</strong></p>
+<p>弱引用：垃圾回收机制不考虑对该对象的引用，如果无其他元素或对象引用，改对象将被回收。</p>
+<p>应用场景：</p>
+<ul>
+<li>以DOM为key，保存该DOM相关数据。优点：当DOM被移除时，对应的WeakMap将随之被回收。</li>
+<li>用来实现类中的私有属性，用示例话的对象来做key。优点：调示例销毁时，对应的WeakMap私有属性将随之被回收。</li>
+<li>数据缓存，在不修改原对象的情况下保存某些属性。优点：在源对象销毁时一起被回收</li>
 </ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>增大服务器端压力</li>
-<li>开发受限（有的第三方库可能无法正常使用）</li>
-<li>学习成本变高（node + koa2 等）</li>
-</ul>
-<h3 id="耗时对比"><a href="#耗时对比" class="headerlink" title="耗时对比"></a>耗时对比</h3><ul>
-<li>数据请求<ul>
-<li>由服务端请求首屏数据，而不是客户端请求首屏数据，这是“快”的一个主要原因。</li>
-<li>服务端在内网进行请求，数据响应速度快。客户端在不同网络环境进行数据请求，且外网http请求开销大，导致时间差。</li>
-</ul>
-</li>
-<li>html 渲染<ul>
-<li>服务端渲染是先向后端服务器请求数据，然后生成完整首屏html返回给浏览器</li>
-<li>客户端渲染是等js代码下载、加载、解析完成后再请求数据渲染，等待的过程页面是什么都没有的，就是用户看到的白屏</li>
-<li>服务端渲染不需要等待js代码下载完成并请求数据，就可以返回一个已有完整数据的首屏页面。</li>
-</ul>
-</li>
-</ul>
+</blockquote>
+<h2 id="缓存大小"><a href="#缓存大小" class="headerlink" title="缓存大小"></a>缓存大小</h2><p>使用内部缓存时注意定义缓存大小，当缓存达到上限时，对数据进行清理。</p>
+<p>适应LRU算法来做缓存=&gt; 淘汰最久为使用的缓存对象</p>
+<h2 id="采用缓存服务"><a href="#采用缓存服务" class="headerlink" title="采用缓存服务"></a>采用缓存服务</h2><p>自己搭建缓存服务</p>
+<p>用户   ————&gt;        node.js        —————&gt;   内存缓存服务                   ——————&gt;      后台</p>
+<p>​                                                      &lt;—————   (缓存不存在，调后台取)   &lt;——————</p>
 
       
     </div>
@@ -350,8 +348,6 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js/" rel="tag"># js</a>
-          
             <a href="/tags/node/" rel="tag"># node</a>
           
         </div>
@@ -365,8 +361,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/snabbdom.html" rel="next" title="从 snabbdom 看虚拟dom">
-                <i class="fa fa-chevron-left"></i> 从 snabbdom 看虚拟dom
+              <a href="/nginx.html" rel="next" title="nginx 判断移动端跳转不同页面">
+                <i class="fa fa-chevron-left"></i> nginx 判断移动端跳转不同页面
               </a>
             
           </div>
@@ -375,8 +371,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/xlsx-style.html" rel="prev" title="xlsx-style 前端js导出带样式的excel">
-                xlsx-style 前端js导出带样式的excel <i class="fa fa-chevron-right"></i>
+              <a href="/前端性能分析优化.html" rel="prev" title="前端性能分析优化">
+                前端性能分析优化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -504,7 +500,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器端渲染"><span class="nav-number">1.</span> <span class="nav-text">服务器端渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是服务器端渲染"><span class="nav-number">1.1.</span> <span class="nav-text">什么是服务器端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器端渲染的优缺"><span class="nav-number">1.2.</span> <span class="nav-text">服务器端渲染的优缺</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">1.2.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.2.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#耗时对比"><span class="nav-number">1.2.3.</span> <span class="nav-text">耗时对比</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#node-服务器端缓存"><span class="nav-number">1.</span> <span class="nav-text">node 服务器端缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存缓存"><span class="nav-number">1.1.</span> <span class="nav-text">内存缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存大小"><span class="nav-number">1.2.</span> <span class="nav-text">缓存大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#采用缓存服务"><span class="nav-number">1.3.</span> <span class="nav-text">采用缓存服务</span></a></li></ol></li></ol></div>
             
 
           </div>
