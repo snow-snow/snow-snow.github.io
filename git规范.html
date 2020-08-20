@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase5.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase3.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase4.png">
-<meta property="og:updated_time" content="2020-08-20T05:59:37.321Z">
+<meta property="og:updated_time" content="2020-08-20T06:38:40.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git规范">
 <meta name="twitter:description" content="分支分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在 master 上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到 develop 分支； release: 发布分支，主要用于测试或修复 bug。 fix: 为 bug 修复分支，需要根据实际">
@@ -413,12 +413,10 @@
 <blockquote>
 <p>rebase 冲突</p>
 <ul>
-<li>rebase 过程中也会出现冲突 解决冲突后，使⽤用 git add 添加，然后执⾏<code>git rebase - - continue</code>。接下来 Git 会继续应⽤用余下的补丁。</li>
+<li>rebase 过程中也会出现冲突 解决冲突后，使用 <code>git add .</code>添加，然后执⾏ <code>git rebase --continue</code>。接下来 Git 会继续应⽤用余下的补丁。</li>
 </ul>
 <ul>
-<li><p>任何时候都可以通过如下命令终⽌止 rebase，分⽀支会恢复到 rebase 开始前的状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</li>
+<li>任何时候都可以通过如下命令终⽌止 rebase，分⽀支会恢复到 rebase 开始前的状态 <code>git rebase --abort</code></li>
 </ul>
 </blockquote>
 <p>注意：</p>
