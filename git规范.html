@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="分支相关分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支； release: 发布分支，主要用于测试或修复bug。 fix: 为bug修复分支，需要根据实际情况对已发">
+<meta name="description" content="分支分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在 master 上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到 develop 分支； release: 发布分支，主要用于测试或修复 bug。 fix: 为 bug 修复分支，需要根据实际">
 <meta name="keywords" content="git：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git规范">
 <meta property="og:url" content="http://xueying.me/git规范.html">
 <meta property="og:site_name" content="Snow">
-<meta property="og:description" content="分支相关分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支； release: 发布分支，主要用于测试或修复bug。 fix: 为bug修复分支，需要根据实际情况对已发">
+<meta property="og:description" content="分支分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在 master 上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到 develop 分支； release: 发布分支，主要用于测试或修复 bug。 fix: 为 bug 修复分支，需要根据实际">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xueying.me/git规范/branch.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-merge.png">
@@ -93,10 +93,13 @@
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase1.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase2.png">
 <meta property="og:image" content="http://xueying.me/git规范/git-rebase-error.png">
-<meta property="og:updated_time" content="2020-08-19T09:02:31.326Z">
+<meta property="og:image" content="http://xueying.me/git规范/git-rebase5.png">
+<meta property="og:image" content="http://xueying.me/git规范/git-rebase3.png">
+<meta property="og:image" content="http://xueying.me/git规范/git-rebase4.png">
+<meta property="og:updated_time" content="2020-08-20T05:59:37.321Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git规范">
-<meta name="twitter:description" content="分支相关分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支； release: 发布分支，主要用于测试或修复bug。 fix: 为bug修复分支，需要根据实际情况对已发">
+<meta name="twitter:description" content="分支分支分类 master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在 master 上进行修改代码和提交; develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支; feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到 develop 分支； release: 发布分支，主要用于测试或修复 bug。 fix: 为 bug 修复分支，需要根据实际">
 <meta name="twitter:image" content="http://xueying.me/git规范/branch.png">
 
 
@@ -317,50 +320,53 @@
       
 
       
-        <h1 id="分支相关"><a href="#分支相关" class="headerlink" title="分支相关"></a>分支相关</h1><h2 id="分支分类"><a href="#分支分类" class="headerlink" title="分支分类"></a>分支分类</h2><ul>
-<li>master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在master上进行修改代码和提交;</li>
+        <h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><h2 id="分支分类"><a href="#分支分类" class="headerlink" title="分支分类"></a>分支分类</h2><ul>
+<li>master: 存储了正式发布的历史,为主分支(保护分支)，不能直接在 master 上进行修改代码和提交;</li>
 <li>develop:作为功能的集成分支,开发完成需要提交测试的功能合并到该分支;</li>
-<li>feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支；</li>
-<li>release: 发布分支，主要用于测试或修复bug。</li>
-<li>fix: 为bug修复分支，需要根据实际情况对已发布的版本进行漏洞修复，必须从master拉取；</li>
+<li>feature: 大家根据不同需求创建独立的功能分支，开发完成后合并到 develop 分支；</li>
+<li>release: 发布分支，主要用于测试或修复 bug。</li>
+<li>fix: 为 bug 修复分支，需要根据实际情况对已发布的版本进行漏洞修复，必须从 master 拉取；</li>
 </ul>
 <p><img src="/git规范/branch.png" alt="branch"></p>
-<h2 id="分支命名"><a href="#分支命名" class="headerlink" title="分支命名"></a>分支命名</h2><p>功能分支： featrue/功能名称<br>发布分支：release/版本号-功能名称-发布日期<br>维护分支：fix/版本号-问题概述或issueid-日期 (最好使用issue建立问题描述?)</p>
-<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><h3 id="develop为集成开发分支"><a href="#develop为集成开发分支" class="headerlink" title="develop为集成开发分支"></a>develop为集成开发分支</h3><p>自己分支自测完毕； review通过再合并；</p>
+<h2 id="分支命名"><a href="#分支命名" class="headerlink" title="分支命名"></a>分支命名</h2><p>功能分支： featrue/功能名称<br>发布分支：release/版本号-功能名称-发布日期<br>维护分支：fix/版本号-问题概述或 issueid-日期 (最好使用 issue 建立问题描述?)</p>
+<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><h3 id="develop-为集成开发分支"><a href="#develop-为集成开发分支" class="headerlink" title="develop 为集成开发分支"></a>develop 为集成开发分支</h3><p>自己分支自测完毕； review 通过再合并；</p>
 <h3 id="本地分支管理"><a href="#本地分支管理" class="headerlink" title="本地分支管理"></a>本地分支管理</h3><ul>
 <li>本地分支要做到勤提交，分小功能提交；</li>
-<li>一个功能点一个分支(自己控制)，至少保证保留两个分支：  新版本分支、优化分支；</li>
-<li>本地分支merge到develop分支时，必须先merge develop到本地分支，自测通过再提交；</li>
+<li>本地分支 merge 到 develop 分支时(rebase ? )，必须先 merge develop 到本地分支，自测通过再提交；</li>
 </ul>
 <blockquote>
-<p>开发者相同版本尽量不要修改相同功能，提前划分或协商清楚；<br>如果修改代码涉及多人功能，提交完毕请及时告知相关人员；<br>开发者每天更新develop分支内容到本地分支，避免大规模merge;<br>fixbug分支修改测试完，立即合并到develop上！ </p>
+<p>开发者相同版本尽量不要修改相同功能，提前划分或协商清楚；<br>如果修改代码涉及多人功能，提交完毕请及时告知相关人员；<br>开发者每天更新 develop 分支内容到本地分支，避免大规模 merge(?);<br>fixbug 分支修改测试完，立即合并到 develop 上</p>
 </blockquote>
-<h1 id="提交相关"><a href="#提交相关" class="headerlink" title="提交相关"></a>提交相关</h1><h2 id="关于提交-git-commit"><a href="#关于提交-git-commit" class="headerlink" title="关于提交 git commit"></a>关于提交 git commit</h2><p>详细内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="提交相关"><a href="#提交相关" class="headerlink" title="提交相关"></a>提交相关</h1><h2 id="关于提交-git-commit-message"><a href="#关于提交-git-commit-message" class="headerlink" title="关于提交 git commit message"></a>关于提交 git commit message</h2><p>详细内容格式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built_in">type</span>&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>使用 <code>git commit -m &#39;——&#39;</code>  时，输入的其实是<code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</code>的部分</p>
+<p>使用 <code>git commit -m &#39;XXX&#39;</code> 时，输入的’XXX’其实是<code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</code>的部分</p>
 </blockquote>
-<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>type在commit的是否必须存在。</p>
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p>type 在 commit 的是否必须存在。</p>
 <ul>
 <li>feat: 添加新特性</li>
-<li>fix: 修复bug</li>
+<li>fix: 修复 bug</li>
 <li>docs: 仅仅修改了文档</li>
 <li>style: 仅仅修改了空格、格式缩进、逗号等等，不改变代码逻辑</li>
-<li>refactor: 代码重构，没有加新功能或者修复bug</li>
+<li>refactor: 代码重构，没有加新功能或者修复 bug</li>
 <li>perf: 优化相关，比如提升性能、体验</li>
 <li>test: 增加测试用例</li>
 <li>chore: 改变构建流程、或者增加依赖库、工具等</li>
 <li>revert: 回滚到上一个版本</li>
 </ul>
-<h4 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h4><p>scope：【可选】用于说明commit的影响范围</p>
-<h4 id="subjec"><a href="#subjec" class="headerlink" title="subjec"></a>subjec</h4><p>subject：commit的简要说明，尽量简短</p>
-<h4 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h4><p>对本次commit的详细描述，可分多行</p>
-<h4 id="Footer"><a href="#Footer" class="headerlink" title="Footer"></a>Footer</h4><p>不兼容变动：需要描述相关信息<br>关闭指定Issue：输入Issue信息</p>
+<h3 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h3><p>scope：【可选】用于说明 commit 的影响范围</p>
+<h3 id="subjec"><a href="#subjec" class="headerlink" title="subjec"></a>subjec</h3><p>subject：commit 的简要说明，尽量简短</p>
+<h3 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h3><p>对本次 commit 的详细描述，可分多行</p>
+<h3 id="Footer"><a href="#Footer" class="headerlink" title="Footer"></a>Footer</h3><p>不兼容变动：需要描述相关信息</p>
+<p>如果当前代码与上一个版本不兼容，则 Footer 部分以<code>BREAKING CHANGE</code>开头，后面是对变动的描述、以及变动理由和迁移方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">BREAKING CHANGE: 隔离作用域绑定定义已更改。</span><br><span class="line"></span><br><span class="line">    要迁移代码，请遵循以下示例：</span><br><span class="line"></span><br><span class="line">    Before:</span><br><span class="line"></span><br><span class="line">    scope: &#123;</span><br><span class="line">      myAttr: &apos;attribute&apos;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    After:</span><br><span class="line"></span><br><span class="line">    scope: &#123;</span><br><span class="line">      myAttr: &apos;@&apos;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   删除的“inject”一般对指令没有用处，因此不应该有代码使用它。</span><br></pre></td></tr></table></figure>
+<p>关闭 Issue</p>
 <ul>
 <li>关联 Issue（Issue #1, #2, #3）</li>
 <li>关闭 Issue（Close #1, #2, #3）</li>
 </ul>
-<p>可用github关闭issue，或者与自己的任务相关联</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Closes #234</span><br></pre></td></tr></table></figure>
+<p>可用 github 关闭 issue，或者与自己的任务相关联</p>
 <h2 id="Commitizen-使用方法"><a href="#Commitizen-使用方法" class="headerlink" title="Commitizen 使用方法"></a>Commitizen 使用方法</h2><p>全局安装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g commitizen</span><br></pre></td></tr></table></figure>
 <p>然后，在项目目录里，运行下面的命令，使其支持 Angular 的 Commit message 格式。</p>
@@ -368,60 +374,80 @@
 <p>以后，凡是用到<code>git commit</code>命令，一律改为使用<code>git cz</code>。这时，就会出现选项，用来生成符合格式的 Commit message。</p>
 <h2 id="规范提交信息"><a href="#规范提交信息" class="headerlink" title="规范提交信息"></a>规范提交信息</h2><p><strong>cz-conventional-changelog</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cz-conventional-changelog -D</span><br></pre></td></tr></table></figure>
-<h2 id="生成change-log"><a href="#生成change-log" class="headerlink" title="生成change log"></a>生成change log</h2><p>conventional-changelog-cli 通过提交记录生成 CHANGELOG.md</p>
+<h2 id="生成-change-log"><a href="#生成-change-log" class="headerlink" title="生成 change log"></a>生成 change log</h2><p>conventional-changelog-cli 通过提交记录生成 CHANGELOG.md</p>
 <p><a href="https://github.com/conventional-changelog-archived-repos/conventional-changelog-cli" target="_blank" rel="noopener">https://github.com/conventional-changelog-archived-repos/conventional-changelog-cli</a></p>
 <p>安装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g conventional-changelog-cli</span><br></pre></td></tr></table></figure>
-<p>生成change log</p>
+<p>生成 change log</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conventional-changelog -p angular -i CHANGELOG.md -s</span><br></pre></td></tr></table></figure>
-<p>通过以上命令你就会发现在项目中多了个<code>CHANGELOG.md</code>文件，表示生成 Change log成功了。</p>
-<h2 id="合并代码"><a href="#合并代码" class="headerlink" title="合并代码"></a>合并代码</h2><h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p>将一个分支合并到当前分支</p>
+<p>通过以上命令你就会发现在项目中多了个<code>CHANGELOG.md</code>文件，表示生成 Change log 成功了。</p>
+<p>生成的文档包括以下部分</p>
+<ul>
+<li>New features</li>
+<li>Bug fixes</li>
+<li>Breaking changes.</li>
+</ul>
+<p>查看分支图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --graph --oneline --decorate</span><br></pre></td></tr></table></figure>
+<p>提交关键词搜索</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --grep keywords</span><br></pre></td></tr></table></figure>
+<h1 id="合并代码"><a href="#合并代码" class="headerlink" title="合并代码"></a>合并代码</h1><h2 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h2><p>将一个分支合并到当前分支</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>git pull = git fetch + git merge</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;git fetch orgin master //将远程仓库的master分支下载到本地当前branch中</span><br><span class="line">&gt;</span><br><span class="line">&gt;git log -p master  ..origin/master //比较本地的master分支和origin/master分支的差别</span><br><span class="line">&gt;</span><br><span class="line">&gt;git merge origin/master //进行合并</span><br><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; git fetch orgin master //将远程仓库的master分支下载到本地当前branch中</span><br><span class="line">&gt;</span><br><span class="line">&gt; git log -p master  ..origin/master //比较本地的master分支和origin/master分支的差别</span><br><span class="line">&gt;</span><br><span class="line">&gt; git merge origin/master //进行合并</span><br><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>&gt;<br>&gt;</p>
 <p><img src="/git规范/git-merge.png" alt="merge"></p>
-<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>变基，改变当前分支的基点</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i dev</span><br></pre></td></tr></table></figure>
+<h2 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h2><p>变基，改变当前分支的基点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase dev</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>git pull —rebase = git fetch + git rebase</p>
 </blockquote>
-<p>在mywork分支上rebase，将基点从C2改为C4，在C4后添加C5’ C6’（即：C5 C6的拷贝节点，与C5 C6不是一个节点但内容保留）</p>
+<p>在 mywork 分支上 rebase，将基点从 C2 改为 C4，在 C4 后添加 C5’ C6’（即：C5 C6 的拷贝节点，与 C5 C6 不是一个节点但内容保留）</p>
 <p><img src="/git规范/git-rebase0.png" alt="rebase0"></p>
-<p>移除C5 C6节点</p>
+<p>移除 C5 C6 节点</p>
 <p><img src="/git规范/git-rebase1.png" alt="rebase1"></p>
 <p>追后结果</p>
 <p><img src="/git规范/git-rebase2.png" alt="rebase2"></p>
-<p>综上rebase是对一个分支做“变基”操作，这意味着改变这个分支的base commit。它会在新的base上一个一个地运行这个分支上的所有commits.</p>
+<p>综上 rebase 是对一个分支做“变基”操作，这意味着改变这个分支的 base commit。它会在新的 base 上一个一个地运行这个分支上的所有 commits.</p>
 <blockquote>
 <p>rebase 冲突</p>
 <ul>
-<li>rebase过程中也会出现冲突 解决冲突后，使⽤用git add添加，然后执⾏<code>git rebase - - continue</code>。接下来Git会继续应⽤用余下的补丁。</li>
+<li>rebase 过程中也会出现冲突 解决冲突后，使⽤用 git add 添加，然后执⾏<code>git rebase - - continue</code>。接下来 Git 会继续应⽤用余下的补丁。</li>
 </ul>
 <ul>
-<li><p>任何时候都可以通过如下命令终⽌止rebase，分⽀支会恢复到rebase开始前的状态</p>
-<p>   git rebase - - abort</p>
+<li><p>任何时候都可以通过如下命令终⽌止 rebase，分⽀支会恢复到 rebase 开始前的状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>
 <p>注意：</p>
-<p>不要rebase一个已经在远程库中已经存在的分支，只能rebase你自己使用的私有分支。</p>
+<p>不要 rebase 一个已经在远程库中已经存在的分支，只能 rebase 你自己使用的私有分支。</p>
 <p><img src="/git规范/git-rebase-error.png" alt="git-rebase-error"></p>
-<p>rebase远程分支在提交将导致历史混乱，并且merge后存在多个完全相同修改记录</p>
+<p>rebase 远程分支在提交将导致历史混乱，并且 merge 后存在多个完全相同修改记录</p>
+<h3 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h3><h4 id="合并多个-commit-为一个完整-commit"><a href="#合并多个-commit-为一个完整-commit" class="headerlink" title="合并多个 commit 为一个完整 commit"></a>合并多个 commit 为一个完整 commit</h4><p><img src="/git规范/git-rebase5.png" alt="rebase"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i  [startpoint]  [endpoint]</span><br></pre></td></tr></table></figure>
+<p><code>-i</code>的意思是<code>--interactive</code>，即弹出交互式的界面让用户编辑完成合并操作.</p>
+<p><code>[startpoint]</code> <code>[endpoint]</code>则指定了一个编辑区间，如果不指定<code>[endpoint]</code>，则该区间的终点默认是当前分支<code>HEAD</code>所指向的<code>commit</code>。</p>
 <blockquote>
-<p>查看分支图</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; git <span class="built_in">log</span> --graph --oneline --decorate</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>pick：保留该 commit（缩写:p）<br>reword：保留该 commit，但我需要修改该 commit 的注释（缩写:r）<br>edit：保留该 commit, 但我要停下来修改该提交(不仅仅修改注释)（缩写:e）<br>squash：将该 commit 和前一个 commit 合并（缩写:s）<br>fixup：将该 commit 和前一个 commit 合并，但我不要保留该提交的注释信息（缩写:f）<br>exec：执行 shell 命令（缩写:x）<br>drop：我要丢弃该 commit（缩写:d）</p>
 </blockquote>
-<p>&gt;</p>
-<blockquote>
-<p>提交关键词搜索</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; git <span class="built_in">log</span> --grep keywords</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="git打tag"><a href="#git打tag" class="headerlink" title="git打tag"></a>git打tag</h1><p>tag 对应某次commit, 是一个点，是不可移动的。</p>
-<p>branch 对应一系列commit，是很多点连成的一根线，有一个HEAD 指针，是可以依靠 HEAD 指针移动的。<br>所以，两者的区别决定了使用方式，改动代码用 branch ,不改动只查看用 tag。</p>
+<h4 id="将某一段-commit-粘贴到另一个分支上"><a href="#将某一段-commit-粘贴到另一个分支上" class="headerlink" title="将某一段 commit 粘贴到另一个分支上"></a>将某一段 commit 粘贴到另一个分支上</h4><p><img src="/git规范/git-rebase3.png" alt="rebase"></p>
+<p>将 develop 分支中的 C~E 部分复制到 master 分支中，这时我们就可以通过 rebase 命令（如果只是复制某一两个提交到其他分支，建议使用更简单的命令:<code>git cherry-pick</code>）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase   [startpoint]   [endpoint]  --onto  [branchName]</span><br></pre></td></tr></table></figure>
+<p><code>[startpoint]</code> <code>[endpoint]</code>仍然和上一个命令一样指定了一个编辑区间(前开后闭)，<code>--onto</code>的意思是要将该指定的提交复制到哪个分支上。</p>
+<p><img src="/git规范/git-rebase4.png" alt="rebase"></p>
+<p>此时 HEAD 所指向的内容正是我们所需要的，但是 master 分支是没有任何变化的，<code>git</code>只是将 C~E 部分的提交内容复制一份粘贴到了 master 所指向的提交后面，我们需要做的就是将 master 所指向的提交 id 设置为当前 HEAD 所指向的提交 id 就可以了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git reset --hard  0c72e64</span><br></pre></td></tr></table></figure>
+<h1 id="git-打-tag"><a href="#git-打-tag" class="headerlink" title="git 打 tag"></a>git 打 tag</h1><p>tag 对应某次 commit, 是一个点，是不可移动的。</p>
+<p>branch 对应一系列 commit，是很多点连成的一根线，有一个 HEAD 指针，是可以依靠 HEAD 指针移动的。<br>所以，两者的区别决定了使用方式，改动代码用 branch ,不改动只查看用 tag。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git tag &lt;tagName&gt; // 创建本地tag</span><br><span class="line"></span><br><span class="line">git push origin &lt;tagName&gt; // 推送到远程仓库</span><br><span class="line"></span><br><span class="line">git tag -d &lt;tagName&gt; // 本地 tag 的删除</span><br><span class="line"></span><br><span class="line">git push origin :&lt;tagName&gt; // 远程 tag 的删除：</span><br></pre></td></tr></table></figure>
+<h1 id="git-alias"><a href="#git-alias" class="headerlink" title="git alias"></a>git alias</h1><p>查看已有别名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+<p>编辑别名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --edit</span><br></pre></td></tr></table></figure>
+<p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[alias]</span><br><span class="line">        st = status</span><br><span class="line">        ci = commit</span><br><span class="line">        pl = pull</span><br><span class="line">        ps = push</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -587,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分支相关"><span class="nav-number">1.</span> <span class="nav-text">分支相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支分类"><span class="nav-number">1.1.</span> <span class="nav-text">分支分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支命名"><span class="nav-number">1.2.</span> <span class="nav-text">分支命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.3.</span> <span class="nav-text">分支管理策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#develop为集成开发分支"><span class="nav-number">1.3.1.</span> <span class="nav-text">develop为集成开发分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地分支管理"><span class="nav-number">1.3.2.</span> <span class="nav-text">本地分支管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提交相关"><span class="nav-number">2.</span> <span class="nav-text">提交相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于提交-git-commit"><span class="nav-number">2.1.</span> <span class="nav-text">关于提交 git commit</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#type"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scope"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">scope</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#subjec"><span class="nav-number">2.1.0.3.</span> <span class="nav-text">subjec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Body"><span class="nav-number">2.1.0.4.</span> <span class="nav-text">Body</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Footer"><span class="nav-number">2.1.0.5.</span> <span class="nav-text">Footer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Commitizen-使用方法"><span class="nav-number">2.2.</span> <span class="nav-text">Commitizen 使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范提交信息"><span class="nav-number">2.3.</span> <span class="nav-text">规范提交信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成change-log"><span class="nav-number">2.4.</span> <span class="nav-text">生成change log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并代码"><span class="nav-number">2.5.</span> <span class="nav-text">合并代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-merge"><span class="nav-number">2.5.1.</span> <span class="nav-text">git merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase"><span class="nav-number">2.5.2.</span> <span class="nav-text">git rebase</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git打tag"><span class="nav-number">3.</span> <span class="nav-text">git打tag</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分支"><span class="nav-number">1.</span> <span class="nav-text">分支</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支分类"><span class="nav-number">1.1.</span> <span class="nav-text">分支分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支命名"><span class="nav-number">1.2.</span> <span class="nav-text">分支命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.3.</span> <span class="nav-text">分支管理策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#develop-为集成开发分支"><span class="nav-number">1.3.1.</span> <span class="nav-text">develop 为集成开发分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地分支管理"><span class="nav-number">1.3.2.</span> <span class="nav-text">本地分支管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提交相关"><span class="nav-number">2.</span> <span class="nav-text">提交相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于提交-git-commit-message"><span class="nav-number">2.1.</span> <span class="nav-text">关于提交 git commit message</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#type"><span class="nav-number">2.1.1.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scope"><span class="nav-number">2.1.2.</span> <span class="nav-text">scope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subjec"><span class="nav-number">2.1.3.</span> <span class="nav-text">subjec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Body"><span class="nav-number">2.1.4.</span> <span class="nav-text">Body</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footer"><span class="nav-number">2.1.5.</span> <span class="nav-text">Footer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Commitizen-使用方法"><span class="nav-number">2.2.</span> <span class="nav-text">Commitizen 使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范提交信息"><span class="nav-number">2.3.</span> <span class="nav-text">规范提交信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成-change-log"><span class="nav-number">2.4.</span> <span class="nav-text">生成 change log</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合并代码"><span class="nav-number">3.</span> <span class="nav-text">合并代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-merge"><span class="nav-number">3.1.</span> <span class="nav-text">git merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase"><span class="nav-number">3.2.</span> <span class="nav-text">git rebase</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其他操作"><span class="nav-number">3.2.1.</span> <span class="nav-text">其他操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并多个-commit-为一个完整-commit"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">合并多个 commit 为一个完整 commit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将某一段-commit-粘贴到另一个分支上"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">将某一段 commit 粘贴到另一个分支上</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-打-tag"><span class="nav-number">4.</span> <span class="nav-text">git 打 tag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-alias"><span class="nav-number">5.</span> <span class="nav-text">git alias</span></a></li></ol></div>
             
 
           </div>
